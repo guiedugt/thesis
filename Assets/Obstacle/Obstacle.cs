@@ -4,23 +4,38 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] Collider ground;
-
+    [SerializeField] Collider body;
     RaycastHit hit;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnValidate()
     {
-        bool hitSomething = Physics.Raycast(transform.position, Vector3.down, out hit);
-        if (hitSomething) {
-            Debug.Log(hit.ToString());
-        } else {
-            Debug.Log("Not hitting anything");
+        if (body == null)
+        {
+            Debug.LogWarning(transform.name + " must have a body (with a collider)");
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        Ground();
+    }
+
+    void Ground()
+    {
+        bool hitGround = Physics.Raycast(
+            body.transform.position,
+            body.transform.TransformDirection(Vector3.down),
+            out hit
+        );
+
+        if (hitGround)
+        {
+            transform.position = hit.point;
+            transform.rotation = Quaternion.FromToRotation(body.transform.up, hit.normal) * body.transform.rotation;
+        }
+        else
+        {
+            Debug.Log(transform.name + " is not finding its ground");
+        }
     }
 }
