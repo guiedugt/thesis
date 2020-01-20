@@ -1,15 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] Collider body;
+    [SerializeField] GameObject body;
+    [SerializeField] float speed = 10f;
+
+    Collider col;
     RaycastHit hit;
+    LayerMask ground;
+
+    void Start()
+    {
+        col = body.GetComponent<Collider>();
+        ground = LayerMask.GetMask("Ground");
+    }
 
     void OnValidate()
     {
-        if (body == null)
+        if (col == null)
         {
             Debug.LogWarning(transform.name + " must have a body (with a collider)");
         }
@@ -18,6 +26,7 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         Ground();
+        Move();
     }
 
     void Ground()
@@ -25,7 +34,9 @@ public class Obstacle : MonoBehaviour
         bool hitGround = Physics.Raycast(
             body.transform.position,
             body.transform.TransformDirection(Vector3.down),
-            out hit
+            out hit,
+            Mathf.Infinity,
+            ground
         );
 
         if (hitGround)
@@ -37,5 +48,11 @@ public class Obstacle : MonoBehaviour
         {
             Debug.Log(transform.name + " is not finding its ground");
         }
+    }
+
+    void Move()
+    {
+        Vector3 offset = body.transform.forward * Time.deltaTime * speed;
+        transform.Translate(offset, Space.World);
     }
 }
