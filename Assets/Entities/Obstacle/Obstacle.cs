@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
@@ -13,13 +14,10 @@ public class Obstacle : MonoBehaviour
     {
         col = body.GetComponent<Collider>();
         ground = LayerMask.GetMask("Ground");
-    }
 
-    void OnValidate()
-    {
         if (col == null)
         {
-            Debug.LogWarning(transform.name + " must have a body (with a collider)");
+            throw new Exception(transform.name + " must have a body (with a collider)");
         }
     }
 
