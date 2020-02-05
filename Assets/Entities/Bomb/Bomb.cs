@@ -4,21 +4,25 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
 public class Bomb : MonoBehaviour
 {
     [SerializeField] float explosionForce = 2000f;
     [SerializeField] float explosionRadius = 3f;
+    [SerializeField][Range(0f, 1f)] float gravityRatio = 0.5f;
 
-    Collider col;
+    new Collider collider;
+    new Rigidbody rigidbody;
 
     void Start()
     {
-        col = GetComponent<Collider>();
+        collider = GetComponent<Collider>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * 2f);
+        rigidbody.AddForce(-Physics.gravity * rigidbody.mass * gravityRatio);
     }
 
     void OnDrawGizmosSelected()

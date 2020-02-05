@@ -4857,7 +4857,7 @@ GameObject:
   - component: {fileID: 7262656910049652211}
   - component: {fileID: 4032598053113319690}
   - component: {fileID: 7626895176892351452}
-  - component: {fileID: 376339834595998378}
+  - component: {fileID: 7791016008782433392}
   - component: {fileID: 4578398749219444397}
   - component: {fileID: 3558704401944061905}
   m_Layer: 0
@@ -4949,8 +4949,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &376339834595998378
-CapsuleCollider:
+--- !u!135 &7791016008782433392
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4959,10 +4959,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.8953133
-  m_Height: 3.8814683
-  m_Direction: 1
-  m_Center: {x: -0.00015461445, y: 0.07528305, z: -0.00000011920929}
+  serializedVersion: 2
+  m_Radius: 0.95
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4578398749219444397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4973,12 +4972,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &3558704401944061905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4991,4 +4990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94f01770741054da7680397a3b29ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionForce: 250
   explosionRadius: 7
+  gravityRatio: 0.5
