@@ -27,7 +27,7 @@ public class InputManager : Singleton<InputManager>
         Vector3 clickPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, touchCameraDistance);
         Vector3 bombPosition = camera.ScreenToWorldPoint(clickPosition);
 
-        GameObject bomb = Instantiate(bombPrefab, bombPosition, Quaternion.identity);
+        GameObject bomb = Instantiate(bombPrefab, bombPosition, Quaternion.identity, MemoryManager.Instance.transform);
         Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
 
         Vector3 throwDirection = bombPosition - camera.transform.position;

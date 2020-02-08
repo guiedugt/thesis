@@ -38,6 +38,11 @@ public class Bomb : MonoBehaviour
         Explode(other.gameObject.layer);
     }
 
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
     void Explode(int layerMask)
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, 1 << layerMask);

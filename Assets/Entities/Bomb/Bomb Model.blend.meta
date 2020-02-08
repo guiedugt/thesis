@@ -3,7 +3,22 @@ guid: b4a91d7b4c84e7a4d9365e61ec830a72
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bomb Base
+    second: {fileID: 2100000, guid: 7ea576277e4127f4099b9b13bfec5854, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bomb Handle
+    second: {fileID: 2100000, guid: 0592c7c812c748c4791f0c326971d47f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bomb Wick
+    second: {fileID: 2100000, guid: 4155cf0645a13c245955204a7768e8de, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
