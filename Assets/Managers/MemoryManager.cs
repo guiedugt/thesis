@@ -1,7 +1,10 @@
-﻿// using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Collider))]
 public class MemoryManager : Singleton<MemoryManager>
 {
+    void OnTriggerExit(Collider other)
+    {
+        Destroy(other.gameObject);
+    }
 }

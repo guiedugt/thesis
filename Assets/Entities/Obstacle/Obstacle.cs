@@ -1,24 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] GameObject body;
     [SerializeField] float speed = 10f;
 
-    Collider col;
     RaycastHit hit;
     LayerMask ground;
 
     void Start()
     {
-        col = body.GetComponent<Collider>();
         ground = LayerMask.GetMask("Ground");
-
-        if (col == null)
-        {
-            throw new Exception(transform.name + " must have a body (with a collider)");
-        }
     }
 
     void Update()
@@ -30,8 +21,8 @@ public class Obstacle : MonoBehaviour
     void Ground()
     {
         bool hitGround = Physics.Raycast(
-            body.transform.position,
-            body.transform.TransformDirection(Vector3.down),
+            transform.position,
+            transform.TransformDirection(Vector3.down),
             out hit,
             Mathf.Infinity,
             ground
@@ -40,7 +31,7 @@ public class Obstacle : MonoBehaviour
         if (hitGround)
         {
             transform.position = hit.point;
-            transform.rotation = Quaternion.FromToRotation(body.transform.up, hit.normal) * body.transform.rotation;
+            transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
         else
         {
@@ -50,7 +41,7 @@ public class Obstacle : MonoBehaviour
 
     void Move()
     {
-        Vector3 offset = body.transform.forward * Time.deltaTime * speed;
+        Vector3 offset = transform.forward * Time.deltaTime * speed;
         transform.Translate(offset, Space.World);
     }
 }

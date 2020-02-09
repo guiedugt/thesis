@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3100487774935552473}
-  - component: {fileID: 7644981992486561077}
+  - component: {fileID: 6685652456181598316}
   m_Layer: 0
-  m_Name: Wall Prefab
+  m_Name: Obstacle Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7644981992486561077
+--- !u!114 &6685652456181598316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -46,12 +46,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 888373591369773055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5171a2ff48b3574488b87dbbfb2e10e, type: 3}
+  m_Script: {fileID: 11500000, guid: 96337a618d0ae8745a51786dca5c388b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 12
-  columns: 36
-  brick: {fileID: 4585639412808616323, guid: eed6e3fc7bbd8f8489eadd00a7c37531, type: 3}
+  body: {fileID: 0}
+  speed: 10
 --- !u!1 &2300305688068374890
 GameObject:
   m_ObjectHideFlags: 0
