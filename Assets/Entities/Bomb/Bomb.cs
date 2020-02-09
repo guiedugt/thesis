@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float explosionForce = 2000f;
     [SerializeField] float explosionRadius = 3f;
     [SerializeField][Range(0f, 1f)] float gravityRatio = 0.5f;
+    [SerializeField] ParticleSystem explosionVFX;
 
     new Collider collider;
     new Rigidbody rigidbody;
@@ -52,6 +53,12 @@ public class Bomb : MonoBehaviour
             rigidBody.isKinematic = false;
             rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
+
+        if (explosionVFX)
+        {
+            Instantiate(explosionVFX, transform.position, Quaternion.identity);
+        }
+
         Destroy(gameObject);
     }
 }
