@@ -3,6 +3,8 @@
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
+    [SerializeField] float zigZagSpeed = 10f;
+    [SerializeField] float zigZagDistance = 10f;
 
     RaycastHit hit;
     LayerMask ground;
@@ -15,7 +17,8 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         Ground();
-        Move();
+        // MoveForward();
+        ZigZag();
     }
 
     void Ground()
@@ -39,9 +42,14 @@ public class Obstacle : MonoBehaviour
         }
     }
 
-    void Move()
+    void MoveForward()
     {
         Vector3 offset = transform.forward * Time.deltaTime * speed;
         transform.Translate(offset, Space.World);
+    }
+
+    void ZigZag()
+    {
+        transform.position += Vector3.right * Mathf.Sin(Time.time * zigZagSpeed) * zigZagDistance;
     }
 }
