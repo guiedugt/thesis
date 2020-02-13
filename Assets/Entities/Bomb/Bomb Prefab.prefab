@@ -4990,8 +4990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94f01770741054da7680397a3b29ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 250
-  explosionRadius: 7
+  explosionForce: 150
+  explosionRadius: 6
   gravityRatio: 0.5
   explosionVFX: {fileID: 7273940308622066382, guid: 484907846db578945ba3cee1c1cf9380,
     type: 3}

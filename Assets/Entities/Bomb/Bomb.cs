@@ -41,12 +41,16 @@ public class Bomb : MonoBehaviour
 
     void Explode(int layerMask)
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, explosionRadius, 1 << layerMask);
-        Rigidbody[] rigidBodies = hitColliders.Select(t => t.gameObject.GetComponent<Rigidbody>()).ToArray();
-        foreach (Rigidbody rigidBody in rigidBodies)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, 1 << layerMask);
+        foreach (Collider collider in colliders)
         {
-            rigidBody.isKinematic = false;
-            rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            Rigidbody rigidbody = collider.gameObject.GetComponent<Rigidbody>();
+
+            collider.isTrigger = true;
+            collider.gameObject.transform.parent = MemoryManager.Instance.transform;
+            
+            rigidbody.isKinematic = false;
+            rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
         if (explosionVFX)
