@@ -1,0 +1,15 @@
+using UnityEngine;
+ 
+namespace Evertale {
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        #region [Fields]
+        #endregion
+    
+        #region [Events]
+        #endregion
+    
+        #region [Methods]
+        #endregion
+    }
+}

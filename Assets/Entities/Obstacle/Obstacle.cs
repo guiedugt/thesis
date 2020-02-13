@@ -3,21 +3,23 @@
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] float speed = 10f;
-    [SerializeField] float zigZagSpeed = 10f;
-    [SerializeField] float zigZagDistance = 10f;
+    [SerializeField] float zigZagSpeed = 1.5f;
+    [SerializeField] float zigZagDistance = 3f;
 
     RaycastHit hit;
     LayerMask ground;
+    Vector3 initialPosition;
 
     void Start()
     {
         ground = LayerMask.GetMask("Ground");
+        initialPosition = transform.position;
     }
 
     void Update()
     {
         Ground();
-        // MoveForward();
+        MoveForward();
         ZigZag();
     }
 
@@ -36,10 +38,6 @@ public class Obstacle : MonoBehaviour
             transform.position = hit.point;
             transform.rotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
         }
-        else
-        {
-            Debug.Log(transform.name + " is not finding its ground");
-        }
     }
 
     void MoveForward()
@@ -50,6 +48,11 @@ public class Obstacle : MonoBehaviour
 
     void ZigZag()
     {
-        transform.position += Vector3.right * Mathf.Sin(Time.time * zigZagSpeed) * zigZagDistance;
+        float offset = Mathf.Sin(Mathf.PI * Time.time * zigZagSpeed) * zigZagDistance;
+        transform.position = new Vector3(
+            initialPosition.x + offset,
+            transform.position.y,
+            transform.position.z
+        );
     }
 }
