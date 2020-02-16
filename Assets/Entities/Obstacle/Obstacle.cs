@@ -2,9 +2,9 @@
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] float speed = 10f;
-    [SerializeField] float zigZagSpeed = 1.5f;
-    [SerializeField] float zigZagDistance = 3f;
+    public float speed = 10f;
+    public float zigZagSpeed = 1.5f;
+    public float zigZagDistance = 3f;
 
     RaycastHit hit;
     LayerMask ground;
