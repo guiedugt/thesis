@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 {
     [SerializeField] float explosionForce = 2000f;
     [SerializeField] float explosionRadius = 3f;
-    [SerializeField][Range(0f, 1f)] float gravityRatio = 0.5f;
+    [SerializeField] [Range(0f, 1f)] float gravityRatio = 0.5f;
     [SerializeField] ParticleSystem explosionVFX;
 
     new Collider collider;
@@ -33,29 +33,28 @@ public class Bomb : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        bool hitBrick = LayerMask.LayerToName(other.gameObject.layer) == Constants.Layers.BRICKS;
-        if (!hitBrick) return;
-
-        Explode(other.gameObject.layer);
+        Explode();
     }
 
-    void Explode(int layerMask)
+    void Explode()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, 1 << layerMask);
+        int bricksLayerMask = LayerMask.GetMask("Bricks");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, bricksLayerMask);
         foreach (Collider collider in colliders)
         {
             Rigidbody rigidbody = collider.gameObject.GetComponent<Rigidbody>();
 
             collider.isTrigger = true;
             collider.gameObject.transform.parent = MemoryManager.Instance.transform;
-            
+
             rigidbody.isKinematic = false;
             rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
         if (explosionVFX)
         {
-            Instantiate(explosionVFX, transform.position, Quaternion.identity);
+            ParticleSystem explosionVFXInstance = Instantiate(explosionVFX, transform.position, Quaternion.identity, MemoryManager.Instance.transform);
+            explosionVFXInstance.gameObject.transform.LookAt(GameManager.camera.transform);
         }
 
         Destroy(gameObject);
