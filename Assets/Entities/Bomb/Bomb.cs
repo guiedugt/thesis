@@ -9,7 +9,7 @@ public class Bomb : MonoBehaviour
 {
     [SerializeField] float explosionForce = 2000f;
     [SerializeField] float explosionRadius = 3f;
-    [SerializeField] [Range(0f, 1f)] float gravityRatio = 0.5f;
+    [SerializeField] [Range(-10f, 10f)] float gravityRatio = 0.5f;
     [SerializeField] ParticleSystem explosionVFX;
 
     new Collider collider;
@@ -23,7 +23,7 @@ public class Bomb : MonoBehaviour
 
     void FixedUpdate()
     {
-        rigidbody.AddForce(-Physics.gravity * rigidbody.mass * gravityRatio);
+        rigidbody.AddForce(Physics.gravity * rigidbody.mass * gravityRatio);
     }
 
     void OnDrawGizmosSelected()
