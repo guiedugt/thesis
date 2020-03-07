@@ -276,7 +276,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 3e-45, z: 0, w: 6e-45}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -403,6 +403,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &805315966 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7628108115118822467, guid: 6ee401a420cc55d46a829cbe043b13fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1944876623758082690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &805315969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805315966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2782ff5f9caf0944b7c2735e8133e4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cannonBase: {fileID: 1393714141}
 --- !u!1 &1038332388
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,6 +479,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 200, y: 100, z: 956.29395}
   m_Center: {x: 0, y: 0, z: -3.1469727}
+--- !u!1 &1393714141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1230453628531972625, guid: 6ee401a420cc55d46a829cbe043b13fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1944876623758082690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1443964138
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +531,7 @@ MonoBehaviour:
   bombPrefab: {fileID: 3443701878701057494, guid: 59c17c6f2cfe0c646870a66c9864e429,
     type: 3}
   throwPower: 3
-  touchCameraDistance: 15
+  touchCameraDistance: 20
   bombOrigin: {fileID: 1944876623758082691}
   maxTilt: 0.175
   cameraRotation: 5
@@ -602,13 +627,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 888373591369773055, guid: ef015ea2bd6640242bbf49d6b7cd1148, type: 3}
-  delay: 5
-  minSpeed: 5
+  delay: 3
+  minSpeed: 7
   maxSpeed: 10
   minZigZagSpeed: 0
-  maxZigZagSpeed: 2.5
+  maxZigZagSpeed: 2
   minZigZagDistance: 0
-  maxZigZagDistance: 5
+  maxZigZagDistance: 4
 --- !u!1 &2146965287
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,6 +674,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2834922342871748565, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4090024087362889159, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5241219403572155925, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5241219403572155925, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6883508156328601168, guid: 6ee401a420cc55d46a829cbe043b13fd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -708,6 +753,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Car Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007202512797250988, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 8007202512797250988, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530838009932274612, guid: 6ee401a420cc55d46a829cbe043b13fd,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ee401a420cc55d46a829cbe043b13fd, type: 3}

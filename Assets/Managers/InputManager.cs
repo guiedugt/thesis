@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
+
 
 public class InputManager : Singleton<InputManager>
 {
     [Header("Bombs")]
     [SerializeField] GameObject bombPrefab;
     [SerializeField][Range(1f, 10f)] float throwPower = 7f;
-    [SerializeField][Range(1f, 20f)] float touchCameraDistance = 5f;
+    [SerializeField][Range(1f, 50f)] float touchCameraDistance = 5f;
     [SerializeField] Transform bombOrigin;
 
     [Header("Camera")]
@@ -18,6 +18,9 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] float playerTiltDisplacement = 2f;
     [SerializeField] float playerChangeSpeed = 0.4f;
     [Tooltip("Used for debugging only")][Range(-1f, 1f)][SerializeField] float fakeTilt = 0f;
+
+    public class BombThrowEvent : UnityEvent<GameObject, Vector3> { }
+    public static BombThrowEvent OnBombThrow = new BombThrowEvent();
 
     new Camera camera;
     Vector3 initialCameraPosition;
@@ -59,7 +62,6 @@ public class InputManager : Singleton<InputManager>
         if (!Input.GetMouseButtonDown(0)) return;
 
         Vector3 clickScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, touchCameraDistance);
-
         Vector3 clickPosition = GameManager.camera.ScreenToWorldPoint(clickScreenPosition);
 
         GameObject bomb = Instantiate(bombPrefab, bombOrigin.position, Quaternion.identity, MemoryManager.Instance.transform);
@@ -70,6 +72,8 @@ public class InputManager : Singleton<InputManager>
 
         bombRigidbody.velocity = throwDirection * throwPower;
         bombRigidbody.AddTorque(bombTorque);
+
+        OnBombThrow.Invoke(bomb, clickPosition);
     }
 
     void HandleTilt()
