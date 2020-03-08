@@ -6,38 +6,65 @@ public class Car : MonoBehaviour
     [Header("Cannon")]
     [SerializeField] GameObject cannonBase;
     [SerializeField] GameObject cannonPipe;
-    [SerializeField][Range(0f, 1f)] float recoilAmount = 0.5f;
-    [SerializeField][Range(0f, 5f)] float pipeRecoilDelay = 3f;
+    [SerializeField][Range(0f, 1f)] float cannonPipeRecoilAmount = 0.5f;
+    [SerializeField][Range(0f, 5f)] float cannonPipeRecoilDelay = 3f;
+    [SerializeField] Color cannonPipeRecoilColor = Color.red;
 
-    float pipeVelocity;
+    float cannonPipeVelocity;
+    MeshRenderer cannonPipeMesh;
+    Color initialCannonPipeColor;
 
     void Start()
     {
         InputManager.OnBombThrow.AddListener(OnBombThrow);
+        cannonPipeMesh = cannonPipe.GetComponent<MeshRenderer>();
+        initialCannonPipeColor = cannonPipeMesh.material.color;
     }
 
     void OnBombThrow(GameObject bomb, Vector3 clickPosition)
     {
         cannonBase.transform.LookAt(clickPosition);
         Vector3 recoilDirection = Vector3.Normalize(clickPosition - cannonBase.transform.position);
-        StartCoroutine(PipeRecoilCoroutine(recoilDirection));
+        StartCoroutine(CannonPipeRecoilCoroutine(recoilDirection));
+        StartCoroutine(CannonPipeColorCoroutine());
     }
 
-    IEnumerator PipeRecoilCoroutine(Vector3 recoilDirection)
+    IEnumerator CannonPipeRecoilCoroutine(Vector3 recoilDirection)
     {
 
         Vector3 initialCannonPipePosition = cannonPipe.transform.position;
+        float currentOffset = cannonPipeRecoilAmount;
         float previousOffset = 0f;
-        float currentOffset = recoilAmount;
-        float deltaOffset;
+        float deltaOffset = 0f;
+
         while (Mathf.Abs(currentOffset) > Mathf.Epsilon)
         {
-            currentOffset = Mathf.SmoothDamp(currentOffset, 0f, ref pipeVelocity, pipeRecoilDelay);
+            // Handle cannon pipe position offset
+            currentOffset = Mathf.SmoothDamp(currentOffset, 0f, ref cannonPipeVelocity, cannonPipeRecoilDelay);
 
             deltaOffset = currentOffset - previousOffset;
             cannonPipe.transform.position = cannonPipe.transform.position - recoilDirection * deltaOffset;
 
             previousOffset = currentOffset;
+
+            // Loop frame
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator CannonPipeColorCoroutine()
+    {
+        float startTime = Time.timeSinceLevelLoad;
+        float t = 0f;
+        cannonPipeMesh.material.color = cannonPipeRecoilColor;
+        while (!cannonPipeMesh.material.color.Equals(initialCannonPipeColor) && t < 1f)
+        {
+            // Handle cannon pipe color
+            t = (Time.timeSinceLevelLoad - startTime) / InputManager.bombDelay;
+            print(t);
+            cannonPipeMesh.material.color = Color.Lerp(cannonPipeRecoilColor, initialCannonPipeColor, t);
+
+            // Loop frame
             yield return new WaitForEndOfFrame();
         }
     }

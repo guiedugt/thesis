@@ -19,6 +19,7 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] float playerChangeSpeed = 0.4f;
     [Tooltip("Used for debugging only")][Range(-1f, 1f)][SerializeField] float fakeTilt = 0f;
 
+    float timeSinceLastBombThrow = 0f;
     public class BombThrowEvent : UnityEvent<GameObject, Vector3> { }
     public static BombThrowEvent OnBombThrow = new BombThrowEvent();
 
@@ -59,7 +60,9 @@ public class InputManager : Singleton<InputManager>
 
     void HandleBombThrow()
     {
-        if (!Input.GetMouseButtonDown(0)) return;
+        timeSinceLastBombThrow += Time.deltaTime;
+
+        if (!Input.GetMouseButtonDown(0) || timeSinceLastBombThrow < bombDelay) return;
 
         Vector3 clickScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, touchCameraDistance);
         Vector3 clickPosition = GameManager.camera.ScreenToWorldPoint(clickScreenPosition);
@@ -72,6 +75,8 @@ public class InputManager : Singleton<InputManager>
 
         bombRigidbody.velocity = throwDirection * throwPower;
         bombRigidbody.AddTorque(bombTorque);
+
+        timeSinceLastBombThrow = 0f;
 
         OnBombThrow.Invoke(bomb, clickPosition);
     }
