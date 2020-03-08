@@ -5,8 +5,8 @@ public class InputManager : Singleton<InputManager>
 {
     [Header("Bombs")]
     [SerializeField] GameObject bombPrefab;
-    [SerializeField][Range(1f, 10f)] float throwPower = 7f;
-    [SerializeField][Range(1f, 50f)] float touchCameraDistance = 5f;
+    [SerializeField] float throwPower = 7f;
+    [SerializeField] float touchCameraDistance = 100f;
     public Transform bombOrigin;
     public float bombDelay = 1f;
 
@@ -70,7 +70,7 @@ public class InputManager : Singleton<InputManager>
         GameObject bomb = Instantiate(bombPrefab, bombOrigin.position, Quaternion.identity, MemoryManager.Instance.transform);
         Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
 
-        Vector3 throwDirection = clickPosition - bombOrigin.position;
+        Vector3 throwDirection = Vector3.Normalize(clickPosition - bombOrigin.position);
         Vector3 bombTorque = new Vector3(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0f, 360f));
 
         bombRigidbody.velocity = throwDirection * throwPower;

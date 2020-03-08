@@ -196,13 +196,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330064757}
-  m_LocalRotation: {x: 0.19416152, y: 0.00008902121, z: -0.0002265831, w: 0.9809696}
-  m_LocalPosition: {x: 0, y: -5.45, z: -256.25}
+  m_LocalRotation: {x: 0.21787441, y: 0.00009448545, z: -0.00022435936, w: 0.9759769}
+  m_LocalPosition: {x: 0, y: -4.47, z: -258.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 22.391, y: 0.0050000004, z: -0.025}
+  m_LocalEulerAnglesHint: {x: 25.168001, y: 0.0050000004, z: -0.025}
 --- !u!1 &679378161 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3078567699382669849, guid: 6ee401a420cc55d46a829cbe043b13fd,
@@ -542,15 +542,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 3443701878701057494, guid: 59c17c6f2cfe0c646870a66c9864e429,
     type: 3}
-  throwPower: 3
+  throwPower: 50
   touchCameraDistance: 20
   bombOrigin: {fileID: 1944876623758082691}
+  bombDelay: 1
   maxTilt: 0.175
   cameraRotation: 5
-  cameraDisplacement: 2
+  cameraDisplacement: 3
   cameraChangeSpeed: 0.25
-  playerTiltDisplacement: 3
-  playerChangeSpeed: 0.25
+  playerTiltDisplacement: 5
+  playerChangeSpeed: 0.3
   fakeTilt: 0
 --- !u!1 &1805595472
 GameObject:
