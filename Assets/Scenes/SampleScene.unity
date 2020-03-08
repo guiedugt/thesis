@@ -203,6 +203,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 22.391, y: 0.0050000004, z: -0.025}
+--- !u!1 &679378161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3078567699382669849, guid: 6ee401a420cc55d46a829cbe043b13fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1944876623758082690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +428,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonBase: {fileID: 1393714141}
+  cannonPipe: {fileID: 679378161}
+  recoilAmount: 0.5
+  pipeRecoilDelay: 0.2
 --- !u!1 &1038332388
 GameObject:
   m_ObjectHideFlags: 0

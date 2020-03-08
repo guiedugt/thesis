@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-
 public class InputManager : Singleton<InputManager>
 {
     [Header("Bombs")]
@@ -9,6 +8,7 @@ public class InputManager : Singleton<InputManager>
     [SerializeField][Range(1f, 10f)] float throwPower = 7f;
     [SerializeField][Range(1f, 50f)] float touchCameraDistance = 5f;
     [SerializeField] Transform bombOrigin;
+    public static float bombDelay = 1f;
 
     [Header("Camera")]
     [SerializeField] float maxTilt = 0.15f;
