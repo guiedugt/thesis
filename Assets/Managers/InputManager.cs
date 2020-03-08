@@ -7,8 +7,8 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] GameObject bombPrefab;
     [SerializeField][Range(1f, 10f)] float throwPower = 7f;
     [SerializeField][Range(1f, 50f)] float touchCameraDistance = 5f;
-    [SerializeField] Transform bombOrigin;
-    public static float bombDelay = 1f;
+    public Transform bombOrigin;
+    public float bombDelay = 1f;
 
     [Header("Camera")]
     [SerializeField] float maxTilt = 0.15f;
@@ -21,7 +21,7 @@ public class InputManager : Singleton<InputManager>
 
     float timeSinceLastBombThrow = 0f;
     public class BombThrowEvent : UnityEvent<GameObject, Vector3> { }
-    public static BombThrowEvent OnBombThrow = new BombThrowEvent();
+    public BombThrowEvent OnBombThrow = new BombThrowEvent();
 
     new Camera camera;
     Vector3 initialCameraPosition;

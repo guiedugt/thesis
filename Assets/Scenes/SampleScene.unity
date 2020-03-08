@@ -282,7 +282,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 4e-45}
+  m_BoundingSphereOverride: {x: 0.15234375, y: 0.0390625, z: 0.03515625, w: -0.0390625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -432,6 +432,8 @@ MonoBehaviour:
   cannonPipeRecoilAmount: 0.2
   cannonPipeRecoilDelay: 0.2
   cannonPipeRecoilColor: {r: 1, g: 0, b: 0, a: 1}
+  rechargeVfx: {fileID: 1210085017703255169, guid: d8d1c72b6e8a3294192c49f60531bd10,
+    type: 3}
 --- !u!1 &1038332388
 GameObject:
   m_ObjectHideFlags: 0

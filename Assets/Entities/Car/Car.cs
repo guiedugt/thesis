@@ -9,14 +9,17 @@ public class Car : MonoBehaviour
     [SerializeField][Range(0f, 1f)] float cannonPipeRecoilAmount = 0.5f;
     [SerializeField][Range(0f, 5f)] float cannonPipeRecoilDelay = 3f;
     [SerializeField] Color cannonPipeRecoilColor = Color.red;
+    [SerializeField] ParticleSystem rechargeVfx;
 
+    InputManager inputManager;
     float cannonPipeVelocity;
     MeshRenderer cannonPipeMesh;
     Color initialCannonPipeColor;
 
     void Start()
     {
-        InputManager.OnBombThrow.AddListener(OnBombThrow);
+        inputManager = InputManager.Instance;
+        inputManager.OnBombThrow.AddListener(OnBombThrow);
         cannonPipeMesh = cannonPipe.GetComponent<MeshRenderer>();
         initialCannonPipeColor = cannonPipeMesh.material.color;
     }
@@ -60,12 +63,13 @@ public class Car : MonoBehaviour
         while (!cannonPipeMesh.material.color.Equals(initialCannonPipeColor) && t < 1f)
         {
             // Handle cannon pipe color
-            t = (Time.timeSinceLevelLoad - startTime) / InputManager.bombDelay;
-            print(t);
+            t = (Time.timeSinceLevelLoad - startTime) / inputManager.bombDelay;
             cannonPipeMesh.material.color = Color.Lerp(cannonPipeRecoilColor, initialCannonPipeColor, t);
 
             // Loop frame
             yield return new WaitForEndOfFrame();
         }
+
+        Instantiate(rechargeVfx, inputManager.bombOrigin.position, Quaternion.identity, cannonPipe.transform);
     }
 }
