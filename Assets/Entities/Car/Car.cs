@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     float cannonPipeVelocity;
     MeshRenderer cannonPipeMesh;
     Color initialCannonPipeColor;
+    Animator anim;
 
     void Start()
     {
@@ -22,6 +23,13 @@ public class Car : MonoBehaviour
         inputManager.OnBombThrow.AddListener(OnBombThrow);
         cannonPipeMesh = cannonPipe.GetComponent<MeshRenderer>();
         initialCannonPipeColor = cannonPipeMesh.material.color;
+        anim = GetComponent<Animator>();
+        GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
+    }
+
+    void HandleGameOver()
+    {
+        anim.SetTrigger("Crash");
     }
 
     void OnBombThrow(GameObject bomb, Vector3 clickPosition)
