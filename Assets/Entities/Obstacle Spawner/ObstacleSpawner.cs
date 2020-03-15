@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    [Header("Spawner Properties")]
     [SerializeField] GameObject prefab;
+    [SerializeField] bool hasInitialDelay = false;
     [SerializeField] float delay = 3f;
-    [Header("Obstacle properties")]
+
+    [Header("Obstacle Properties")]
     [SerializeField] float minSpeed = 8f;
     [SerializeField] float maxSpeed = 12f;
     [SerializeField] float minZigZagSpeed = 1f;
@@ -18,11 +21,12 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         wait = new WaitForSeconds(delay);
-        StartCoroutine(SpawnCoroutine());
+        StartCoroutine(SpawnCoroutine(hasInitialDelay));
     }
 
-    IEnumerator SpawnCoroutine() {
-        yield return wait;
+    IEnumerator SpawnCoroutine(bool waitForDelay = true)
+    {
+        if (waitForDelay) { yield return wait; }
         GameObject obstacleGameObject = Instantiate(prefab, transform.position, transform.rotation, MemoryManager.Instance.transform);
         Obstacle obstacle = obstacleGameObject.GetComponent<Obstacle>();
         obstacle.speed = Random.Range(minSpeed, maxSpeed);
