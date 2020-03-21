@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.isGameOver) { return; }
+        if (!GameManager.isGameRunning) { return; }
         Ground();
         MoveForward();
         ZigZag();

@@ -16,6 +16,6 @@ public class Brick : MonoBehaviour
     Rigidbody rb = player.GetComponent<Rigidbody>();
     rb.AddForce(Vector3.up * CollisionUpForce);
     rb.AddTorque(Vector3.down * CollisionTorqueForce);
-    GameManager.Instance.OnGameOver.Invoke();
+    GameManager.Instance.GameOver();
   }
 }

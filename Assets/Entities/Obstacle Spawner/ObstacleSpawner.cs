@@ -21,7 +21,7 @@ public class ObstacleSpawner : MonoBehaviour
     void Start()
     {
         wait = new WaitForSeconds(delay);
-        StartCoroutine(SpawnCoroutine(hasInitialDelay));
+        GameManager.Instance.OnGameStart.AddListener(() => StartCoroutine(SpawnCoroutine(hasInitialDelay)));
     }
 
     IEnumerator SpawnCoroutine(bool waitForDelay = true)
