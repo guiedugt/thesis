@@ -50,12 +50,21 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        HandleGameStart();
         HandleBombThrow();
     }
 
     void FixedUpdate()
     {
         HandleTilt();
+    }
+
+    void HandleGameStart()
+    {
+        if (!Input.GetMouseButtonDown(0)) { return; }
+
+        bool shouldStartGame = !GameManager.isGameRunning && !GameManager.isGameRunning;
+        if (shouldStartGame) { GameManager.Instance.StartGame(); }
     }
 
     void HandleBombThrow()

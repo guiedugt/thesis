@@ -17,7 +17,6 @@ public class Track : MonoBehaviour
 
     void HandleGameStart()
     {
-        print(material);
         material.SetFloat("_ScrollXSpeed", scrollXSpeed);
         material.SetFloat("_ScrollYSpeed", scrollYSpeed);
     }
