@@ -92,6 +92,8 @@ public class InputManager : Singleton<InputManager>
 
     void HandleTilt()
     {
+        if (!GameManager.isGameRunning) { return; }
+
         fakeTilt = Input.GetAxis("Horizontal");
         float tilt = (Mathf.Abs(fakeTilt) >= Mathf.Epsilon) ? fakeTilt : Input.acceleration.x;
 

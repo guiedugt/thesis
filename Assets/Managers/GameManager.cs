@@ -26,6 +26,7 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         isGameRunning = true;
+        isGameOver = false;
         StartCoroutine(TFadeCoroutine());
         Instance.OnGameStart.Invoke();
     }
@@ -33,6 +34,7 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         if (isGameOver) { return; }
+        isGameRunning = false;
         isGameOver = true;
         camera.GetComponent<MainCamera>().Shake();
         InputManager.Instance.enabled = false;

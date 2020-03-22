@@ -27,6 +27,11 @@ public class Car : MonoBehaviour
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
     }
 
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
     void HandleGameOver()
     {
         anim.SetTrigger("Crash");
