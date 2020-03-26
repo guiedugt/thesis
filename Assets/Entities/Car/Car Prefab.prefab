@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 2015604627456094236}
   - component: {fileID: 4610313508887185183}
   - component: {fileID: 340887107273508961}
+  - component: {fileID: 8724551649152444859}
   m_Layer: 0
   m_Name: Car Prefab
   m_TagString: Player
@@ -379,6 +380,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8724551649152444859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015604627456094237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63922dc39facd2845b9dab13844a4ffb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnReload:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2043085597870944378
 GameObject:
   m_ObjectHideFlags: 0

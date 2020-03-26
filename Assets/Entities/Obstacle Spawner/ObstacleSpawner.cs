@@ -17,11 +17,13 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] float maxZigZagDistance = 10f;
 
     WaitForSeconds wait;
+    WaitForSeconds oneSec = new WaitForSeconds(1);
 
     void Start()
     {
         wait = new WaitForSeconds(delay);
         GameManager.Instance.OnGameStart.AddListener(() => StartCoroutine(SpawnCoroutine(hasInitialDelay)));
+        GameManager.Instance.OnGameOver.AddListener(() => StopAllCoroutines());
     }
 
     IEnumerator SpawnCoroutine(bool waitForDelay = true)

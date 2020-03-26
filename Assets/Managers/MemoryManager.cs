@@ -7,4 +7,12 @@ public class MemoryManager : Singleton<MemoryManager>
     {
         Destroy(other.gameObject);
     }
+
+    public void Clear()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 }

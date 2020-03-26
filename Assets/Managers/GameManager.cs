@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,11 +16,16 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent OnGameOver;
 
     Car car;
+    List<Reloadable> reloadables;
 
     void Awake()
     {
         camera = Camera.main;
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Start()
+    {
         car = player.GetComponent<Car>();
     }
 
@@ -27,6 +33,11 @@ public class GameManager : Singleton<GameManager>
     {
         isGameRunning = true;
         isGameOver = false;
+        car.enabled = true;
+
+        reloadables = new List<Reloadable>(FindObjectsOfType<Reloadable>());
+        reloadables.ForEach(t => t.Reload());
+        MemoryManager.Instance.Clear();
         StartCoroutine(TFadeCoroutine());
         Instance.OnGameStart.Invoke();
     }
@@ -36,9 +47,9 @@ public class GameManager : Singleton<GameManager>
         if (isGameOver) { return; }
         isGameRunning = false;
         isGameOver = true;
-        camera.GetComponent<MainCamera>().Shake();
-        InputManager.Instance.enabled = false;
         car.enabled = false;
+
+        camera.GetComponent<MainCamera>().Shake();
         StartCoroutine(TFadeCoroutine());
         Instance.OnGameOver.Invoke();
     }

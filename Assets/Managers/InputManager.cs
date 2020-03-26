@@ -61,10 +61,9 @@ public class InputManager : Singleton<InputManager>
 
     void HandleGameStart()
     {
-        if (!Input.GetMouseButtonDown(0)) { return; }
+        if (!Input.GetMouseButtonDown(0) || GameManager.isGameRunning) { return; }
 
-        bool shouldStartGame = !GameManager.isGameRunning && !GameManager.isGameRunning;
-        if (shouldStartGame) { GameManager.Instance.StartGame(); }
+        GameManager.Instance.StartGame();
     }
 
     void HandleBombThrow()
