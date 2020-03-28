@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public static float tFade = 0f;
     public UnityEvent OnGameStart;
     public UnityEvent OnGameOver;
+    public UnityEvent OnGameRestart;
 
     Car car;
     List<Reloadable> reloadables;
@@ -39,7 +41,7 @@ public class GameManager : Singleton<GameManager>
         reloadables.ForEach(t => t.Reload());
         MemoryManager.Instance.Clear();
         StartCoroutine(TFadeCoroutine());
-        Instance.OnGameStart.Invoke();
+        OnGameStart.Invoke();
     }
 
     public void GameOver()
@@ -51,7 +53,14 @@ public class GameManager : Singleton<GameManager>
 
         camera.GetComponent<MainCamera>().Shake();
         StartCoroutine(TFadeCoroutine());
-        Instance.OnGameOver.Invoke();
+        OnGameOver.Invoke();
+    }
+
+    public void RestartGame()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+        OnGameRestart.Invoke();
     }
 
     IEnumerator TFadeCoroutine()

@@ -5,6 +5,7 @@ public class MemoryManager : Singleton<MemoryManager>
 {
     void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Player")) { return; }
         Destroy(other.gameObject);
     }
 

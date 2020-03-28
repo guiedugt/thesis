@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Reloadable : MonoBehaviour
 {
-    public Vector3 initialPosition;
-    public Quaternion initialRotation;
+    [HideInInspector] public Vector3 initialPosition;
+    [HideInInspector] public Quaternion initialRotation;
     public UnityEvent OnReload;
 
     void Start()
