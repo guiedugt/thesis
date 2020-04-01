@@ -68,8 +68,9 @@ public class InputManager : Singleton<InputManager>
 
     void HandleBombThrow()
     {
-        timeSinceLastBombThrow += Time.deltaTime;
+        if (GameManager.isGameOver) { return; }
 
+        timeSinceLastBombThrow += Time.deltaTime;
         if (!Input.GetMouseButtonDown(0) || timeSinceLastBombThrow < bombDelay) return;
 
         Vector3 clickScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, touchCameraDistance);

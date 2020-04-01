@@ -58,6 +58,10 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartGame()
     {
+        isGameRunning = false;
+        isGameOver = false;
+        car.enabled = true;
+
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         OnGameRestart.Invoke();
