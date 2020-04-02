@@ -193,8 +193,74 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6685652456181598316, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685652456181598316, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
+      propertyPath: zigZagSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685652456181598316, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
+      propertyPath: zigZagDistance
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef015ea2bd6640242bbf49d6b7cd1148, type: 3}
+--- !u!1 &152574021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 152574022}
+  - component: {fileID: 152574023}
+  m_Layer: 0
+  m_Name: Obstacle Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &152574022
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152574021}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2146965288}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &152574023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152574021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18849a270a5d6794284415da5fa3db74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasInitialDelay: 0
+  delay: 3
+  minSpeed: 8
+  maxSpeed: 12
+  minZigZagSpeed: 1
+  maxZigZagSpeed: 5
+  minZigZagDistance: 0
+  maxZigZagDistance: 10
 --- !u!1001 &628218356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260,6 +326,21 @@ PrefabInstance:
     - target: {fileID: 3100487774935552473, guid: ef015ea2bd6640242bbf49d6b7cd1148,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685652456181598316, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685652456181598316, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
+      propertyPath: zigZagSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6685652456181598316, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
+      propertyPath: zigZagDistance
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1554,6 +1635,7 @@ Transform:
   - {fileID: 1805595473}
   - {fileID: 1443964139}
   - {fileID: 1038332389}
+  - {fileID: 152574022}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1624,6 +1706,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 365958809644843975, guid: 2f59685bfb109f54ba38a869246504a6,
+        type: 3}
+      propertyPath: obstaclePrefab
+      value: 
+      objectReference: {fileID: 888373591369773055, guid: ef015ea2bd6640242bbf49d6b7cd1148,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f59685bfb109f54ba38a869246504a6, type: 3}
 --- !u!1001 &6202552860717633770
