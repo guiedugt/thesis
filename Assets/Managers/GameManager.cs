@@ -39,7 +39,6 @@ public class GameManager : Singleton<GameManager>
 
         reloadables = new List<Reloadable>(FindObjectsOfType<Reloadable>());
         reloadables.ForEach(t => t.Reload());
-        MemoryManager.Instance.Clear();
         StartCoroutine(TFadeCoroutine());
         OnGameStart.Invoke();
     }
@@ -64,6 +63,7 @@ public class GameManager : Singleton<GameManager>
 
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+        MemoryManager.Instance.Clear();
         OnGameRestart.Invoke();
     }
 
