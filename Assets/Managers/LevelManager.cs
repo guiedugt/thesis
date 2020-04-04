@@ -22,8 +22,8 @@ public class LevelManager : Singleton<LevelManager>
     public void LoadLevel(int level)
     {
         float multiplier = (float) level;
-        this.minSpeed = multiplier + 3f;
-        this.maxSpeed = multiplier + 3f;
+        this.minSpeed = multiplier + 4f;
+        this.maxSpeed = multiplier + 4f;
         this.minZigZagSpeed = multiplier / 3;
         this.maxZigZagSpeed = multiplier / 2;
         this.minZigZagDistance = multiplier / 3;
