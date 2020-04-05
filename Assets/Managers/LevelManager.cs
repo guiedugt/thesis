@@ -1,7 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
+    public static int level = 1;
+
+    [Header("Level Properties")]
+    [SerializeField] TextMeshProUGUI levelText;
+
     [Header("Spawner Properties")]
     public bool hasInitialDelay = false;
     public float delay = 3f;
@@ -19,14 +25,17 @@ public class LevelManager : Singleton<LevelManager>
         LoadLevel(1);
     }
 
-    public void LoadLevel(int level)
+    public void LoadLevel(int nextLevel)
     {
-        float multiplier = (float) level;
-        this.minSpeed = multiplier + 4f;
-        this.maxSpeed = multiplier + 4f;
-        this.minZigZagSpeed = multiplier / 3;
-        this.maxZigZagSpeed = multiplier / 2;
-        this.minZigZagDistance = multiplier / 3;
-        this.maxZigZagDistance = multiplier / 2;
+        float multiplier = (float) nextLevel;
+        this.minSpeed = multiplier / 3 + 6f;
+        this.maxSpeed = multiplier / 3 + 6f;
+        this.minZigZagSpeed = multiplier / 4;
+        this.maxZigZagSpeed = multiplier / 3;
+        this.minZigZagDistance = multiplier / 5;
+        this.maxZigZagDistance = multiplier / 4;
+
+        levelText.text = "Level " + nextLevel;
+        level = nextLevel;
     }
 }
