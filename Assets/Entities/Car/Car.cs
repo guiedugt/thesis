@@ -1,11 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+enum Position
+{
+    Left,
+    Center,
+    Right
+}
+
 public class Car : MonoBehaviour
 {
     [Header("Car")]
     [SerializeField] float swipeSpeed = 0.2f;
-    [SerializeField] float swipeDisplacement = 4f;
+    [SerializeField] float swipeDisplacement = 3f;
 
     [Header("Cannon")]
     [SerializeField] GameObject cannonBase;
@@ -15,6 +22,7 @@ public class Car : MonoBehaviour
     [SerializeField] Color cannonPipeRecoilColor = Color.red;
     [SerializeField] ParticleSystem rechargeVfx;
 
+    Position position = Position.Center;
     Vector3 velocity;
     Vector3 startPosition;
     InputManager inputManager;
@@ -33,36 +41,57 @@ public class Car : MonoBehaviour
         initialCannonPipeColor = cannonPipeMesh.material.color;
         inputManager.OnBombThrow.AddListener(OnBombThrow);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
+        GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
     }
 
     public void Move(Vector3 direction)
     {
-        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); }
         moveCoroutine = StartCoroutine(MoveCoroutine(direction));
     }
 
     IEnumerator MoveCoroutine(Vector3 direction)
     {
-        Vector3 offset = swipeDisplacement * direction;
-        Vector3 originPosition = transform.position;
-        Vector3 targetPosition = originPosition + offset;
-        if (Vector3.Distance(startPosition, targetPosition) >= swipeDisplacement) { yield break; }
+        if (direction == Vector3.left)
+        {
+            if (position == Position.Left) { yield break; }
+            if (position == Position.Center) { position = Position.Left; }
+            if (position == Position.Right) { position = Position.Center; }
+        }
 
-        while (Vector3.Distance(transform.position, targetPosition) > Mathf.Epsilon)
+        if (direction == Vector3.right)
+        {
+            if (position == Position.Right) { yield break; }
+            if (position == Position.Center) { position = Position.Right; }
+            if (position == Position.Left) { position = Position.Center; }
+        }
+
+        Vector3 targetPosition = startPosition;
+        if (position == Position.Left) { targetPosition += Vector3.left * swipeDisplacement; }
+        if (position == Position.Right) { targetPosition += Vector3.right * swipeDisplacement; }
+
+        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); }
+        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.SmoothDamp(
                 transform.position,
-                originPosition + offset,
+                targetPosition,
                 ref velocity,
                 swipeSpeed
             );
             yield return null;
         }
+
+        transform.position = targetPosition;
     }
 
     void HandleGameOver()
     {
         anim.SetTrigger("Crash");
+    }
+
+    void HandleGameRestart()
+    {
+        position = Position.Center;
     }
 
     void OnBombThrow(GameObject bomb, Vector3 clickPosition)

@@ -1459,16 +1459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784017d3d3bdb0f458cfbfdf9370a7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carSwipeDisplacement: 2
   bombPrefab: {fileID: 3443701878701057494, guid: 59c17c6f2cfe0c646870a66c9864e429,
     type: 3}
   throwPower: 50
   bombOrigin: {fileID: 1695525641}
   bombDelay: 1
-  maxTilt: 0.1
-  cameraRotation: 5
-  cameraDisplacement: 3
-  fakeTilt: 0
 --- !u!1 &1457299803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,36 +1703,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 340887107273508961, guid: 40698a93aa7225441b295b3dc7a920ca,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 340887107273508961, guid: 40698a93aa7225441b295b3dc7a920ca,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 340887107273508961, guid: 40698a93aa7225441b295b3dc7a920ca,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 340887107273508961, guid: 40698a93aa7225441b295b3dc7a920ca,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 340887107273508961, guid: 40698a93aa7225441b295b3dc7a920ca,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2015604627456094236, guid: 40698a93aa7225441b295b3dc7a920ca,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2015604627456094237, guid: 40698a93aa7225441b295b3dc7a920ca,
         type: 3}
       propertyPath: m_Name
@@ -2186,32 +2151,32 @@ PrefabInstance:
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.47
+      value: -2.84
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -258.25
+      value: -257.62
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.21787441
+      value: 0.33220673
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.00009448545
+      value: 0.000120454366
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.00022435936
+      value: -0.00021155456
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9759769
+      value: 0.9432066
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
@@ -2221,17 +2186,17 @@ PrefabInstance:
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 25.168001
+      value: 38.806004
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.0050000004
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111250, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.025
+      value: -0.023000002
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111251, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}
@@ -2242,6 +2207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ClearFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6202552860388111261, guid: d7c1945084b0a3848aa912c8bb9c3236,
+        type: 3}
+      propertyPath: field of view
+      value: 81.6
       objectReference: {fileID: 0}
     - target: {fileID: 6202552860388111263, guid: d7c1945084b0a3848aa912c8bb9c3236,
         type: 3}

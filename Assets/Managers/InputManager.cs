@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class InputManager : Singleton<InputManager>
 {
@@ -9,10 +8,6 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] float throwPower = 7f;
     public Transform bombOrigin;
     public float bombDelay = 1f;
-
-    [Header("Camera")]
-    [SerializeField] float cameraSwipeRotation = 10f;
-    [SerializeField] float cameraSwipeDisplacement = 2f;
 
     float timeSinceLastBombThrow = 0f;
     public class BombThrowEvent : UnityEvent<GameObject, Vector3> { }
@@ -67,12 +62,6 @@ public class InputManager : Singleton<InputManager>
         OnBombThrow.Invoke(bomb, tapPosition);
     }
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
-        print(dragVectorDirection);
-    }
-
     void HandleSwipe()
     {
         if (!GameManager.isGameRunning || Input.touches.Length <= 0) { return; }
@@ -88,15 +77,12 @@ public class InputManager : Singleton<InputManager>
             fingerUpPosition = new Vector2(touch.position.x, touch.position.y);
             swipeDirection = (fingerUpPosition - fingerDownPosition).normalized;
 
-            bool swipedSideways = swipeDirection.y > -0.5f && swipeDirection.y < 0.5f && swipeDirection.x != 0;
+            bool swipedSideways = Mathf.Abs(swipeDirection.y) < 0.5f && swipeDirection.x != 0;
             if (!swipedSideways) return;
 
             bool swipedLeft = swipeDirection.x < 0f;
             bool swipedRight = swipeDirection.x > 0f;
             Vector3 positionOffsetDirection = swipedLeft ? Vector3.left : swipedRight ? Vector3.right : Vector3.zero;
-            float cameraRotationOffset = swipedLeft ? cameraSwipeRotation : swipedRight ? -cameraSwipeRotation : 0f;
-            camera.Rotate(cameraRotationOffset);
-            camera.Move(positionOffsetDirection * cameraSwipeDisplacement);
             car.Move(positionOffsetDirection);
         }
     }
