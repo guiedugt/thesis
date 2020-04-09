@@ -1,62 +1,40 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class InputManager : Singleton<InputManager>
 {
     [Header("Bombs")]
     [SerializeField] GameObject bombPrefab;
     [SerializeField] float throwPower = 7f;
-    [SerializeField] float touchCameraDistance = 100f;
     public Transform bombOrigin;
     public float bombDelay = 1f;
 
     [Header("Camera")]
-    [SerializeField] float maxTilt = 0.15f;
-    [SerializeField] float cameraRotation = 10f;
-    [SerializeField] float cameraDisplacement = 2f;
-    [SerializeField] float cameraChangeSpeed = 0.4f;
-    [SerializeField] float playerTiltDisplacement = 2f;
-    [SerializeField] float playerChangeSpeed = 0.4f;
-    [Tooltip("Used for debugging only")][Range(-1f, 1f)][SerializeField] float fakeTilt = 0f;
+    [SerializeField] float cameraSwipeRotation = 10f;
+    [SerializeField] float cameraSwipeDisplacement = 2f;
 
     float timeSinceLastBombThrow = 0f;
     public class BombThrowEvent : UnityEvent<GameObject, Vector3> { }
     public BombThrowEvent OnBombThrow = new BombThrowEvent();
 
-    new Camera camera;
-    Vector3 initialCameraPosition;
-    Quaternion initialCameraRotation;
-    Vector3 previousCameraPosition;
-    Quaternion previousCameraRotation;
-    Vector3 cameraVelocity;
-    float cameraAngularVelocity;
-
-    GameObject player;
-    Vector3 initialPlayerPosition;
-    Vector3 playerVelocity;
+    Vector2 fingerDownPosition;
+    Vector2 fingerUpPosition;
+    Vector2 swipeDirection;
+    new MainCamera camera;
+    Car car;
 
     void Start()
     {
         camera = GameManager.camera;
-        initialCameraPosition = camera.transform.position;
-        initialCameraRotation = camera.transform.rotation;
-        previousCameraPosition = initialCameraPosition;
-        previousCameraRotation = initialCameraRotation;
-        cameraVelocity = Vector3.zero;
-
-        player = GameManager.player;
-        initialPlayerPosition = player.transform.position;
+        car = GameManager.car;
     }
 
     void Update()
     {
         HandleGameStart();
         HandleBombThrow();
-    }
-
-    void FixedUpdate()
-    {
-        HandleTilt();
+        HandleSwipe();
     }
 
     void HandleGameStart()
@@ -73,13 +51,12 @@ public class InputManager : Singleton<InputManager>
         timeSinceLastBombThrow += Time.deltaTime;
         if (!Input.GetMouseButtonDown(0) || timeSinceLastBombThrow < bombDelay) return;
 
-        Vector3 clickScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, touchCameraDistance);
-        Vector3 clickPosition = GameManager.camera.ScreenToWorldPoint(clickScreenPosition);
+        Vector3 tapPosition = camera.GetTapWorldPoint();
 
         GameObject bomb = Instantiate(bombPrefab, bombOrigin.position, Quaternion.identity, MemoryManager.Instance.transform);
         Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
 
-        Vector3 throwDirection = Vector3.Normalize(clickPosition - bombOrigin.position);
+        Vector3 throwDirection = Vector3.Normalize(tapPosition - bombOrigin.position);
         Vector3 bombTorque = new Vector3(Random.Range(0, 360f), Random.Range(0, 360f), Random.Range(0f, 360f));
 
         bombRigidbody.velocity = throwDirection * throwPower;
@@ -87,68 +64,40 @@ public class InputManager : Singleton<InputManager>
 
         timeSinceLastBombThrow = 0f;
 
-        OnBombThrow.Invoke(bomb, clickPosition);
+        OnBombThrow.Invoke(bomb, tapPosition);
     }
 
-    void HandleTilt()
+    public void OnEndDrag(PointerEventData eventData)
     {
-        if (!GameManager.isGameRunning) { return; }
-
-        fakeTilt = Input.GetAxis("Horizontal");
-        float tilt = (Mathf.Abs(fakeTilt) >= Mathf.Epsilon) ? fakeTilt : Input.acceleration.x;
-
-        bool isLeft = tilt < -maxTilt;
-        bool isRight = tilt > maxTilt;
-        Vector3 positionOffsetDirection = isLeft ? Vector3.left : isRight ? Vector3.right : Vector3.zero;
-
-        Vector3 cameraPositionOffset = positionOffsetDirection * cameraDisplacement;
-        MoveCamera(cameraPositionOffset);
-
-        float cameraRotationOffset = isLeft ? cameraRotation : isRight ? -cameraRotation : 0f;
-        RotateCamera(cameraRotationOffset);
-
-        // Move Player
-        Vector3 playerPositionOffset = positionOffsetDirection * playerTiltDisplacement;
-        MovePlayer(playerPositionOffset);
+        Vector3 dragVectorDirection = (eventData.position - eventData.pressPosition).normalized;
+        print(dragVectorDirection);
     }
 
-    void MoveCamera(Vector3 positionOffset)
+    void HandleSwipe()
     {
-        Vector3 targetPosition = initialCameraPosition + positionOffset;
-        if (Vector3.Distance(camera.transform.position, targetPosition) > Mathf.Epsilon)
+        if (!GameManager.isGameRunning || Input.touches.Length <= 0) { return; }
+
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Began)
         {
-            camera.transform.position = Vector3.SmoothDamp(
-                camera.transform.position,
-                initialCameraPosition + positionOffset,
-                ref cameraVelocity,
-                cameraChangeSpeed
-            );
+            fingerDownPosition = new Vector2(touch.position.x, touch.position.y);
         }
-    }
 
-    void RotateCamera(float rotationOffset)
-    {
-        Quaternion targetRotation = initialCameraRotation * Quaternion.Euler(0f, rotationOffset, 0f);
-        float rotationDelta = Quaternion.Angle(camera.transform.rotation, targetRotation);
-        if (rotationDelta > Mathf.Epsilon)
+        if (touch.phase == TouchPhase.Ended)
         {
-            float t = Mathf.SmoothDampAngle(rotationDelta, 0.0f, ref cameraAngularVelocity, cameraChangeSpeed);
-            t = 1.0f - t / rotationDelta;
-            camera.transform.rotation = Quaternion.Slerp(camera.transform.rotation, targetRotation, t);
-        }
-    }
+            fingerUpPosition = new Vector2(touch.position.x, touch.position.y);
+            swipeDirection = (fingerUpPosition - fingerDownPosition).normalized;
 
-    void MovePlayer(Vector3 positionOffset)
-    {
-        Vector3 targetPosition = initialPlayerPosition + positionOffset;
-        if (Vector3.Distance(player.transform.position, targetPosition) > Mathf.Epsilon)
-        {
-            player.transform.position = Vector3.SmoothDamp(
-                player.transform.position,
-                initialPlayerPosition + positionOffset,
-                ref playerVelocity,
-                playerChangeSpeed
-            );
+            bool swipedSideways = swipeDirection.y > -0.5f && swipeDirection.y < 0.5f && swipeDirection.x != 0;
+            if (!swipedSideways) return;
+
+            bool swipedLeft = swipeDirection.x < 0f;
+            bool swipedRight = swipeDirection.x > 0f;
+            Vector3 positionOffsetDirection = swipedLeft ? Vector3.left : swipedRight ? Vector3.right : Vector3.zero;
+            float cameraRotationOffset = swipedLeft ? cameraSwipeRotation : swipedRight ? -cameraSwipeRotation : 0f;
+            camera.Rotate(cameraRotationOffset);
+            camera.Move(positionOffsetDirection * cameraSwipeDisplacement);
+            car.Move(positionOffsetDirection);
         }
     }
 }

@@ -8,8 +8,8 @@ public class GameManager : Singleton<GameManager>
 {
     [SerializeField][Range(0f, 5f)] float fadeDuration = 1f;
 
-    public static new Camera camera;
-    public static GameObject player;
+    public static new MainCamera camera;
+    public static Car car;
     public static bool isGameRunning = false;
     public static bool isGameOver = false;
     public static float tFade = 0f;
@@ -17,18 +17,12 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent OnGameOver;
     public UnityEvent OnGameRestart;
 
-    Car car;
     List<Reloadable> reloadables;
 
     void Awake()
     {
-        camera = Camera.main;
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    void Start()
-    {
-        car = player.GetComponent<Car>();
+        camera = FindObjectOfType<MainCamera>();
+        car = FindObjectOfType<Car>();
     }
 
     public void StartGame()
@@ -50,7 +44,7 @@ public class GameManager : Singleton<GameManager>
         isGameOver = true;
         car.enabled = false;
 
-        camera.GetComponent<MainCamera>().Shake();
+        camera.Shake();
         StartCoroutine(TFadeCoroutine());
         OnGameOver.Invoke();
     }

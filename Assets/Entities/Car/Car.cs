@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Car : MonoBehaviour
 {
+    [Header("Car")]
+    [SerializeField] float swipeSpeed = 0.2f;
+    [SerializeField] float swipeDisplacement = 4f;
+
     [Header("Cannon")]
     [SerializeField] GameObject cannonBase;
     [SerializeField] GameObject cannonPipe;
@@ -11,20 +15,49 @@ public class Car : MonoBehaviour
     [SerializeField] Color cannonPipeRecoilColor = Color.red;
     [SerializeField] ParticleSystem rechargeVfx;
 
+    Vector3 velocity;
+    Vector3 startPosition;
     InputManager inputManager;
     float cannonPipeVelocity;
     MeshRenderer cannonPipeMesh;
     Color initialCannonPipeColor;
     Animator anim;
+    Coroutine moveCoroutine;
 
     void Start()
     {
-        inputManager = InputManager.Instance;
-        inputManager.OnBombThrow.AddListener(OnBombThrow);
-        cannonPipeMesh = cannonPipe.GetComponent<MeshRenderer>();
-        initialCannonPipeColor = cannonPipeMesh.material.color;
+        startPosition = transform.position;
         anim = GetComponent<Animator>();
+        cannonPipeMesh = cannonPipe.GetComponent<MeshRenderer>();
+        inputManager = InputManager.Instance;
+        initialCannonPipeColor = cannonPipeMesh.material.color;
+        inputManager.OnBombThrow.AddListener(OnBombThrow);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
+    }
+
+    public void Move(Vector3 direction)
+    {
+        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); }
+        moveCoroutine = StartCoroutine(MoveCoroutine(direction));
+    }
+
+    IEnumerator MoveCoroutine(Vector3 direction)
+    {
+        Vector3 offset = swipeDisplacement * direction;
+        Vector3 originPosition = transform.position;
+        Vector3 targetPosition = originPosition + offset;
+        if (Vector3.Distance(startPosition, targetPosition) >= swipeDisplacement) { yield break; }
+
+        while (Vector3.Distance(transform.position, targetPosition) > Mathf.Epsilon)
+        {
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                originPosition + offset,
+                ref velocity,
+                swipeSpeed
+            );
+            yield return null;
+        }
     }
 
     void HandleGameOver()
