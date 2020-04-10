@@ -45,7 +45,7 @@ public class InputManager : Singleton<InputManager>
         timeSinceLastBombThrow += Time.deltaTime;
         if (GameManager.isGameOver || !Input.GetMouseButtonDown(0)) { return; }
 
-        bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, fingerDownPosition);
+        bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, Input.mousePosition);
         if (timeSinceLastBombThrow < bombDelay || !isInsideBounds) return;
 
         Vector3 tapPosition = camera.GetTapWorldPoint();
@@ -66,7 +66,12 @@ public class InputManager : Singleton<InputManager>
 
     void HandleTouch()
     {
-        if (!GameManager.isGameRunning || Input.touches.Length <= 0) { return; }
+        if (!GameManager.isGameRunning) { return; }
+ 
+        if (Input.GetKeyDown(KeyCode.A)) { car.Move(Vector3.left); }
+        if (Input.GetKeyDown(KeyCode.D)) { car.Move(Vector3.right); }
+
+        if (Input.touches.Length <= 0) { return; }
 
         Touch touch = Input.GetTouch(0);
         if (touch.phase == TouchPhase.Began)

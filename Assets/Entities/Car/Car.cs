@@ -46,7 +46,8 @@ public class Car : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        moveCoroutine = StartCoroutine(MoveCoroutine(direction));
+        Coroutine newMoveCoroutine = StartCoroutine(MoveCoroutine(direction));
+        if (newMoveCoroutine != null) { moveCoroutine = newMoveCoroutine; }
     }
 
     IEnumerator MoveCoroutine(Vector3 direction)
@@ -65,11 +66,12 @@ public class Car : MonoBehaviour
             if (position == Position.Left) { position = Position.Center; }
         }
 
+        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); }
+
         Vector3 targetPosition = startPosition;
         if (position == Position.Left) { targetPosition += Vector3.left * swipeDisplacement; }
         if (position == Position.Right) { targetPosition += Vector3.right * swipeDisplacement; }
 
-        if (moveCoroutine != null) { StopCoroutine(moveCoroutine); }
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.SmoothDamp(
