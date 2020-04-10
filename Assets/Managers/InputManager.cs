@@ -6,6 +6,7 @@ public class InputManager : Singleton<InputManager>
     [Header("Bombs")]
     [SerializeField] GameObject bombPrefab;
     [SerializeField] float throwPower = 7f;
+    [SerializeField] RectTransform bombThrowTouchArea;
     public Transform bombOrigin;
     public float bombDelay = 1f;
 
@@ -27,9 +28,9 @@ public class InputManager : Singleton<InputManager>
 
     void Update()
     {
+        HandleTouch();
         HandleGameStart();
         HandleBombThrow();
-        HandleSwipe();
     }
 
     void HandleGameStart()
@@ -41,10 +42,11 @@ public class InputManager : Singleton<InputManager>
 
     void HandleBombThrow()
     {
-        if (GameManager.isGameOver) { return; }
-
         timeSinceLastBombThrow += Time.deltaTime;
-        if (!Input.GetMouseButtonDown(0) || timeSinceLastBombThrow < bombDelay) return;
+        if (GameManager.isGameOver || !Input.GetMouseButtonDown(0)) { return; }
+
+        bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, fingerDownPosition);
+        if (timeSinceLastBombThrow < bombDelay || !isInsideBounds) return;
 
         Vector3 tapPosition = camera.GetTapWorldPoint();
 
@@ -62,7 +64,7 @@ public class InputManager : Singleton<InputManager>
         OnBombThrow.Invoke(bomb, tapPosition);
     }
 
-    void HandleSwipe()
+    void HandleTouch()
     {
         if (!GameManager.isGameRunning || Input.touches.Length <= 0) { return; }
 

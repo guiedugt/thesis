@@ -15,6 +15,7 @@ public class Brick : MonoBehaviour
 
   void HandlePlayerCollision(GameObject player)
   {
+    if (GameManager.isGameOver) { return; }
     Rigidbody rb = player.GetComponent<Rigidbody>();
     rb.AddForce(Vector3.up * CollisionUpForce);
     rb.AddTorque(Vector3.down * CollisionTorqueForce);

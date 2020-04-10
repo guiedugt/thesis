@@ -122,5 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5029e2b84d56e1f41877bd234351710d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionUpForce: 700
+  CollisionUpForce: 400
   CollisionTorqueForce: 1500
