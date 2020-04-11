@@ -6,12 +6,18 @@ public class ScoreManager : Singleton<ScoreManager>
   public static float score = 0f;
 
   [SerializeField] Slider scoreSlider;
-  [SerializeField] float multiplier = 50f;
+  [SerializeField] float scorePerSecond = 5f;
+  [SerializeField] float multiplier = 20f;
 
   void Start()
   {
     GameManager.Instance.OnGameStart.AddListener(HandleGameStartAndRestart);
     GameManager.Instance.OnGameRestart.AddListener(HandleGameStartAndRestart);
+  }
+
+  void Update()
+  {
+    if (GameManager.isGameRunning) { AddScore(scorePerSecond * Time.deltaTime); }
   }
 
   void HandleGameStartAndRestart()
@@ -28,7 +34,7 @@ public class ScoreManager : Singleton<ScoreManager>
     if (score >= GetLevelMaxScore(LevelManager.level))
     {
       int currentLevel = LevelManager.level;
-      scoreSlider.minValue = GetLevelMaxScore(currentLevel);
+      scoreSlider.minValue = scoreSlider.maxValue;
       scoreSlider.maxValue = GetLevelMaxScore(currentLevel + 1);
       LevelManager.Instance.LoadLevel(currentLevel + 1);
     }
@@ -36,6 +42,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
   float GetLevelMaxScore(int? level)
   {
-    return (level ?? LevelManager.level) * multiplier;
+    if (level <= 0) { return 0; }
+    return GetLevelMaxScore(level - 1) + (level ?? LevelManager.level) * multiplier;
   }
 }
