@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkyMaterial
+  m_Name: Gradient Background Material
   m_Shader: {fileID: 4800000, guid: b64ee08426fff574e8650b935f6321a7, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -73,7 +73,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BottomColor: {r: 0.2978373, g: 0.6818318, b: 0.9150943, a: 1}
+    - _BottomColor: {r: 1, g: 0.8337574, b: 0.3443396, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TopColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TopColor: {r: 0.764151, g: 0.43369734, b: 0, a: 1}
