@@ -9,6 +9,13 @@ public class MemoryManager : Singleton<MemoryManager>
         Destroy(other.gameObject);
     }
 
+    void OnDrawGizmos()
+    {
+        Collider col = GetComponent<Collider>();
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube(col.bounds.center, col.bounds.size);
+    }
+
     public void Clear()
     {
         foreach (Transform child in transform)
