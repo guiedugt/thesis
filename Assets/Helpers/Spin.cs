@@ -2,8 +2,10 @@
 
 public class Spin : MonoBehaviour
 {
+    [SerializeField][Range(0f, 100f)] float speed = 30f;
+
     void Update()
     {
-        transform.Rotate(Vector3.up, Space.Self);
+        transform.Rotate(Vector3.up * Time.deltaTime * speed, Space.Self);
     }
 }
