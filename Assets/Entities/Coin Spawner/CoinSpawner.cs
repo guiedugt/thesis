@@ -4,12 +4,21 @@
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] GameObject coinPrefab;
+    [SerializeField] int maxSpawnAmount = 10;
 
     Collider col;
 
     void Start()
     {
         col = GetComponent<Collider>();
+        LevelManager.Instance.OnLevelUp.AddListener(HandleLevelUp);
+    }
+
+    void HandleLevelUp()
+    {
+        int spawnAmount = LevelManager.level - 1;
+        int clampedSpawnAmount = Mathf.Clamp(spawnAmount, 1, maxSpawnAmount);
+        SpawnCoins(clampedSpawnAmount);
     }
 
     public void SpawnCoins(int amount)

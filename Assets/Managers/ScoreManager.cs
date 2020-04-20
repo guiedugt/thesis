@@ -36,7 +36,7 @@ public class ScoreManager : Singleton<ScoreManager>
       int currentLevel = LevelManager.level;
       scoreSlider.minValue = scoreSlider.maxValue;
       scoreSlider.maxValue = GetLevelMaxScore(currentLevel + 1);
-      LevelManager.Instance.LoadLevel(currentLevel + 1);
+      LevelManager.Instance.LevelUp();
     }
   }
 

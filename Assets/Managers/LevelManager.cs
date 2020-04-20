@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : Singleton<LevelManager>
 {
@@ -7,6 +8,7 @@ public class LevelManager : Singleton<LevelManager>
 
     [Header("Level Properties")]
     [SerializeField] TextMeshProUGUI levelText;
+    public UnityEvent OnLevelUp = new UnityEvent();
 
     [Header("Spawner Properties")]
     public bool hasInitialDelay = false;
@@ -20,12 +22,19 @@ public class LevelManager : Singleton<LevelManager>
     public float minZigZagDistance = 0f;
     public float maxZigZagDistance = 10f;
 
+
     void Awake()
     {
         LoadLevel(1);
     }
 
-    public void LoadLevel(int nextLevel)
+    public void LevelUp()
+    {
+        LoadLevel(level + 1);
+        OnLevelUp.Invoke();
+    }
+
+    void LoadLevel(int nextLevel)
     {
         float multiplier = (float) nextLevel;
         this.minSpeed = multiplier / 3 + 6f;
