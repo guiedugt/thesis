@@ -4,6 +4,11 @@ using UnityEngine.UI;
 public class ScoreManager : Singleton<ScoreManager>
 {
   public static float score = 0f;
+  public static int CoinScore {
+    get {
+      return (int) score / 10;
+    }
+  }
 
   [SerializeField] Slider scoreSlider;
   [SerializeField] float scorePerSecond = 5f;
