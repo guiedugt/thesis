@@ -49,8 +49,10 @@ public class Bomb : MonoBehaviour
 
             rigidbody.isKinematic = false;
             rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-            ScoreManager.Instance.AddScore(Brick.pointsPerBrick);
         }
+
+        ScoreItem scoreItem = new ScoreItem(colliders.Length, Brick.pointsPerBrick * colliders.Length);
+        ScoreManager.Instance.AddScore(ScoreType.Brick, scoreItem);
 
         if (explosionVFX)
         {

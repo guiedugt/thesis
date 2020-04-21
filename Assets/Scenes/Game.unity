@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 337067028}
+  levelUpMultiplier: 10
   OnLevelUp:
     m_PersistentCalls:
       m_Calls: []
@@ -875,6 +876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 520041174}
   - component: {fileID: 520041175}
+  - component: {fileID: 520041176}
   m_Layer: 5
   m_Name: Game Screen
   m_TagString: Untagged
@@ -918,6 +920,18 @@ MonoBehaviour:
   showInStartScreen: 0
   showInGameScreen: 1
   showInEndScreen: 0
+--- !u!225 &520041176
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520041173}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &618046636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,6 +1766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 756526075}
   - component: {fileID: 756526076}
+  - component: {fileID: 756526077}
   m_Layer: 5
   m_Name: Start Screen
   m_TagString: Untagged
@@ -1794,6 +1809,18 @@ MonoBehaviour:
   showInStartScreen: 1
   showInGameScreen: 0
   showInEndScreen: 0
+--- !u!225 &756526077
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756526074}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &819521223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,10 +2315,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 1, b: 0.7227702, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_HighlightedColor: {r: 0.003921569, g: 0.9607843, b: 0.64705884, a: 0.9607843}
+    m_PressedColor: {r: 0.003921569, g: 0.78431374, b: 0.47058824, a: 0.78431374}
+    m_SelectedColor: {r: 0.007843138, g: 0.95294124, b: 0.60784316, a: 1}
+    m_DisabledColor: {r: 0.007843138, g: 0.7568628, b: 0.427451, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3420,6 +3447,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1500431424}
   - component: {fileID: 1500431425}
+  - component: {fileID: 1500431426}
   m_Layer: 5
   m_Name: End Screen
   m_TagString: Untagged
@@ -3462,6 +3490,18 @@ MonoBehaviour:
   showInStartScreen: 0
   showInGameScreen: 0
   showInEndScreen: 1
+--- !u!225 &1500431426
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500431423}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1516777329
 GameObject:
   m_ObjectHideFlags: 0

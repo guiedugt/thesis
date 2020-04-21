@@ -1,15 +1,39 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
+
+public enum ScoreType {
+  Brick,
+  Level,
+  Time
+}
+
+public class ScoreItem {
+  public float Amount { get; set; }
+  public float Score { get; set; }
+
+  public ScoreItem(float amount, float score) => (Amount, Score) = (amount, score);
+
+  public static ScoreItem operator + (ScoreItem a, ScoreItem b) {
+    ScoreItem scoreItem = new ScoreItem(a.Amount, a.Score);
+    scoreItem.Amount += b.Amount;
+    scoreItem.Score += b.Score;
+    return scoreItem;
+  }
+}
 
 public class ScoreManager : Singleton<ScoreManager>
 {
-  public static float score = 0f;
-  public static int CoinScore {
+  public float Score {
     get {
-      return (int) score / 10;
+      float sum = 0;
+      foreach (KeyValuePair<ScoreType, ScoreItem> scoreType in scoreByType) {
+        sum += scoreType.Value.Score;
+      }
+      return sum;
     }
   }
-
+  public Dictionary<ScoreType, ScoreItem> scoreByType;
   [SerializeField] Slider scoreSlider;
   [SerializeField] float scorePerSecond = 5f;
   [SerializeField] float multiplier = 20f;
@@ -18,27 +42,32 @@ public class ScoreManager : Singleton<ScoreManager>
   {
     GameManager.Instance.OnGameStart.AddListener(HandleGameStartAndRestart);
     GameManager.Instance.OnGameRestart.AddListener(HandleGameStartAndRestart);
+    InitializeScoreByType();
   }
 
   void Update()
   {
-    if (GameManager.isGameRunning) { AddScore(scorePerSecond * Time.deltaTime); }
+    ScoreItem scoreItem = new ScoreItem(Time.deltaTime, scorePerSecond * Time.deltaTime);
+    if (GameManager.isGameRunning) { AddScore(ScoreType.Time, scoreItem); }
   }
 
   void HandleGameStartAndRestart()
   {
     scoreSlider.value = 0f;
     scoreSlider.maxValue = GetLevelMaxScore(1);
+    InitializeScoreByType();
   }
 
-  public void AddScore(float amount)
+  public void AddScore(ScoreType type, ScoreItem item)
   {
-    score += amount;
-    scoreSlider.value = score;
+    scoreByType[type] += item;
 
-    if (score >= GetLevelMaxScore(LevelManager.level))
+    float newScore = Score;
+    scoreSlider.value = newScore;
+
+    int currentLevel = LevelManager.level;
+    if (newScore >= GetLevelMaxScore(currentLevel))
     {
-      int currentLevel = LevelManager.level;
       scoreSlider.minValue = scoreSlider.maxValue;
       scoreSlider.maxValue = GetLevelMaxScore(currentLevel + 1);
       LevelManager.Instance.LevelUp();
@@ -49,5 +78,14 @@ public class ScoreManager : Singleton<ScoreManager>
   {
     if (level <= 0) { return 0; }
     return GetLevelMaxScore(level - 1) + (level ?? LevelManager.level) * multiplier;
+  }
+
+  void InitializeScoreByType()
+  {
+    scoreByType = new Dictionary<ScoreType, ScoreItem>() {
+      { ScoreType.Brick, new ScoreItem(0, 0f) },
+      { ScoreType.Level, new ScoreItem(0, 0f) },
+      { ScoreType.Time, new ScoreItem(0, 0f) }
+    };
   }
 }
