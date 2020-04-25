@@ -48,9 +48,9 @@ public class GameManager : Singleton<GameManager>
         isGameOver = false;
         car.enabled = true;
 
+        OnGameRestart.Invoke();
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
         MemoryManager.Instance.Clear();
-        OnGameRestart.Invoke();
     }
 }

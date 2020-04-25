@@ -24,16 +24,22 @@ public class ScoreItem {
 
 public class ScoreManager : Singleton<ScoreManager>
 {
+  public float TotalScore {
+    get {
+      return PlayerPrefsManager.GetTotalScore();
+    }
+  }
+
   public float Score {
     get {
       float sum = 0;
-      foreach (KeyValuePair<ScoreType, ScoreItem> scoreType in scoreByType) {
+      foreach (KeyValuePair<ScoreType, ScoreItem> scoreType in scoresByType) {
         sum += scoreType.Value.Score;
       }
       return sum;
     }
   }
-  public Dictionary<ScoreType, ScoreItem> scoreByType;
+  public Dictionary<ScoreType, ScoreItem> scoresByType;
   [SerializeField] Slider scoreSlider;
   [SerializeField] float scorePerSecond = 5f;
   [SerializeField] float multiplier = 20f;
@@ -42,6 +48,7 @@ public class ScoreManager : Singleton<ScoreManager>
   {
     GameManager.Instance.OnGameStart.AddListener(HandleGameStartAndRestart);
     GameManager.Instance.OnGameRestart.AddListener(HandleGameStartAndRestart);
+    GameManager.instance.OnGameOver.AddListener(HandleGameOver);
     InitializeScoreByType();
   }
 
@@ -58,9 +65,14 @@ public class ScoreManager : Singleton<ScoreManager>
     InitializeScoreByType();
   }
 
+  void HandleGameOver()
+  {
+    PlayerPrefsManager.AddToTotalScore(Score);
+  }
+
   public void AddScore(ScoreType type, ScoreItem item)
   {
-    scoreByType[type] += item;
+    scoresByType[type] += item;
 
     float newScore = Score;
     scoreSlider.value = newScore;
@@ -82,7 +94,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
   void InitializeScoreByType()
   {
-    scoreByType = new Dictionary<ScoreType, ScoreItem>() {
+    scoresByType = new Dictionary<ScoreType, ScoreItem>() {
       { ScoreType.Brick, new ScoreItem(0, 0f) },
       { ScoreType.Level, new ScoreItem(0, 0f) },
       { ScoreType.Time, new ScoreItem(0, 0f) }
