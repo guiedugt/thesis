@@ -929,7 +929,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 520041173}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -2612,7 +2612,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.26425022, y: 1}
   m_AnchoredPosition: {x: 1.4000244, y: 0.000015258789}
-  m_SizeDelta: {x: -18.91, y: -17.28}
+  m_SizeDelta: {x: -30.49, y: -28.63}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1049173752
 MonoBehaviour:
@@ -3276,7 +3276,7 @@ Transform:
   - {fileID: 1017909951}
   - {fileID: 25994028}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1443964138
 GameObject:
@@ -3325,8 +3325,14 @@ MonoBehaviour:
     type: 3}
   throwPower: 50
   bombThrowTouchArea: {fileID: 1185924349}
-  bombOrigin: {fileID: 1695525641}
+  bombOrigin: {fileID: 0}
   bombDelay: 1
+  OnBombThrow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBombRecharge:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1457299803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3991,12 +3997,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641922007}
   m_CullTransparentMesh: 0
---- !u!4 &1695525641 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6911034749535832915, guid: 40698a93aa7225441b295b3dc7a920ca,
-    type: 3}
-  m_PrefabInstance: {fileID: 1779322482}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1709904839
 GameObject:
   m_ObjectHideFlags: 0
@@ -4269,7 +4269,7 @@ PrefabInstance:
     - target: {fileID: 3288617710102086158, guid: 40698a93aa7225441b295b3dc7a920ca,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3288617710102086158, guid: 40698a93aa7225441b295b3dc7a920ca,
         type: 3}

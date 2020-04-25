@@ -11,8 +11,10 @@ public class InputManager : Singleton<InputManager>
     public float bombDelay = 1f;
 
     float timeSinceLastBombThrow = 0f;
-    public class BombThrowEvent : UnityEvent<GameObject, Vector3> { }
+    public class BombThrowEvent : UnityEvent<Vector3> {}
     public BombThrowEvent OnBombThrow = new BombThrowEvent();
+    public UnityEvent OnBombRecharge;
+    bool canThrowBomb = true;
 
     Vector2 fingerDownPosition;
     Vector2 fingerUpPosition;
@@ -24,12 +26,14 @@ public class InputManager : Singleton<InputManager>
     {
         camera = GameManager.camera;
         car = GameManager.car;
+        bombOrigin = GameObject.FindGameObjectWithTag("Bomb Origin").transform;
     }
 
     void Update()
     {
         HandleTouch();
         HandleGameStart();
+        HandleBombDelay();
         HandleBombThrow();
     }
 
@@ -40,13 +44,21 @@ public class InputManager : Singleton<InputManager>
         GameManager.Instance.StartGame();
     }
 
-    void HandleBombThrow()
+    void HandleBombDelay()
     {
         timeSinceLastBombThrow += Time.deltaTime;
+        if (timeSinceLastBombThrow >= bombDelay && !canThrowBomb) {
+            canThrowBomb = true;
+            if (OnBombRecharge != null) OnBombRecharge.Invoke();
+        }
+    }
+
+    void HandleBombThrow()
+    {
         if (GameManager.isGameOver || !Input.GetMouseButtonDown(0)) { return; }
 
         bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, Input.mousePosition);
-        if (timeSinceLastBombThrow < bombDelay || !isInsideBounds) return;
+        if (!canThrowBomb || !isInsideBounds) return;
 
         Vector3 tapPosition = camera.GetTapWorldPoint();
 
@@ -59,9 +71,9 @@ public class InputManager : Singleton<InputManager>
         bombRigidbody.velocity = throwDirection * throwPower;
         bombRigidbody.AddTorque(bombTorque);
 
+        canThrowBomb = false;
         timeSinceLastBombThrow = 0f;
-
-        OnBombThrow.Invoke(bomb, tapPosition);
+        OnBombThrow.Invoke(tapPosition);
     }
 
     void HandleTouch()

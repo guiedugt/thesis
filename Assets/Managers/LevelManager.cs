@@ -9,7 +9,7 @@ public class LevelManager : Singleton<LevelManager>
     [Header("Level Properties")]
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] float levelUpMultiplier = 10f;
-    public UnityEvent OnLevelUp = new UnityEvent();
+    public UnityEvent OnLevelUp;
 
     [Header("Spawner Properties")]
     public bool hasInitialDelay = false;
