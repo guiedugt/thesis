@@ -3327,9 +3327,6 @@ MonoBehaviour:
   bombThrowTouchArea: {fileID: 1185924349}
   bombOrigin: {fileID: 0}
   bombDelay: 1
-  OnBombThrow:
-    m_PersistentCalls:
-      m_Calls: []
   OnBombRecharge:
     m_PersistentCalls:
       m_Calls: []
