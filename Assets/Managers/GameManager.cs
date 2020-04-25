@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -49,8 +48,7 @@ public class GameManager : Singleton<GameManager>
         car.enabled = true;
 
         OnGameRestart.Invoke();
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        SceneManager.ReloadScene();
         MemoryManager.Instance.Clear();
     }
 }
