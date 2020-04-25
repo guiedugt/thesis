@@ -1,20 +1,21 @@
 ﻿using UnityEngine.SceneManagement;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
-public class SceneManager : UnityEngine.SceneManagement.SceneManager
+public class SceneManager : Singleton<SceneManager>
 {
-    public static void ReloadScene()
+    public void ReloadScene()
     {
-        Scene currentScene = GetActiveScene();
-        LoadScene(currentScene.name);
+        Scene currentScene = UnitySceneManager.GetActiveScene();
+        UnitySceneManager.LoadScene(currentScene.name);
     }
 
-    public static void LoadGameScene()
+    public void LoadGameScene()
     {
-        LoadScene("Game");
+        UnitySceneManager.LoadScene("Game");
     }
 
-    public static void LoadGarageScene()
+    public void LoadGarageScene()
     {
-        LoadScene("Garage");
+        UnitySceneManager.LoadScene("Garage");
     }
 }

@@ -48,7 +48,7 @@ public class GameManager : Singleton<GameManager>
         car.enabled = true;
 
         OnGameRestart.Invoke();
-        SceneManager.ReloadScene();
+        SceneManager.Instance.ReloadScene();
         MemoryManager.Instance.Clear();
     }
 }
