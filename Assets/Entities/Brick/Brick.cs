@@ -9,7 +9,7 @@ public class Brick : MonoBehaviour
 
   void OnCollisionEnter(Collision collision)
   {
-    bool isPlayer = collision.gameObject.CompareTag("Player");
+    bool isPlayer = collision.gameObject.GetComponent<Car>() != null;
     if (isPlayer) { HandlePlayerCollision(collision.gameObject); return; }
   }
 

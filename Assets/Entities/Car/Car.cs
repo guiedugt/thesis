@@ -8,6 +8,7 @@ enum Position
     Right
 }
 
+[RequireComponent(typeof(Animator))]
 public class Car : MonoBehaviour
 {
     [SerializeField] float swipeSpeed = 0.2f;
@@ -23,6 +24,7 @@ public class Car : MonoBehaviour
     {
         startPosition = transform.position;
         anim = GetComponent<Animator>();
+        GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
     }
@@ -69,6 +71,11 @@ public class Car : MonoBehaviour
         transform.position = targetPosition;
     }
 
+    void HandleGameStart()
+    {
+        anim.SetTrigger("Move");
+    }
+
     void HandleGameOver()
     {
         anim.SetTrigger("Crash");
@@ -76,6 +83,7 @@ public class Car : MonoBehaviour
 
     void HandleGameRestart()
     {
+        anim.SetTrigger("Idle");
         position = Position.Center;
     }
 }
