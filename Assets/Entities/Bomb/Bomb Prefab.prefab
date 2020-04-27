@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2386819999020252312}
   - component: {fileID: 8962388389673600646}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6330002566500711819}
   - component: {fileID: 7503692552683604134}
   - component: {fileID: 4667703750225479650}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4860,7 +4860,7 @@ GameObject:
   - component: {fileID: 7791016008782433392}
   - component: {fileID: 4578398749219444397}
   - component: {fileID: 3558704401944061905}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bomb Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

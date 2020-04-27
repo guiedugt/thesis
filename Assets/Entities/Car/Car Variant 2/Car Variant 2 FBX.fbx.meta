@@ -1,12 +1,53 @@
 fileFormatVersion: 2
-guid: f9322c84989c38f4b841d9a7e8a03481
+guid: 5bde95d9bf2de42b2bb310bdb7b62295
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
-      74: -623603649343465320
-    second: Scene
-  externalObjects: {}
+      74: 1593692475574755786
+    second: Armature|Crash
+  - first:
+      74: -5913978943142729594
+    second: Armature|Move
+  - first:
+      74: -8945691123924629249
+    second: Armature|Idle
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Base Color
+    second: {fileID: 2100000, guid: 963d7b693fdcb41239e77cb6dc5ffaa3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bumper
+    second: {fileID: 2100000, guid: 535ee8fdc7bdf4691a84d95827377918, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red Light
+    second: {fileID: 2100000, guid: f8ec101d15d054232982118df377107e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tire Center
+    second: {fileID: 2100000, guid: e0513b14909ed40f1af0cd0d86256e90, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tire Rubber
+    second: {fileID: 2100000, guid: 36d1d9d11f9904ac9959cdb1148ed40d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 0f70f6d0f7d724ac49b14d462324b80c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow Light
+    second: {fileID: 2100000, guid: 97955c8084ae84625bdd1a8d32bb8519, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
