@@ -1,63 +1,47 @@
 fileFormatVersion: 2
-guid: 4d85d71259232447e95d67536598cbfc
+guid: 0946253197aa14445a36dd0857767544
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
   - first:
-      74: 1593692475574755786
-    second: Armature|Crash
-  - first:
-      74: -5913978943142729594
-    second: Armature|Move
-  - first:
-      74: -8945691123924629249
-    second: Armature|Idle
+      74: -623603649343465320
+    second: Scene
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Base Color
-    second: {fileID: 2100000, guid: 2a49714d57add40f4a8d9dc59bbdf5a0, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Blue Light
-    second: {fileID: 2100000, guid: 97c3d1206abad4b3d81a9d22b145f1d8, type: 2}
+    second: {fileID: 2100000, guid: d3ff03b7520ec44288608f9a5ae935ac, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Bumper
-    second: {fileID: 2100000, guid: d272ba92c5f254e7c8fdada89baa4d62, type: 2}
+    second: {fileID: 2100000, guid: 379786a7d2faa482cac05adb2d6a8afb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Red Light
-    second: {fileID: 2100000, guid: fa88bb891219543feac9a12a4919bea8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Secondary Color
-    second: {fileID: 2100000, guid: 1a77ffbbd44b745c5aae08e04c2dbb96, type: 2}
+    second: {fileID: 2100000, guid: ae4393ffd661946cfa40cda8a6fcef60, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tire Center
-    second: {fileID: 2100000, guid: c0bfb43e9a8a049e0b7fb46549c34573, type: 2}
+    second: {fileID: 2100000, guid: 39a63807389cf4033ba4cc6d50bd35e0, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Tire Rubber
-    second: {fileID: 2100000, guid: 4a02463c286244d6b864e0d6abe2e230, type: 2}
+    second: {fileID: 2100000, guid: 87aea4a8a419c4cc8924c685f067ca7f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Window
-    second: {fileID: 2100000, guid: f6300f159b09d4a19876f4eb3f1b14ec, type: 2}
+    second: {fileID: 2100000, guid: 0ab21f9dbffe6482f8eda1cdb9adb2c3, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Yellow Light
-    second: {fileID: 2100000, guid: 4053e862e78054dc4bfdc70b353f0170, type: 2}
+    second: {fileID: 2100000, guid: 68652ac5cc6444938b250c3daa04be1e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -76,22 +60,51 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    importConstraints: 0
-    animationCompression: 1
+    importConstraints: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Scene
+      takeName: Scene
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
@@ -136,9 +149,9 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Root
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
