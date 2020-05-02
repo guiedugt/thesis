@@ -726,7 +726,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 52.95
+  m_fontSize: 59.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1097,8 +1097,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 520041174}
-  - component: {fileID: 520041175}
   - component: {fileID: 520041176}
+  - component: {fileID: 520041175}
+  - component: {fileID: 520041177}
   m_Layer: 5
   m_Name: Game Screen
   m_TagString: Untagged
@@ -1155,6 +1156,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &520041177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520041173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4d1480cae404f459825634f89d8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
 --- !u!1 &618046636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,7 +1408,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48
+  m_fontSize: 55.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1502,7 +1516,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.06475325, y: 0.47700003}
   m_AnchorMax: {x: 0.93500006, y: 0.6607393}
-  m_AnchoredPosition: {x: -0.020019531, y: 1.1000004}
+  m_AnchoredPosition: {x: -0.020019531, y: 1.0999985}
   m_SizeDelta: {x: 26.67, y: 0.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &668691522
@@ -1988,8 +2002,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 756526075}
-  - component: {fileID: 756526076}
   - component: {fileID: 756526077}
+  - component: {fileID: 756526076}
+  - component: {fileID: 756526078}
   m_Layer: 5
   m_Name: Start Screen
   m_TagString: Untagged
@@ -2045,6 +2060,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &756526078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756526074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4d1480cae404f459825634f89d8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
 --- !u!1 &819521223
 GameObject:
   m_ObjectHideFlags: 0
@@ -3277,7 +3305,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 28.55
+  m_fontSize: 33.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3905,8 +3933,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1500431424}
-  - component: {fileID: 1500431425}
   - component: {fileID: 1500431426}
+  - component: {fileID: 1500431425}
+  - component: {fileID: 1500431427}
   m_Layer: 5
   m_Name: End Screen
   m_TagString: Untagged
@@ -3962,6 +3991,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1500431427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500431423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4d1480cae404f459825634f89d8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
 --- !u!1 &1516777329
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,7 +4354,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 26.55
+  m_fontSize: 31.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4825,7 +4867,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 26.55
+  m_fontSize: 31.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

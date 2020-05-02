@@ -1,7 +1,17 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+
+[Serializable]
+public struct SelectableCar
+{
+    [SerializeField] GameObject prefab;
+    [SerializeField] float cost;
+    [SerializeField] bool isUnlocked;
+}
 
 public class CarSelector : MonoBehaviour
 {
+    [SerializeField] SelectableCar[] selectables;
     [SerializeField] GameObject[] showcaseCarPrefabs;
 
     int carIndex;
@@ -9,15 +19,16 @@ public class CarSelector : MonoBehaviour
 
     void Start()
     {
-        if (showcaseCarPrefabs == null || showcaseCarPrefabs.Length <= 0) return;
+        selectables = PlayerPrefsManager.GetSelectableCars();
         carIndex = PlayerPrefsManager.GetSelectedCarIndex();
         ShowCaseCar(carIndex);
     }
 
-    public void ShowCaseCar(int i)
+    public void ShowCaseCar(int carToShowcaseIndex)
     {
+        carIndex = carToShowcaseIndex;
         if (showcasedCar != null) Destroy(showcasedCar);
-        showcasedCar = Instantiate(showcaseCarPrefabs[i], transform.position, transform.rotation, transform);
+        showcasedCar = Instantiate(showcaseCarPrefabs[carIndex], transform.position, transform.rotation, transform);
     }
 
     public void SelectCurrentShowcaseCar()
