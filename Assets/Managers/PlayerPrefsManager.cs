@@ -13,4 +13,12 @@ public class PlayerPrefsManager : MonoBehaviour
     public static void AddToTotalScore(float value) {
         SetTotalScore(GetTotalScore() + value);
     }
+
+    public static int GetSelectedCarIndex() {
+        return PlayerPrefs.GetInt("SelectedCarIndex");
+    }    
+
+    public static void SetSelectedCarIndex(int i) {
+        PlayerPrefs.SetInt("SelectedCarIndex", i);
+    }
 }
