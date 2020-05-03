@@ -14,19 +14,19 @@ public class UIFade : MonoBehaviour
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public void Show()
+    public void Show(Action callback = null)
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-        fadeCoroutine = StartCoroutine(FadeCoroutine(isFadeIn: true));
+        fadeCoroutine = StartCoroutine(FadeCoroutine(isFadeIn: true, callback));
     }
 
-    public void Hide()
+    public void Hide(Action callback = null)
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
-        fadeCoroutine = StartCoroutine(FadeCoroutine(isFadeIn: false));
+        fadeCoroutine = StartCoroutine(FadeCoroutine(isFadeIn: false, callback));
     }
 
-    IEnumerator FadeCoroutine(bool isFadeIn)
+    IEnumerator FadeCoroutine(bool isFadeIn, Action callback)
     {
         float t = 0f;
         float startTime = Time.time;
@@ -36,5 +36,6 @@ public class UIFade : MonoBehaviour
             canvasGroup.alpha = isFadeIn ? t : 1f - t;
             yield return null;
         }
+        if (callback != null) callback();
     }
 }

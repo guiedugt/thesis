@@ -13,7 +13,7 @@ public struct SelectableCar
 
 public class CarSelector : MonoBehaviour
 {
-    [SerializeField] CarSelectButton carSelectButton;
+    [SerializeField] CarSelectorButtonSwitch carSelectorButtonSwitch;
     [SerializeField] SelectableCar[] selectableCars;
 
     SelectableCar selectedCar;
@@ -38,7 +38,7 @@ public class CarSelector : MonoBehaviour
         selectedCar = selectableCar;
         if (selectedCarPrefab != null) Destroy(selectedCarPrefab);
         selectedCarPrefab = Instantiate(selectableCar.prefab, transform.position, transform.rotation, transform);
-        carSelectButton.UpdateButton(selectedCar);
+        carSelectorButtonSwitch.Switch(selectedCar);
     }
 
     public void SelectCurrentShowcaseCar()

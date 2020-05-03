@@ -2,12 +2,9 @@
 using UnityEngine.UI;
  
 [RequireComponent(typeof(Button))]
-public class CarSelectButton : MonoBehaviour
+public class ButtonColorizer : MonoBehaviour
 {
-    [SerializeField] CarSelector carSelector;
-
-    [Header("Colors")]
-    [SerializeField] Color color;
+    [SerializeField] Color color = Color.white;
     [SerializeField][Range(0f, 1f)] float highlightColorOffset = 0.04f;
     [SerializeField][Range(0f, 1f)] float highlightAlphaOffset = 0.04f;
     [SerializeField][Range(0f, 1f)] float pressedColorOffset = 0.2f;
@@ -24,22 +21,18 @@ public class CarSelectButton : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(HandleClick);
         CalculateColors();
     }
 
-    public void UpdateButton(SelectableCar selectedCar)
+    public void CalculateColors()
     {
-        print("update button");
+        CalculateColors(color);
     }
 
-    void HandleClick()
+    public void CalculateColors(Color newColor)
     {
-        carSelector.SelectCurrentShowcaseCar();
-    }
+        color = newColor;
 
-    void CalculateColors()
-    {
         float h, s, v;
         Color.RGBToHSV(color, out h, out s, out v);
         Color hsvColor = Color.HSVToRGB(h, s, v);
