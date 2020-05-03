@@ -1,38 +1,53 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
 public struct SelectableCar
 {
-    [SerializeField] GameObject prefab;
-    [SerializeField] float cost;
-    [SerializeField] bool isUnlocked;
+    public int id;
+    public GameObject prefab;
+    public float cost;
+    public bool isUnlocked;
 }
 
 public class CarSelector : MonoBehaviour
 {
-    [SerializeField] SelectableCar[] selectables;
-    [SerializeField] GameObject[] showcaseCarPrefabs;
+    [SerializeField] CarSelectButton carSelectButton;
+    [SerializeField] SelectableCar[] selectableCars;
 
-    int carIndex;
-    GameObject showcasedCar;
+    SelectableCar selectedCar;
+    GameObject selectedCarPrefab;
 
     void Start()
     {
-        selectables = PlayerPrefsManager.GetSelectableCars();
-        carIndex = PlayerPrefsManager.GetSelectedCarIndex();
-        ShowCaseCar(carIndex);
+        SelectableCar[] selectableCarsFromPrefs = PlayerPrefsManager.GetSelectableCars();
+        int selectedCarId = PlayerPrefsManager.GetSelectedCarId();
+        selectedCar = selectableCarsFromPrefs?.Single(t => t.id == selectedCarId) ?? selectableCars[0];
+        ShowcaseCar(selectedCar);
     }
 
-    public void ShowCaseCar(int carToShowcaseIndex)
+    public void ShowcaseCar(int id)
     {
-        carIndex = carToShowcaseIndex;
-        if (showcasedCar != null) Destroy(showcasedCar);
-        showcasedCar = Instantiate(showcaseCarPrefabs[carIndex], transform.position, transform.rotation, transform);
+        SelectableCar carToShowcase = selectableCars.Single(t => t.id == id);
+        ShowcaseCar(carToShowcase);
+    }
+
+    public void ShowcaseCar(SelectableCar selectableCar)
+    {
+        selectedCar = selectableCar;
+        if (selectedCarPrefab != null) Destroy(selectedCarPrefab);
+        selectedCarPrefab = Instantiate(selectableCar.prefab, transform.position, transform.rotation, transform);
+        carSelectButton.UpdateButton(selectedCar);
     }
 
     public void SelectCurrentShowcaseCar()
     {
-        PlayerPrefsManager.SetSelectedCarIndex(carIndex);
+        PlayerPrefsManager.SetSelectedCarId(selectedCar.id);
+    }
+
+    public bool IsSelectedCarUnlocked()
+    {
+        return selectedCar.isUnlocked;
     }
 }

@@ -2,6 +2,11 @@
 
 public class PlayerPrefsManager : MonoBehaviour
 {
+    public static void Clear()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
     public static float GetTotalScore()
     {
         return PlayerPrefs.GetFloat("TotalScore");
@@ -17,20 +22,20 @@ public class PlayerPrefsManager : MonoBehaviour
         SetTotalScore(GetTotalScore() + value);
     }
 
-    public static int GetSelectedCarIndex()
+    public static int GetSelectedCarId()
     {
-        return PlayerPrefs.GetInt("SelectedCarIndex");
+        return PlayerPrefs.GetInt("SelectedCarId");
     }
 
-    public static void SetSelectedCarIndex(int i)
+    public static void SetSelectedCarId(int id)
     {
-        PlayerPrefs.SetInt("SelectedCarIndex", i);
+        PlayerPrefs.SetInt("SelectedCarId", id);
     }
 
     public static SelectableCar[] GetSelectableCars()
     {
         string json = PlayerPrefs.GetString("SelectableCars");
-        if (json == "") return null;
+        if (json.Length == 0) return null;
         return JSON.ParseArray<SelectableCar>(json);
     }
 

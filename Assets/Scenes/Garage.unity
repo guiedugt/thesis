@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 60918511}
   - component: {fileID: 60918510}
   - component: {fileID: 60918509}
+  - component: {fileID: 60918512}
   m_Layer: 5
   m_Name: Button (5)
   m_TagString: Untagged
@@ -201,18 +202,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 60918510}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: ShowCaseCar
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &60918510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +239,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60918507}
   m_CullTransparentMesh: 0
+--- !u!114 &60918512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60918507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb031590a285c41a7ac4e1799028878f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 5
+  carSelector: {fileID: 2015604628087218861}
 --- !u!1 &113435263
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +265,7 @@ GameObject:
   - component: {fileID: 113435267}
   - component: {fileID: 113435266}
   - component: {fileID: 113435265}
+  - component: {fileID: 113435268}
   m_Layer: 5
   m_Name: Button (6)
   m_TagString: Untagged
@@ -330,18 +335,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 113435266}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: ShowCaseCar
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &113435266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,6 +372,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113435263}
   m_CullTransparentMesh: 0
+--- !u!114 &113435268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113435263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb031590a285c41a7ac4e1799028878f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 6
+  carSelector: {fileID: 2015604628087218861}
 --- !u!1 &113655237
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +398,7 @@ GameObject:
   - component: {fileID: 113655241}
   - component: {fileID: 113655240}
   - component: {fileID: 113655239}
+  - component: {fileID: 113655242}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -459,18 +468,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 113655240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: ShowCaseCar
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &113655240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +505,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113655237}
   m_CullTransparentMesh: 0
+--- !u!114 &113655242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113655237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb031590a285c41a7ac4e1799028878f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  carSelector: {fileID: 2015604628087218861}
 --- !u!1 &120819352
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +683,7 @@ GameObject:
   - component: {fileID: 484399818}
   - component: {fileID: 484399817}
   - component: {fileID: 484399816}
+  - component: {fileID: 484399819}
   m_Layer: 5
   m_Name: Button (4)
   m_TagString: Untagged
@@ -740,18 +753,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 484399817}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: ShowCaseCar
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &484399817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -788,6 +790,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484399814}
   m_CullTransparentMesh: 0
+--- !u!114 &484399819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484399814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb031590a285c41a7ac4e1799028878f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 4
+  carSelector: {fileID: 2015604628087218861}
 --- !u!1 &485417050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1052,50 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &565746394
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565746395}
+  - component: {fileID: 565746396}
+  m_Layer: 0
+  m_Name: Debug Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &565746395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565746394}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 884371137}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &565746396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565746394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4326a35923c674ea6aaafa0ee0688e58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clearPlayerPrefs: 1
 --- !u!1 &571912209
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1108,7 @@ GameObject:
   - component: {fileID: 571912213}
   - component: {fileID: 571912212}
   - component: {fileID: 571912211}
+  - component: {fileID: 571912214}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -1117,18 +1178,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 571912212}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: ShowCaseCar
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &571912212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,6 +1215,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571912209}
   m_CullTransparentMesh: 0
+--- !u!114 &571912214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571912209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb031590a285c41a7ac4e1799028878f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 3
+  carSelector: {fileID: 2015604628087218861}
 --- !u!1 &573444119
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,6 +1431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1429155531}
+  - {fileID: 565746395}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1609,7 +1674,7 @@ GameObject:
   - component: {fileID: 1149177416}
   - component: {fileID: 1149177415}
   m_Layer: 5
-  m_Name: Selection Buttons
+  m_Name: Car Selector Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1777,6 +1842,7 @@ GameObject:
   - component: {fileID: 1275554899}
   - component: {fileID: 1275554898}
   - component: {fileID: 1275554897}
+  - component: {fileID: 1275554900}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1846,18 +1912,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1275554898}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: ShowCaseCar
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1275554898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1894,6 +1949,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275554895}
   m_CullTransparentMesh: 0
+--- !u!114 &1275554900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275554895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb031590a285c41a7ac4e1799028878f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 2
+  carSelector: {fileID: 2015604628087218861}
 --- !u!1 &1367007247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,6 +2278,7 @@ GameObject:
   - component: {fileID: 1975917131}
   - component: {fileID: 1975917130}
   - component: {fileID: 1975917129}
+  - component: {fileID: 1975917132}
   m_Layer: 5
   m_Name: Select Button
   m_TagString: Untagged
@@ -2256,11 +2326,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0.72156864, a: 1}
-    m_HighlightedColor: {r: 0.003921569, g: 0.9607843, b: 0.64705884, a: 0.9607843}
-    m_PressedColor: {r: 0.003921569, g: 0.78431374, b: 0.47058824, a: 0.78039217}
-    m_SelectedColor: {r: 0.007843138, g: 0.9529412, b: 0.60784316, a: 1}
-    m_DisabledColor: {r: 0.007843138, g: 0.75686276, b: 0.42745098, a: 0.5019608}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2278,18 +2348,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1975917130}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2015604628087218861}
-        m_MethodName: SelectCurrentShowcaseCar
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1975917130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2326,6 +2385,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1975917127}
   m_CullTransparentMesh: 0
+--- !u!114 &1975917132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975917127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a39902db49e431a8d428d70af8036f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carSelector: {fileID: 2015604628087218861}
+  color: {r: 0, g: 1, b: 0.7166667, a: 1}
+  highlightColorOffset: 0.04
+  highlightAlphaOffset: 0.04
+  pressedColorOffset: 0.2
+  pressedAlphaOffset: 0.2
+  selectedColorOffset: 0.05
+  selectedAlphaOffset: 0
+  disabledColorOffset: 0.2
+  disabledAlphaOffset: 0.5
+  colorMultiplier: 1
+  colorFadeDuration: 0.1
 --- !u!1 &1999097239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2633,6 +2716,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alert
       objectReference: {fileID: 0}
+    - target: {fileID: 803069054186013604, guid: ecbd54aebe4ed44ed98d569d26290e4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 803069054186013607, guid: ecbd54aebe4ed44ed98d569d26290e4b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2740,6 +2828,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecbd54aebe4ed44ed98d569d26290e4b, type: 3}
+--- !u!1 &803069054543195542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 803069054186013604, guid: ecbd54aebe4ed44ed98d569d26290e4b,
+    type: 3}
+  m_PrefabInstance: {fileID: 803069054543195541}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &803069054543195543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803069054543195542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4d1480cae404f459825634f89d8bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.4
 --- !u!114 &2015604628087218861 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
@@ -2945,70 +3052,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
         type: 3}
-      propertyPath: selectables.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[0].prefab
+      propertyPath: carSelectButton
       value: 
-      objectReference: {fileID: 3085601315643778323, guid: bc9cb9669432e4ef0b8f7e1b42f1562d,
-        type: 3}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[1].prefab
-      value: 
-      objectReference: {fileID: 3085601315643778323, guid: ca2337a6ada7247928d3c3e73f23551d,
-        type: 3}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[1].cost
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 3085601315643778323, guid: 4bebf4f8757734eba872cc7d5d314dff,
-        type: 3}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[2].cost
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[3].prefab
-      value: 
-      objectReference: {fileID: 3085601315643778323, guid: 8107ad249ce834fedbb16c893d0a0ed5,
-        type: 3}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[3].cost
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[4].prefab
-      value: 
-      objectReference: {fileID: 3085601315643778323, guid: 597f446bfc5624c60a8fcd2c8d6bcfa5,
-        type: 3}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[4].cost
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[5].prefab
-      value: 
-      objectReference: {fileID: 3085601315643778323, guid: 930d892e004724f85a9eb70dea55a21e,
-        type: 3}
-    - target: {fileID: 3458656187539837508, guid: 6b13f0bd1638945ad815ffb9437f3ace,
-        type: 3}
-      propertyPath: selectables.Array.data[5].cost
-      value: 3000
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1975917132}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b13f0bd1638945ad815ffb9437f3ace, type: 3}
 --- !u!1001 &4557293581075592705

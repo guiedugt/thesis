@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(UIFade))]
 public class UIHider : MonoBehaviour
 {
-    [Header("Presentation")]
-    [SerializeField] float fadeDuration = 0.4f;
-
-    [Header("Screens to show UI")]
     [SerializeField] bool showInStartScreen = false;
     [SerializeField] bool showInGameScreen = false;
     [SerializeField] bool showInEndScreen = false;
