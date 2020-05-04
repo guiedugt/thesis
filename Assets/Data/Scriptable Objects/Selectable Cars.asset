@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Selectable Cars
+  m_EditorClassIdentifier: Assembly-CSharp::SelectableCarsData
+  data:
+  - id: 1
+    prefab: {fileID: 3085601315643778323, guid: 35332471825c541b6a596e95fc83d740,
+      type: 3}
+    showcasePrefab: {fileID: 3085601315643778323, guid: bc9cb9669432e4ef0b8f7e1b42f1562d,
+      type: 3}
+    cost: 0
+    isUnlocked: 1
+  - id: 2
+    prefab: {fileID: 3085601315643778323, guid: 8bdd4125200814fae873b7a5bc121412,
+      type: 3}
+    showcasePrefab: {fileID: 3085601315643778323, guid: ca2337a6ada7247928d3c3e73f23551d,
+      type: 3}
+    cost: 500
+    isUnlocked: 0
+  - id: 3
+    prefab: {fileID: 3085601315643778323, guid: 3b2981974e1c84c72a645c03c64a381a,
+      type: 3}
+    showcasePrefab: {fileID: 3085601315643778323, guid: 4bebf4f8757734eba872cc7d5d314dff,
+      type: 3}
+    cost: 1000
+    isUnlocked: 0
+  - id: 4
+    prefab: {fileID: 3085601315643778323, guid: 608829be3a6ef4c5dacc56e069221b09,
+      type: 3}
+    showcasePrefab: {fileID: 3085601315643778323, guid: 8107ad249ce834fedbb16c893d0a0ed5,
+      type: 3}
+    cost: 1500
+    isUnlocked: 0
+  - id: 5
+    prefab: {fileID: 3085601315643778323, guid: c58ef67f4418c40ff86bbec4d805dd7f,
+      type: 3}
+    showcasePrefab: {fileID: 3085601315643778323, guid: 597f446bfc5624c60a8fcd2c8d6bcfa5,
+      type: 3}
+    cost: 2000
+    isUnlocked: 0
+  - id: 6
+    prefab: {fileID: 3085601315643778323, guid: 2121b8dd5ae6d4c78a24a489a8abfdef,
+      type: 3}
+    showcasePrefab: {fileID: 3085601315643778323, guid: 930d892e004724f85a9eb70dea55a21e,
+      type: 3}
+    cost: 3000
+    isUnlocked: 0

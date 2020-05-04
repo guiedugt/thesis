@@ -22,9 +22,16 @@ public class PlayerPrefsManager : MonoBehaviour
         SetTotalScore(GetTotalScore() + value);
     }
 
+    public static void SubToTotalScore(float value)
+    {
+        SetTotalScore(GetTotalScore() - value);
+    }
+
     public static int GetSelectedCarId()
     {
-        return PlayerPrefs.GetInt("SelectedCarId");
+        int val = PlayerPrefs.GetInt("SelectedCarId");
+        if (val == 0) return 1;
+        return val;
     }
 
     public static void SetSelectedCarId(int id)

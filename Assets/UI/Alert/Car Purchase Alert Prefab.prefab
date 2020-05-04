@@ -816,7 +816,7 @@ GameObject:
   - component: {fileID: 2058383910703456086}
   - component: {fileID: 2058383910703456089}
   m_Layer: 5
-  m_Name: Alert
+  m_Name: Alert Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -886,7 +886,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058383910703456088}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

@@ -32,6 +32,7 @@ public class UIFade : MonoBehaviour
         float startTime = Time.time;
         while (t < 1f)
         {
+            if (!canvasGroup) yield break;
             t = Mathf.Min((Time.time - startTime) / duration, 1f);
             canvasGroup.alpha = isFadeIn ? t : 1f - t;
             yield return null;

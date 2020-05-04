@@ -1,29 +1,22 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
-
-[Serializable]
-public struct SelectableCar
-{
-    public int id;
-    public GameObject prefab;
-    public float cost;
-    public bool isUnlocked;
-}
 
 public class CarSelector : MonoBehaviour
 {
+    [SerializeField] SelectableCarsData selectableCarsData;
     [SerializeField] CarSelectorButtonSwitch carSelectorButtonSwitch;
-    [SerializeField] SelectableCar[] selectableCars;
+    [HideInInspector] public SelectableCar selectedCar;
 
-    SelectableCar selectedCar;
     GameObject selectedCarPrefab;
+    SelectableCar[] selectableCars;
 
     void Start()
     {
+        selectableCars = selectableCarsData.data;
         SelectableCar[] selectableCarsFromPrefs = PlayerPrefsManager.GetSelectableCars();
         int selectedCarId = PlayerPrefsManager.GetSelectedCarId();
-        selectedCar = selectableCarsFromPrefs?.Single(t => t.id == selectedCarId) ?? selectableCars[0];
+        if (selectableCarsFromPrefs != null) selectableCars = selectableCarsFromPrefs;
+        selectedCar = selectableCars.Single(t => t.id == selectedCarId);
         ShowcaseCar(selectedCar);
     }
 
@@ -37,8 +30,20 @@ public class CarSelector : MonoBehaviour
     {
         selectedCar = selectableCar;
         if (selectedCarPrefab != null) Destroy(selectedCarPrefab);
-        selectedCarPrefab = Instantiate(selectableCar.prefab, transform.position, transform.rotation, transform);
+        selectedCarPrefab = Instantiate(selectableCar.showcasePrefab, transform.position, transform.rotation, transform);
         carSelectorButtonSwitch.Switch(selectedCar);
+    }
+
+    public void UnlockSelectedCar()
+    {
+        SelectableCar[] newSelectableCars = selectableCars.Select(t => {
+            if (t.id == selectedCar.id) t.isUnlocked = true;
+            return t;
+        }).ToArray();
+
+        selectableCars = newSelectableCars;
+        PlayerPrefsManager.SetSelectableCars(newSelectableCars);
+        PlayerPrefsManager.SubToTotalScore(selectedCar.cost);
     }
 
     public void SelectCurrentShowcaseCar()
