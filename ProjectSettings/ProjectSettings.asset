@@ -745,10 +745,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: de13fa37-8234-4d5d-8295-0eda7b48ba97
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: thesis
+  organizationId: guiedu
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
