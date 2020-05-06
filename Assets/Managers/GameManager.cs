@@ -51,4 +51,10 @@ public class GameManager : Singleton<GameManager>
         SceneManager.Instance.ReloadScene();
         MemoryManager.Instance.Clear();
     }
+
+    public void HandleGarageBack()
+    {
+        isGameRunning = false;
+        isGameOver = false;
+    }
 }

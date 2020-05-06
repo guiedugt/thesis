@@ -12,25 +12,17 @@ public class CarSelector : MonoBehaviour
 
     void Start()
     {
-        selectableCars = selectableCarsData.data;
-        SelectableCar[] selectableCarsFromPrefs = PlayerPrefsManager.GetSelectableCars();
         int selectedCarId = PlayerPrefsManager.GetSelectedCarId();
-        if (selectableCarsFromPrefs != null) selectableCars = selectableCarsFromPrefs;
-        selectedCar = selectableCars.Single(t => t.id == selectedCarId);
-        ShowcaseCar(selectedCar);
+        selectableCars = PlayerPrefsManager.GetSelectableCars() ?? selectableCarsData.data;
+        ShowcaseCar(selectedCarId);
     }
 
     public void ShowcaseCar(int id)
     {
-        SelectableCar carToShowcase = selectableCars.Single(t => t.id == id);
-        ShowcaseCar(carToShowcase);
-    }
-
-    public void ShowcaseCar(SelectableCar selectableCar)
-    {
-        selectedCar = selectableCar;
+        selectedCar = selectableCars.Single(t => t.id == id);
+        GameObject showcasePrefab = selectableCarsData.data.Single(t => t.id == id).showcasePrefab;
         if (selectedCarPrefab != null) Destroy(selectedCarPrefab);
-        selectedCarPrefab = Instantiate(selectableCar.showcasePrefab, transform.position, transform.rotation, transform);
+        selectedCarPrefab = Instantiate(showcasePrefab, transform.position, transform.rotation, transform);
         carSelectorButtonSwitch.Switch(selectedCar);
     }
 

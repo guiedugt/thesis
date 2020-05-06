@@ -8,11 +8,8 @@ public class CarSpawner : MonoBehaviour
 
     void Awake()
     {
-        SelectableCar[] selectableCarsFromPrefs = PlayerPrefsManager.GetSelectableCars();
-        selectableCars = selectableCarsFromPrefs ?? selectableCarsData.data;
-
         int selectedCarId = PlayerPrefsManager.GetSelectedCarId();
-        SelectableCar selectedCar = selectableCars.Single(t => t.id == selectedCarId);
+        SelectableCar selectedCar = selectableCarsData.data.Single(t => t.id == selectedCarId);
         Instantiate(selectedCar.prefab, transform.position, transform.rotation, transform);
     }
 }

@@ -83,7 +83,6 @@ public class Car : MonoBehaviour
 
     void HandleGameRestart()
     {
-        anim.SetTrigger("Idle");
         position = Position.Center;
     }
 }
