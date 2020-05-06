@@ -37,6 +37,6 @@ public class CoinSpawner : MonoBehaviour
             Random.Range(col.bounds.min.z, col.bounds.max.z)
         );
 
-        Instantiate(coinPrefab, position, Random.rotation);
+        Instantiate(coinPrefab, position, Random.rotation, MemoryManager.Instance.transform);
     }
 }
