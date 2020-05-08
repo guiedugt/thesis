@@ -1,0 +1,41 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Advertisements;
+
+[RequireComponent(typeof(UIFade))]
+[RequireComponent(typeof(Button))]
+public class SuperBombAdButton : MonoBehaviour
+{
+    [SerializeField] SuperBombButton superBombButton;
+    [SerializeField] Alert alert;
+
+    UIFade fade;
+    Button button;
+
+    void Start()
+    {
+        fade = GetComponent<UIFade>();
+        button = GetComponent<Button>();
+        button.onClick.AddListener(HandleClick);
+    }
+
+    void HandleClick()
+    {
+        AdManager.Instance.PlayRewardedVideoAd(AdCallback);
+    }
+
+    void AdCallback(ShowResult result)
+    {
+        if (result == ShowResult.Finished)
+        {
+            fade.Hide();
+            superBombButton.Show();
+            alert.Show("Awesome! Super Bomb is now available!");
+        }
+        else
+        {
+            superBombButton.Hide();
+            alert.Show("Oh no... something went wrong. Maybe try again?");
+        }
+    }
+}

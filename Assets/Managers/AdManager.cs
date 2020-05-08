@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Advertisements;
 
-public class AdManager : MonoBehaviour, IUnityAdsListener
+public class AdManager : Singleton<AdManager>, IUnityAdsListener
 {
     public bool isTargetPlayStore = true;
     public bool isTestAd = true;
@@ -11,6 +12,8 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 
     const string interstitialAd = "video";
     const string rewardedVideoAd = "rewardedVideo";
+
+    Action<ShowResult> callback;
 
     void Start()
     {
@@ -30,15 +33,17 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         }
     }
 
-    public void PlayInterstitialAd()
+    public void PlayInterstitialAd(Action<ShowResult> callback)
     {
         if (!Advertisement.IsReady(interstitialAd)) return;
+        this.callback = callback;
         Advertisement.Show(interstitialAd);
     }
 
-    public void PlayRewardedVideoAd()
+    public void PlayRewardedVideoAd(Action<ShowResult> callback)
     {
         if (!Advertisement.IsReady(rewardedVideoAd)) return;
+        this.callback = callback;
         Advertisement.Show(rewardedVideoAd);
     }
 
@@ -46,26 +51,13 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        // TODO: MUTE THE AUDIO
+        AudioListener.pause = true;
     }
 
-    public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
+    public void OnUnityAdsDidFinish(string placementId, ShowResult result)
     {
-        // TODO: UNMUTE THE AUDIO
-        switch (showResult)
-        {
-            case ShowResult.Finished:
-                // TODO: REWARD
-                if (placementId == rewardedVideoAd) Debug.Log("Reward the player");
-                if (placementId == interstitialAd) Debug.Log("Finished Interstitial Ad");
-                break;
-            case ShowResult.Skipped:
-                // TODO: LET  USER KNOW HE DIDN`T GET THE REWARD
-                break;
-            case ShowResult.Failed:
-                // TODO: LET USER KNOW SOMETHING WENT WRONG
-                break;
-        }
+        AudioListener.pause = false;
+        callback(result);
     }
 
     public void OnUnityAdsDidError(string message) { }

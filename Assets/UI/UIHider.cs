@@ -19,28 +19,26 @@ public class UIHider : MonoBehaviour
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
         canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0f;
-        if (showInStartScreen) Show();
+        if (showInStartScreen) fade.Show();
     }
-
-    void Show() => fade.Show(() => canvasGroup.interactable = true);
-    void Hide() => fade.Hide(() => canvasGroup.interactable = false);
 
     void HandleGameStart()
     {
-        if (showInStartScreen) Hide();
-        if (showInGameScreen) Show();
+        if (showInStartScreen) fade.Hide();
+        if (showInGameScreen) fade.Show();
     }
 
     void HandleGameOver()
     {
-        if (showInGameScreen)  Hide();
-        if (showInEndScreen) Show();
+        if (showInGameScreen)  fade.Hide();
+        if (showInEndScreen) fade.Show();
     }
 
     void HandleGameRestart()
     {
-        if (showInEndScreen)  Hide();
-        if (showInStartScreen) Show();
+        if (showInEndScreen)  fade.Hide();
+        if (showInStartScreen) fade.Show();
     }
 }

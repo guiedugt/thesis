@@ -87,7 +87,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0.03515625, y: 0.10546875, z: 0.02734375, w: -0.03125}
+  m_BoundingSphereOverride: {x: 0, y: 79217090, z: 1e-45, w: 9.46e-43}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -4876,7 +4876,7 @@ Transform:
   m_GameObject: {fileID: 3443701878701057494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.425}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 6330002566500711819}
   m_Father: {fileID: 0}
@@ -4940,7 +4940,7 @@ Animator:
   m_GameObject: {fileID: 3443701878701057494}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e55218ac578129a4383a17ff2372c1d2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 47975e7b2772d4d5794faec27518d3e9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4990,8 +4990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94f01770741054da7680397a3b29ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 250
-  explosionRadius: 5
+  explosionForce: 200
+  explosionRadius: 4
   gravityRatio: -0.5
   explosionVFX: {fileID: 7273940308622066382, guid: 484907846db578945ba3cee1c1cf9380,
     type: 3}

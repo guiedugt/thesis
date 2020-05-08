@@ -28,6 +28,10 @@ public class UIFade : MonoBehaviour
 
     IEnumerator FadeCoroutine(bool isFadeIn, Action callback)
     {
+        canvasGroup.interactable = isFadeIn;
+        canvasGroup.blocksRaycasts = isFadeIn;
+        canvasGroup.alpha = isFadeIn ? 1f : 0f;
+
         float t = 0f;
         float startTime = Time.time;
         while (t < 1f)
@@ -37,6 +41,7 @@ public class UIFade : MonoBehaviour
             canvasGroup.alpha = isFadeIn ? t : 1f - t;
             yield return null;
         }
+
         if (callback != null) callback();
     }
 }

@@ -1,21 +1,27 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class InputManager : Singleton<InputManager>
 {
-    [Header("Bombs")]
+    [Header("Bomb")]
     [SerializeField] GameObject bombPrefab;
     [SerializeField] float throwPower = 7f;
     [SerializeField] RectTransform bombThrowTouchArea;
     public Transform bombOrigin;
     public float bombDelay = 1f;
-
-    float timeSinceLastBombThrow = 0f;
     public class BombThrowEvent : UnityEvent<Vector3> {}
     public BombThrowEvent OnBombThrow = new BombThrowEvent();
     public UnityEvent OnBombRecharge;
-    bool canThrowBomb = true;
 
+    [Header("Super Bomb")]
+    [SerializeField] GameObject superBombPrefab;
+    public float superBombDuration = 10f;
+    [HideInInspector] public float superBombRemainingTime = 10f;
+
+    float timeSinceLastBombThrow = 0f;
+    bool canThrowBomb = true;
+    bool isSuperBombActive = false;
     Vector2 fingerDownPosition;
     Vector2 fingerUpPosition;
     Vector2 swipeDirection;
@@ -32,16 +38,8 @@ public class InputManager : Singleton<InputManager>
     void Update()
     {
         HandleTouch();
-        HandleGameStart();
         HandleBombDelay();
         HandleBombThrow();
-    }
-
-    void HandleGameStart()
-    {
-        if (!Input.GetMouseButtonDown(0) || GameManager.isGameRunning || GameManager.isGameOver) { return; }
-
-        GameManager.Instance.StartGame();
     }
 
     void HandleBombDelay()
@@ -55,14 +53,14 @@ public class InputManager : Singleton<InputManager>
 
     void HandleBombThrow()
     {
-        if (GameManager.isGameOver || !Input.GetMouseButtonDown(0)) { return; }
+        if (!GameManager.isGameRunning || GameManager.isGameOver || !Input.GetMouseButtonDown(0)) { return; }
 
         bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, Input.mousePosition);
         if (!canThrowBomb || !isInsideBounds) return;
 
         Vector3 tapPosition = camera.GetTapWorldPoint();
 
-        GameObject bomb = Instantiate(bombPrefab, bombOrigin.position, Quaternion.identity, MemoryManager.Instance.transform);
+        GameObject bomb = Instantiate(isSuperBombActive ? superBombPrefab : bombPrefab, bombOrigin.position, Quaternion.identity, MemoryManager.Instance.transform);
         Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
 
         Vector3 throwDirection = Vector3.Normalize(tapPosition - bombOrigin.position);
@@ -104,5 +102,22 @@ public class InputManager : Singleton<InputManager>
             Vector3 positionOffsetDirection = swipedLeft ? Vector3.left : swipedRight ? Vector3.right : Vector3.zero;
             car.Move(positionOffsetDirection);
         }
+    }
+
+    public void ActivateSuperBomb()
+    {
+        isSuperBombActive = true;
+        StartCoroutine(TickSuperBombCoroutine());
+    }
+
+    IEnumerator TickSuperBombCoroutine()
+    {
+        superBombRemainingTime = superBombDuration;
+        while(superBombRemainingTime >= 0f) {
+            superBombRemainingTime -= Time.deltaTime;
+            yield return null;
+        }
+        superBombRemainingTime = 0f;
+        isSuperBombActive = false;
     }
 }
