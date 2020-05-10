@@ -6,6 +6,7 @@ using UnityEngine.Advertisements;
 public class SecondChanceAdButton : MonoBehaviour
 {
     [SerializeField] Alert alert;
+    [SerializeField] SecondChanceModal secondChanceModal;
     [SerializeField] TimeBar secondChanceTimeBar;
 
     Button button;
@@ -26,7 +27,8 @@ public class SecondChanceAdButton : MonoBehaviour
     {
         if (result == ShowResult.Finished)
         {
-            Debug.Log("Handle second chance");
+            secondChanceModal.Hide();
+            SecondChanceManager.Instance.Trigger();
         }
         else
         {

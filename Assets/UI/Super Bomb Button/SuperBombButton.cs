@@ -29,6 +29,7 @@ public class SuperBombButton : MonoBehaviour
         InputManager.Instance.ActivateSuperBomb();
         cooldownCounter.ShowCooldown(InputManager.Instance.superBombDuration);
         InvokeAfterSeconds(Hide, InputManager.Instance.superBombDuration);
+        button.interactable = false;
     }
 
     void InvokeAfterSeconds(Action callback, float delay) => StartCoroutine(InvokeAfterSecondsCoroutine(callback, delay));

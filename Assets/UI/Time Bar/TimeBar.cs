@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Slider))]
 public class TimeBar : MonoBehaviour
 {
-    [SerializeField] float duration = 5f;
+    [SerializeField] float duration = 3f;
 
     Slider slider;
     Coroutine tickCoroutine;

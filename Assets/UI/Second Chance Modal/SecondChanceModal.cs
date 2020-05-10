@@ -16,7 +16,14 @@ public class SecondChanceModal : TimeBar
 
     void HandleGameOver()
     {
-        secondChanceTimeBar.Tick(HandleTimeUp);
+        if (SecondChanceManager.isSecondChance)
+        {
+            summaryFade.Show();
+        }
+        else
+        {
+            secondChanceTimeBar.Tick(HandleTimeUp);
+        }
     }
 
     void HandleTimeUp()
@@ -24,5 +31,11 @@ public class SecondChanceModal : TimeBar
         secondChanceTimeBar.Stop();
         fade.Hide();
         summaryFade.Show();
+    }
+
+    public void Hide()
+    {
+        secondChanceTimeBar.Stop();
+        fade.Hide();
     }
 }

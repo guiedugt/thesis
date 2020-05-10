@@ -27,6 +27,7 @@ public class Car : MonoBehaviour
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
+        SecondChanceManager.Instance.OnTrigger.AddListener(HandleSecondChance);
     }
 
     public void Move(Vector3 direction)
@@ -84,5 +85,12 @@ public class Car : MonoBehaviour
     void HandleGameRestart()
     {
         position = Position.Center;
+        anim.SetTrigger("Move");
+    }
+
+    void HandleSecondChance()
+    {
+        position = Position.Center;
+        anim.SetTrigger("Move");
     }
 }

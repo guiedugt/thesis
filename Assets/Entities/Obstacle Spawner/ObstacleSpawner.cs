@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Reloadable))]
 public class ObstacleSpawner : MonoBehaviour
 {
     [SerializeField] GameObject obstaclePrefab;
@@ -8,10 +9,13 @@ public class ObstacleSpawner : MonoBehaviour
 
     WaitForSeconds wait;
     WaitForSeconds oneSec = new WaitForSeconds(1);
+    Reloadable reloadable;
 
     void Start()
     {
         wait = new WaitForSeconds(LevelManager.Instance.delay);
+        reloadable = GetComponent<Reloadable>();
+        reloadable.OnReload.AddListener(HandleReload);
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
@@ -62,5 +66,12 @@ public class ObstacleSpawner : MonoBehaviour
         obstacle.zigZagSpeed = Random.Range(LevelManager.Instance.minZigZagSpeed, LevelManager.Instance.maxZigZagSpeed);
         obstacle.zigZagDistance = Random.Range(LevelManager.Instance.minZigZagDistance, LevelManager.Instance.maxZigZagDistance);
         return obstacleGameObject;
+    }
+
+    void HandleReload()
+    {
+        StopAllCoroutines();
+        SpawnDefaultObstacles();
+        StartCoroutine(SpawnCoroutine(LevelManager.Instance.hasInitialDelay));
     }
 }

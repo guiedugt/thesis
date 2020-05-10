@@ -46,9 +46,7 @@ public class ScoreManager : Singleton<ScoreManager>
 
   void Start()
   {
-    GameManager.Instance.OnGameStart.AddListener(HandleGameStartAndRestart);
-    GameManager.Instance.OnGameRestart.AddListener(HandleGameStartAndRestart);
-    GameManager.instance.OnGameOver.AddListener(HandleGameOver);
+    GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
     InitializeScoreByType();
   }
 
@@ -58,14 +56,14 @@ public class ScoreManager : Singleton<ScoreManager>
     if (GameManager.isGameRunning) { AddScore(ScoreType.Time, scoreItem); }
   }
 
-  void HandleGameStartAndRestart()
+  void HandleGameStart()
   {
     scoreSlider.value = 0f;
     scoreSlider.maxValue = GetLevelMaxScore(1);
     InitializeScoreByType();
   }
 
-  void HandleGameOver()
+  public void AddToTotalScore()
   {
     PlayerPrefsManager.AddToTotalScore(Score);
   }

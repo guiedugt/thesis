@@ -23,15 +23,27 @@ public class UIFade : MonoBehaviour
         canvasGroup.alpha = isVisible ? 1f : 0f;
     }
 
-    public void Show(Action callback = null)
+    public void Show(Action callback = null, bool instantly = false)
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+
+        if (instantly) {
+            SetVisibility(true);
+            return;
+        }
+
         fadeCoroutine = StartCoroutine(FadeCoroutine(isFadeIn: true, callback));
     }
 
-    public void Hide(Action callback = null)
+    public void Hide(Action callback = null, bool instantly = false)
     {
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
+
+        if (instantly) {
+            SetVisibility(false);
+            return;
+        }
+
         fadeCoroutine = StartCoroutine(FadeCoroutine(isFadeIn: false, callback));
     }
 

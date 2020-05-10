@@ -13,6 +13,7 @@ public class Track : MonoBehaviour
         material = GetComponent<MeshRenderer>().material;
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
+        SecondChanceManager.Instance.OnTrigger.AddListener(HandleSecondChance);
     }
 
     void HandleGameStart()
@@ -25,5 +26,11 @@ public class Track : MonoBehaviour
     {
         material.SetFloat("_ScrollXSpeed", 0f);
         material.SetFloat("_ScrollYSpeed", 0f);
+    }
+
+    void HandleSecondChance()
+    {
+        material.SetFloat("_ScrollXSpeed", scrollXSpeed);
+        material.SetFloat("_ScrollYSpeed", scrollYSpeed);
     }
 }

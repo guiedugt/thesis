@@ -7,6 +7,7 @@ public class UIHider : MonoBehaviour
     [SerializeField] bool showInStartScreen = false;
     [SerializeField] bool showInGameScreen = false;
     [SerializeField] bool showInEndScreen = false;
+    [SerializeField] bool showInSecondChanceScreen = false;
 
     CanvasGroup canvasGroup;
     UIFade fade;
@@ -18,6 +19,7 @@ public class UIHider : MonoBehaviour
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
+        SecondChanceManager.Instance.OnTrigger.AddListener(HandleSecondChance);
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0f;
@@ -32,13 +34,19 @@ public class UIHider : MonoBehaviour
 
     void HandleGameOver()
     {
-        if (showInGameScreen)  fade.Hide();
+        if (showInGameScreen) fade.Hide();
         if (showInEndScreen) fade.Show();
     }
 
     void HandleGameRestart()
     {
-        if (showInEndScreen)  fade.Hide();
+        if (showInEndScreen) fade.Hide();
         if (showInStartScreen) fade.Show();
+    }
+
+    void HandleSecondChance()
+    {
+        if (showInSecondChanceScreen) fade.Show(instantly: true);
+        else fade.Hide(instantly: true);
     }
 }
