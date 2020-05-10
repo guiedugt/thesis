@@ -13,7 +13,7 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
     const string interstitialAd = "video";
     const string rewardedVideoAd = "rewardedVideo";
 
-    Action<ShowResult> callback;
+    static Action<ShowResult> callback;
 
     void Start()
     {
@@ -36,14 +36,14 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
     public void PlayInterstitialAd(Action<ShowResult> callback)
     {
         if (!Advertisement.IsReady(interstitialAd)) return;
-        this.callback = callback;
+        AdManager.callback = callback;
         Advertisement.Show(interstitialAd);
     }
 
     public void PlayRewardedVideoAd(Action<ShowResult> callback)
     {
         if (!Advertisement.IsReady(rewardedVideoAd)) return;
-        this.callback = callback;
+        AdManager.callback = callback;
         Advertisement.Show(rewardedVideoAd);
     }
 
@@ -57,7 +57,7 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
     public void OnUnityAdsDidFinish(string placementId, ShowResult result)
     {
         AudioListener.pause = false;
-        callback(result);
+        AdManager.callback(result);
     }
 
     public void OnUnityAdsDidError(string message) { }

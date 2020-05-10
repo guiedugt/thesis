@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CanvasGroup))]
 public class UIFade : MonoBehaviour
 {
+    [SerializeField] bool isInitiallyVisible = false;
     [SerializeField] float duration = 0.4f;
     CanvasGroup canvasGroup;
     Coroutine fadeCoroutine;
@@ -12,6 +13,14 @@ public class UIFade : MonoBehaviour
     void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
+        SetVisibility(isInitiallyVisible);
+    }
+
+    void SetVisibility(bool isVisible)
+    {
+        canvasGroup.interactable = isVisible;
+        canvasGroup.blocksRaycasts = isVisible;
+        canvasGroup.alpha = isVisible ? 1f : 0f;
     }
 
     public void Show(Action callback = null)
@@ -28,9 +37,7 @@ public class UIFade : MonoBehaviour
 
     IEnumerator FadeCoroutine(bool isFadeIn, Action callback)
     {
-        canvasGroup.interactable = isFadeIn;
-        canvasGroup.blocksRaycasts = isFadeIn;
-        canvasGroup.alpha = isFadeIn ? 1f : 0f;
+        SetVisibility(isFadeIn);
 
         float t = 0f;
         float startTime = Time.time;
