@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerPrefsManager : MonoBehaviour
 {
@@ -46,8 +47,18 @@ public class PlayerPrefsManager : MonoBehaviour
         return JSON.ParseArray<SelectableCar>(json);
     }
 
-    public static void SetSelectableCars (SelectableCar[] selectables)
+    public static void SetSelectableCars(SelectableCar[] selectables)
     {
         PlayerPrefs.SetString("SelectableCars", JSON.SerializeArray(selectables));
+    }
+
+    public static bool IsSuperBombAvailable()
+    {
+        return Convert.ToBoolean(PlayerPrefs.GetInt("IsSuperBombAvailable"));
+    }
+
+    public static void SetIsSuperBombAvailable(bool isSuperBombAvailable)
+    {
+        PlayerPrefs.SetInt("IsSuperBombAvailable", Convert.ToInt32(isSuperBombAvailable));
     }
 }

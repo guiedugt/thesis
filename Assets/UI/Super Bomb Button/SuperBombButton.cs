@@ -19,6 +19,7 @@ public class SuperBombButton : MonoBehaviour
         cooldownCounter = GetComponent<UICooldownCounter>();
         
         button.onClick.AddListener(ActivateSuperBomb);
+        GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
     }
 
     public void Show() => fade.Show();
@@ -26,6 +27,7 @@ public class SuperBombButton : MonoBehaviour
 
     void ActivateSuperBomb()
     {
+        PlayerPrefsManager.SetIsSuperBombAvailable(false);
         InputManager.Instance.ActivateSuperBomb();
         cooldownCounter.ShowCooldown(InputManager.Instance.superBombDuration);
         InvokeAfterSeconds(Hide, InputManager.Instance.superBombDuration);
@@ -38,5 +40,10 @@ public class SuperBombButton : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         callback();
+    }
+
+    void HandleGameOver()
+    {
+        PlayerPrefsManager.SetIsSuperBombAvailable(false);
     }
 }

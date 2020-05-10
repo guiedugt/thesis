@@ -13,17 +13,21 @@ public class Car : MonoBehaviour
 {
     [SerializeField] float swipeSpeed = 0.2f;
     [SerializeField] float swipeDisplacement = 3f;
+    [SerializeField] float CollisionUpForce = 200f;
+    [SerializeField] float CollisionTorqueForce = 300f;
 
     Position position = Position.Center;
     Vector3 velocity;
     Vector3 startPosition;
     Animator anim;
     Coroutine moveCoroutine;
+    Rigidbody rb;
 
     void Start()
     {
         startPosition = transform.position;
         anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
@@ -70,6 +74,17 @@ public class Car : MonoBehaviour
         }
 
         transform.position = targetPosition;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        int bricksLayer = LayerMask.NameToLayer("Bricks");
+        if (collision.gameObject.layer == bricksLayer) {
+            if (GameManager.isGameOver) return;
+            rb.AddForce(Vector3.up * CollisionUpForce);
+            rb.AddTorque(Vector3.down * CollisionTorqueForce);
+            GameManager.Instance.GameOver();
+        }
     }
 
     void HandleGameStart()

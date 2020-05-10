@@ -17,6 +17,8 @@ public class SuperBombAdButton : MonoBehaviour
         fade = GetComponent<UIFade>();
         button = GetComponent<Button>();
         button.onClick.AddListener(HandleClick);
+
+        if (PlayerPrefsManager.IsSuperBombAvailable()) fade.Hide(instantly: true);
     }
 
     void HandleClick()
