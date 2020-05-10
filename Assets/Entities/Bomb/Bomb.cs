@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -9,7 +6,7 @@ public class Bomb : MonoBehaviour
 {
     [SerializeField] float explosionForce = 2000f;
     [SerializeField] float explosionRadius = 3f;
-    [SerializeField] float pointsPerBrick = 2f;
+    [SerializeField] float scorePerBrick = 0.2f;
     [SerializeField] [Range(-10f, 10f)] float gravityRatio = 0.5f;
     [SerializeField] ParticleSystem explosionVFX;
 
@@ -52,7 +49,7 @@ public class Bomb : MonoBehaviour
             rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
-        ScoreItem scoreItem = new ScoreItem(colliders.Length, pointsPerBrick * colliders.Length);
+        ScoreItem scoreItem = new ScoreItem(colliders.Length, scorePerBrick * colliders.Length);
         ScoreManager.Instance.AddScore(ScoreType.Brick, scoreItem);
 
         if (explosionVFX)

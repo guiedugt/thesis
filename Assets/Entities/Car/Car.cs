@@ -19,6 +19,7 @@ public class Car : MonoBehaviour
     Position position = Position.Center;
     Vector3 velocity;
     Vector3 startPosition;
+    Quaternion startRotation;
     Animator anim;
     Coroutine moveCoroutine;
     Rigidbody rb;
@@ -26,6 +27,7 @@ public class Car : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        startRotation = transform.rotation;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
@@ -70,6 +72,7 @@ public class Car : MonoBehaviour
                 ref velocity,
                 swipeSpeed
             );
+            transform.rotation = startRotation;
             yield return null;
         }
 

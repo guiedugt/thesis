@@ -444,18 +444,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 337067028}
-  levelUpMultiplier: 10
+  levelUpMultiplier: 1
   OnLevelUp:
     m_PersistentCalls:
       m_Calls: []
   hasInitialDelay: 0
   delay: 3
-  minSpeed: 8
-  maxSpeed: 12
-  minZigZagSpeed: 1
-  maxZigZagSpeed: 5
+  minSpeed: 6
+  maxSpeed: 10
+  minZigZagSpeed: 0
+  maxZigZagSpeed: 1.5
   minZigZagDistance: 0
-  maxZigZagDistance: 10
+  maxZigZagDistance: 6
 --- !u!1 &169252891
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 44.15
+  m_fontSize: 34
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -925,7 +925,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 72
+  m_fontSize: 61.75
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1743,7 +1743,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 71.75
+  m_fontSize: 58.05
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1971,8 +1971,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreSlider: {fileID: 1009456457}
-  scorePerSecond: 5
-  multiplier: 20
+  scorePerSecond: 0.75
+  multiplier: 10
 --- !u!1 &698304326
 GameObject:
   m_ObjectHideFlags: 0
@@ -5152,7 +5152,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 44.5
+  m_fontSize: 34.5
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5380,7 +5380,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 44.05
+  m_fontSize: 33.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5938,7 +5938,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 44.05
+  m_fontSize: 33.95
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7392,6 +7392,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 365958809644843975, guid: 2f59685bfb109f54ba38a869246504a6,
+        type: 3}
+      propertyPath: defaultObstaclesLocations.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f59685bfb109f54ba38a869246504a6, type: 3}
 --- !u!1001 &1216055307374561856
@@ -8674,7 +8679,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 24
+  m_fontSize: 23.65
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

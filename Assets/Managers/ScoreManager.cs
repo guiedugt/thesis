@@ -41,12 +41,15 @@ public class ScoreManager : Singleton<ScoreManager>
   }
   public Dictionary<ScoreType, ScoreItem> scoresByType;
   [SerializeField] Slider scoreSlider;
-  [SerializeField] float scorePerSecond = 5f;
-  [SerializeField] float multiplier = 20f;
+  [SerializeField] float scorePerSecond = 0.75f;
+  [SerializeField] float multiplier = 10f;
+
+  float currentLevelMaxScore = 0f;
 
   void Start()
   {
     GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
+    currentLevelMaxScore = GetLevelMaxScore(1);
     InitializeScoreByType();
   }
 
@@ -76,10 +79,11 @@ public class ScoreManager : Singleton<ScoreManager>
     scoreSlider.value = newScore;
 
     int currentLevel = LevelManager.level;
-    if (newScore >= GetLevelMaxScore(currentLevel))
+    if (newScore >= currentLevelMaxScore)
     {
-      scoreSlider.minValue = scoreSlider.maxValue;
-      scoreSlider.maxValue = GetLevelMaxScore(currentLevel + 1);
+      scoreSlider.minValue = currentLevelMaxScore;
+      currentLevelMaxScore = GetLevelMaxScore(currentLevel + 1);
+      scoreSlider.maxValue = currentLevelMaxScore;
       LevelManager.Instance.LevelUp();
     }
   }

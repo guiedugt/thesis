@@ -8,7 +8,7 @@ public class LevelManager : Singleton<LevelManager>
 
     [Header("Level Properties")]
     [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] float levelUpMultiplier = 10f;
+    [SerializeField] float levelUpMultiplier = 3f;
     public UnityEvent OnLevelUp;
 
     [Header("Spawner Properties")]
@@ -16,12 +16,12 @@ public class LevelManager : Singleton<LevelManager>
     public float delay = 3f;
 
     [Header("Obstacle Properties")]
-    public float minSpeed = 8f;
-    public float maxSpeed = 12f;
-    public float minZigZagSpeed = 1f;
-    public float maxZigZagSpeed = 5f;
+    public float minSpeed = 5f;
+    public float maxSpeed = 8f;
+    public float minZigZagSpeed = 0f;
+    public float maxZigZagSpeed = 1.5f;
     public float minZigZagDistance = 0f;
-    public float maxZigZagDistance = 10f;
+    public float maxZigZagDistance = 6f;
 
 
     void Awake()
@@ -41,12 +41,12 @@ public class LevelManager : Singleton<LevelManager>
     void LoadLevel(int nextLevel)
     {
         float multiplier = (float) nextLevel;
-        this.minSpeed = multiplier / 3 + 6f;
-        this.maxSpeed = multiplier / 3 + 6f;
-        this.minZigZagSpeed = multiplier / 4;
-        this.maxZigZagSpeed = multiplier / 3;
-        this.minZigZagDistance = multiplier / 5;
-        this.maxZigZagDistance = multiplier / 4;
+        this.minSpeed = multiplier / 4 + minSpeed;
+        this.maxSpeed = multiplier / 4 + minSpeed;
+        this.minZigZagSpeed = multiplier / 5;
+        this.maxZigZagSpeed = multiplier / 4;
+        this.minZigZagDistance = multiplier / 6;
+        this.maxZigZagDistance = multiplier / 5;
 
         levelText.text = "Level " + nextLevel;
         level = nextLevel;
