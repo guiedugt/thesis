@@ -9,6 +9,7 @@ public class CarPurchaseButton : MonoBehaviour
     [SerializeField] GameObject messageAlertInstance;
     [SerializeField] TextMeshProUGUI amountText;
     [SerializeField] TotalCoins totalCoins;
+    [SerializeField] AudioClip purchaseSFX;
 
     Alert purchaseAlert;
     Alert messageAlert;
@@ -49,6 +50,7 @@ public class CarPurchaseButton : MonoBehaviour
         totalCoins.UpdateAmount();
         carSelectorButtonSwitch.Switch(true);
         purchaseAlertInstance.SetActive(false);
+        AudioManager.Instance.Play(purchaseSFX);
     }
     
     void HandlePurchaseCancel()

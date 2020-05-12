@@ -8,6 +8,7 @@ public class Canon : MonoBehaviour
     [SerializeField] Transform pipe;
     [SerializeField] AudioClip bombFireSFX;
     [SerializeField] AudioClip superBombFireSFX;
+    [SerializeField] AudioClip rechargeSFX;
 
     Animator anim;
 
@@ -29,5 +30,6 @@ public class Canon : MonoBehaviour
     void HandleBombRecharge()
     {
         Instantiate(rechargeVFX, bombOrigin.position, bombOrigin.rotation);
+        AudioManager.Instance.Play(rechargeSFX);
     }
 }
