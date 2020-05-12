@@ -9,6 +9,7 @@ enum Position
 }
 
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Reloadable))]
 public class Car : MonoBehaviour
 {
     [SerializeField] float swipeSpeed = 0.2f;
@@ -24,6 +25,7 @@ public class Car : MonoBehaviour
     Animator anim;
     Coroutine moveCoroutine;
     Rigidbody rb;
+    Reloadable reloadable;
 
     void Start()
     {
@@ -31,10 +33,12 @@ public class Car : MonoBehaviour
         startRotation = transform.rotation;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        reloadable = GetComponent<Reloadable>();
         GameManager.Instance.OnGameStart.AddListener(HandleGameStart);
         GameManager.Instance.OnGameOver.AddListener(HandleGameOver);
         GameManager.Instance.OnGameRestart.AddListener(HandleGameRestart);
         SecondChanceManager.Instance.OnTrigger.AddListener(HandleSecondChance);
+        reloadable.OnReload.AddListener(HandleReload);
     }
 
     public void Move(Vector3 direction)
@@ -100,6 +104,8 @@ public class Car : MonoBehaviour
     void HandleGameOver()
     {
         anim.SetTrigger("Crash");
+        StopCoroutine(moveCoroutine);
+        position = Position.Center;
     }
 
     void HandleGameRestart()
@@ -112,5 +118,10 @@ public class Car : MonoBehaviour
     {
         position = Position.Center;
         anim.SetTrigger("Move");
+    }
+
+    void HandleReload()
+    {
+        position = Position.Center;
     }
 }
