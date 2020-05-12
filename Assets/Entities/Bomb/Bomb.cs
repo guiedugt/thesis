@@ -9,6 +9,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float scorePerBrick = 0.2f;
     [SerializeField] [Range(-10f, 10f)] float gravityRatio = 0.5f;
     [SerializeField] ParticleSystem explosionVFX;
+    [SerializeField] AudioClip explosionSFX;
 
     new Collider collider;
     new Rigidbody rigidbody;
@@ -58,6 +59,7 @@ public class Bomb : MonoBehaviour
             explosionVFXInstance.gameObject.transform.LookAt(GameManager.camera.transform);
         }
 
+        AudioManager.Instance.Play(explosionSFX);
         Destroy(gameObject);
     }
 }

@@ -21,7 +21,7 @@ public class InputManager : Singleton<InputManager>
 
     float timeSinceLastBombThrow = 0f;
     bool canThrowBomb = true;
-    bool isSuperBombActive = false;
+    public bool isSuperBombActive = false;
     Vector2 fingerDownPosition;
     Vector2 fingerUpPosition;
     Vector2 swipeDirection;

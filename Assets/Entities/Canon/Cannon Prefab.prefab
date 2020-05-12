@@ -335,3 +335,5 @@ MonoBehaviour:
     type: 3}
   bombOrigin: {fileID: 2535899088760844841}
   pipe: {fileID: 6838797559240540235}
+  bombFireSFX: {fileID: 8300000, guid: 8d064dc3b5f5c4e568c0cd66a014ed6a, type: 3}
+  superBombFireSFX: {fileID: 8300000, guid: 07085c132ba824c17b399d63e886917c, type: 3}

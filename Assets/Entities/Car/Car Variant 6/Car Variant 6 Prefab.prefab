@@ -130,6 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swipeSpeed: 0.2
   swipeDisplacement: 2.1
+  CollisionUpForce: 200
+  CollisionTorqueForce: 300
+  crashSFX: {fileID: 8300000, guid: 33d4a90cf072b4c13a08f5be694b64bd, type: 3}
 --- !u!114 &2970265854692611370
 MonoBehaviour:
   m_ObjectHideFlags: 0

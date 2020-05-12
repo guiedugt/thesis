@@ -6,6 +6,8 @@ public class Canon : MonoBehaviour
     [SerializeField] ParticleSystem rechargeVFX;
     [SerializeField] Transform bombOrigin;
     [SerializeField] Transform pipe;
+    [SerializeField] AudioClip bombFireSFX;
+    [SerializeField] AudioClip superBombFireSFX;
 
     Animator anim;
 
@@ -20,6 +22,8 @@ public class Canon : MonoBehaviour
     {
         pipe.LookAt(tapPosition);
         anim.SetTrigger("Shoot");
+        AudioClip sfx = InputManager.Instance.isSuperBombActive ? superBombFireSFX : bombFireSFX;
+        AudioManager.Instance.Play(sfx);
     }
 
     void HandleBombRecharge()
