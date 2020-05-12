@@ -2,11 +2,11 @@
 
 public class AudioManager : Singleton<AudioManager>
 {
-    MainCamera mainCamera;
+    Camera mainCamera;
 
     void Start()
     {
-        mainCamera = FindObjectOfType<MainCamera>();
+        mainCamera = Camera.main;
     }
 
     public void Play(AudioClip clip)

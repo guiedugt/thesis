@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6684572974192094632}
   - component: {fileID: 6684572974192094639}
   - component: {fileID: 6684572974192094636}
+  - component: {fileID: 7317490538542546223}
   - component: {fileID: 8006091831759675984}
   m_Layer: 5
   m_Name: Second Chance Ad Button
@@ -39,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05963637, y: 0.13469835}
   m_AnchorMax: {x: 0.9376364, y: 0.42569837}
-  m_AnchoredPosition: {x: -0.0025787354, y: -0.07249451}
+  m_AnchoredPosition: {x: -0.0025634766, y: -0.072509766}
   m_SizeDelta: {x: 0, y: 0.14497}
   m_Pivot: {x: 0.5, y: 0.49999988}
 --- !u!222 &6684572974192094634
@@ -162,6 +163,19 @@ MonoBehaviour:
   calculateColorInStartScreen: 0
   calculateColorInGameScreen: 0
   calculateColorInEndScreen: 1
+--- !u!114 &7317490538542546223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684572974192094627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f6423a1e3c1045a785cfe36698a5991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feedbackSFX: {fileID: 8300000, guid: bf06a0e703b6a4ab3b4be1dde1ee26e0, type: 3}
 --- !u!114 &8006091831759675984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alert: {fileID: 0}
+  secondChanceModal: {fileID: 0}
   secondChanceTimeBar: {fileID: 0}
 --- !u!1 &6684572974812732933
 GameObject:
@@ -267,7 +282,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 25.2
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
