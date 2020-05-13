@@ -20,7 +20,7 @@ public class SecondChanceAdButton : MonoBehaviour
     void HandleClick()
     {
         secondChanceTimeBar.Pause();
-        AdManager.Instance.PlayRewardedVideoAd(AdCallback);
+        AdManager.Instance.PlayRewardedVideoAd(AdCallback, AdManager.AdType.SecondChance);
     }
 
     void AdCallback(ShowResult result)

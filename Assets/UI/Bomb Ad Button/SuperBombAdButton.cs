@@ -23,7 +23,7 @@ public class SuperBombAdButton : MonoBehaviour
 
     void HandleClick()
     {
-        AdManager.Instance.PlayRewardedVideoAd(AdCallback);
+        AdManager.Instance.PlayRewardedVideoAd(AdCallback, AdManager.AdType.SuperBomb);
     }
 
     void AdCallback(ShowResult result)

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Analytics;
 
 [RequireComponent(typeof(UIFade))]
 public class SecondChanceModal : TimeBar
@@ -23,6 +25,10 @@ public class SecondChanceModal : TimeBar
         else
         {
             secondChanceTimeBar.Tick(HandleTimeUp);
+            AnalyticsEvent.AdOffer(true, null, AdManager.Instance.rewardedVideoAd, new Dictionary<string, object>
+            {
+                { "ad_type", "second_chance" }
+            });
         }
     }
 

@@ -1,5 +1,7 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
  
 public class CarPurchaseButton : MonoBehaviour
 {
@@ -51,6 +53,11 @@ public class CarPurchaseButton : MonoBehaviour
         carSelectorButtonSwitch.Switch(true);
         purchaseAlertInstance.SetActive(false);
         AudioManager.Instance.Play(purchaseSFX);
+        AnalyticsEvent.Custom("car_purchased", new Dictionary<string, object>
+        {
+            { "car_id", carSelector.selectedCar.id },
+            { "car_cost", carSelector.selectedCar.cost }
+        });
     }
     
     void HandlePurchaseCancel()

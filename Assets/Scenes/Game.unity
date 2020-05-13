@@ -377,6 +377,102 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbackSFX: {fileID: 8300000, guid: bf06a0e703b6a4ab3b4be1dde1ee26e0, type: 3}
+--- !u!114 &56111786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56111784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 1
+    m_LifecycleEvent: 0
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 5
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: AdStart
+    m_Parameters:
+      m_Parameters:
+      - m_RequirementType: 1
+        m_GroupID: 
+        m_Tooltip: Set to true if a reward is offered for this ad.
+        m_Name: rewarded
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 1
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 1
+          m_ValueType: System.Boolean
+          m_Value: True
+          m_Target:
+            m_Target: {fileID: 0}
+            m_Path: 
+            m_ValidTypeNames:
+            - System.Boolean
+            m_Type: System.Boolean
+            m_EnumType: 
+      - m_RequirementType: 2
+        m_GroupID: 
+        m_Tooltip: The ad or mediation network provider.
+        m_Name: network
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 1
+          m_EnumType: UnityEngine.Analytics.AdvertisingNetwork
+          m_EnumTypeIsCustomizable: 1
+          m_CanDisable: 1
+          m_PropertyType: 0
+          m_ValueType: enum
+          m_Value: 
+          m_Target:
+            m_Target: {fileID: 0}
+            m_Path: 
+            m_ValidTypeNames:
+            - enum
+            m_Type: enum
+            m_EnumType: UnityEngine.Analytics.AdvertisingNetwork
+      - m_RequirementType: 2
+        m_GroupID: 
+        m_Tooltip: An ad placement or configuration ID.
+        m_Name: placement_id
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 1
+          m_EnumType: UnityEngine.Analytics.AdvertisingNetwork
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 1
+          m_PropertyType: 1
+          m_ValueType: System.String
+          m_Value: 
+          m_Target:
+            m_Target: {fileID: 0}
+            m_Path: 
+            m_ValidTypeNames:
+            - System.String
+            m_Type: System.String
+            m_EnumType: UnityEngine.Analytics.AdvertisingNetwork
+    m_Name: ad_start
 --- !u!95 &56111793
 Animator:
   serializedVersion: 3
@@ -2547,9 +2643,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1790562090}
-  - {fileID: 1025661530}
   - {fileID: 1183845501}
+  - {fileID: 1025661530}
+  - {fileID: 1790562090}
   m_Father: {fileID: 756526075}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4084,6 +4180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTargetPlayStore: 1
   isTestAd: 1
+  interstitialAd: video
+  rewardedVideoAd: rewardedVideo
 --- !u!1 &1107400306
 GameObject:
   m_ObjectHideFlags: 0
@@ -6053,6 +6151,7 @@ GameObject:
   - component: {fileID: 1790562092}
   - component: {fileID: 1790562091}
   - component: {fileID: 1790562094}
+  - component: {fileID: 1790562095}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -6073,7 +6172,7 @@ RectTransform:
   m_Children:
   - {fileID: 249501696}
   m_Father: {fileID: 790343233}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05963637, y: 0.022614304}
   m_AnchorMax: {x: 0.9376364, y: 0.10300001}
@@ -6183,6 +6282,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbackSFX: {fileID: 8300000, guid: bf06a0e703b6a4ab3b4be1dde1ee26e0, type: 3}
+--- !u!114 &1790562095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790562089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 0
+    m_LifecycleEvent: 0
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 5
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: CustomEvent
+    m_Parameters:
+      m_Parameters: []
+    m_Name: 
 --- !u!1 &1805595472
 GameObject:
   m_ObjectHideFlags: 0
@@ -8009,7 +8138,7 @@ PrefabInstance:
     - target: {fileID: 1216055306209592893, guid: 3b1aeacd3980e4d6cbcd9965a87605a6,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1216055306209592893, guid: 3b1aeacd3980e4d6cbcd9965a87605a6,
         type: 3}

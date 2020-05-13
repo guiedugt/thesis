@@ -104,7 +104,7 @@ public class Car : MonoBehaviour
     void HandleGameOver()
     {
         anim.SetTrigger("Crash");
-        StopCoroutine(moveCoroutine);
+        if (moveCoroutine != null) StopCoroutine(moveCoroutine);
         position = Position.Center;
     }
 

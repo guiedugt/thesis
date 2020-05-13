@@ -18,4 +18,14 @@ public class SceneManager : Singleton<SceneManager>
     {
         UnitySceneManager.LoadScene("Garage");
     }
+
+    public bool IsGameScene()
+    {
+        return UnitySceneManager.GetActiveScene().name == "Game";
+    }
+
+    public bool IsGarageScene()
+    {
+        return UnitySceneManager.GetActiveScene().name == "Garage";
+    }
 }
