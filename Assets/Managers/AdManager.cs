@@ -82,5 +82,8 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
         AdManager.callback(result);
     }
 
-    public void OnUnityAdsDidError(string message) { }
+    public void OnUnityAdsDidError(string message)
+    {
+        AudioListener.pause = previousAudioListenerPauseState;
+    }
 }
