@@ -2001,7 +2001,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.157, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.5269928, y: 0}
+  m_AnchoredPosition: {x: 0.52697754, y: 0}
   m_SizeDelta: {x: -0.5270004, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &595737581
@@ -8838,7 +8838,7 @@ PrefabInstance:
     - target: {fileID: 5420592185935462806, guid: a97986d0f956b461b92b1ffbfa900497,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.20498657
+      value: 0.20495605
       objectReference: {fileID: 0}
     - target: {fileID: 5420592185935462806, guid: a97986d0f956b461b92b1ffbfa900497,
         type: 3}
@@ -9157,7 +9157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371822964, guid: 12a493341f74d40ce8f47bf115530284, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7.699997
+      value: 7.700012
       objectReference: {fileID: 0}
     - target: {fileID: 371822964, guid: 12a493341f74d40ce8f47bf115530284, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9476,6 +9476,7 @@ MonoBehaviour:
   duration: 3
   secondChanceTimeBar: {fileID: 1017415510}
   summaryFade: {fileID: 445793648}
+  scorePanel: {fileID: 1341703856}
 --- !u!222 &8150687854066723052
 CanvasRenderer:
   m_ObjectHideFlags: 0

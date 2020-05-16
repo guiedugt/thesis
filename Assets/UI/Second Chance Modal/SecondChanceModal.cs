@@ -7,6 +7,7 @@ public class SecondChanceModal : TimeBar
 {
     [SerializeField] TimeBar secondChanceTimeBar;
     [SerializeField] UIFade summaryFade;
+    [SerializeField] ScorePanel scorePanel;
 
     UIFade fade;
 
@@ -21,6 +22,7 @@ public class SecondChanceModal : TimeBar
         if (SecondChanceManager.isSecondChance)
         {
             ScoreManager.Instance.AddGameScoreToTotalScore();
+            scorePanel.CalculateScore();
             summaryFade.Show();
         }
         else
@@ -38,6 +40,7 @@ public class SecondChanceModal : TimeBar
         secondChanceTimeBar.Stop();
         fade.Hide();
         ScoreManager.Instance.AddGameScoreToTotalScore();
+        scorePanel.CalculateScore();
         summaryFade.Show();
     }
 

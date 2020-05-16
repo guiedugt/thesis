@@ -52,6 +52,7 @@ public class CarPurchaseButton : MonoBehaviour
         totalCoins.UpdateAmount();
         carSelectorButtonSwitch.Switch(true);
         purchaseAlertInstance.SetActive(false);
+        PlayerPrefsManager.SetTotalScore(totalScore - carSelector.selectedCar.cost);
         AudioManager.Instance.Play(purchaseSFX);
         AnalyticsEvent.Custom("car_purchased", new Dictionary<string, object>
         {

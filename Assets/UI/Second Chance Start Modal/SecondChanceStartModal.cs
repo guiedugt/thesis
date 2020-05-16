@@ -10,6 +10,7 @@ public class SecondChanceStartModal : MonoBehaviour
 
     UIFade fade;
     WaitForSecondsRealtime wait = new WaitForSecondsRealtime(1f);
+    bool alreadyShowedAlert = false;
 
     void Start()
     {
@@ -19,7 +20,8 @@ public class SecondChanceStartModal : MonoBehaviour
 
     void HandleSecondChance()
     {
-        StartCoroutine(CounterCoroutine());
+        if (!alreadyShowedAlert) StartCoroutine(CounterCoroutine());
+        alreadyShowedAlert = true;
     }
 
     IEnumerator CounterCoroutine()
