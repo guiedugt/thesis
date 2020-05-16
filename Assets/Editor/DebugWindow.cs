@@ -17,6 +17,7 @@ public class DebugWindow : EditorWindow
         if (GUILayout.Button("Unlock All Cars")) ChangeAllCarsLockedState(isUnlocked: true);
         if (GUILayout.Button("Lock All Cars")) ChangeAllCarsLockedState(isUnlocked: false);
         if (GUILayout.Button("(Un)FreezeTime")) UnFreezeTime();
+        if (GUILayout.Button("Spawn Coins")) SpawnCoins(5);
     }
 
     void ClearPlayerPrefs()
@@ -43,5 +44,10 @@ public class DebugWindow : EditorWindow
     {
         if (Time.timeScale <= Mathf.Epsilon) Time.timeScale = 1f;
         else Time.timeScale = 0f;
+    }
+
+    void SpawnCoins(int amount)
+    {
+        FindObjectOfType<CoinSpawner>().SpawnCoins(amount);
     }
 }

@@ -20,6 +20,7 @@ public class SecondChanceModal : TimeBar
     {
         if (SecondChanceManager.isSecondChance)
         {
+            ScoreManager.Instance.AddGameScoreToTotalScore();
             summaryFade.Show();
         }
         else
@@ -36,6 +37,7 @@ public class SecondChanceModal : TimeBar
     {
         secondChanceTimeBar.Stop();
         fade.Hide();
+        ScoreManager.Instance.AddGameScoreToTotalScore();
         summaryFade.Show();
     }
 

@@ -66,6 +66,11 @@ public class ScoreManager : Singleton<ScoreManager>
     InitializeScoreByType();
   }
 
+  public void AddGameScoreToTotalScore()
+  {
+    PlayerPrefsManager.SetTotalScore(TotalScore + Score);
+  }
+
   public void AddToTotalScore()
   {
     PlayerPrefsManager.AddToTotalScore(Score);
