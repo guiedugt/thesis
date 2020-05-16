@@ -44,14 +44,13 @@ public class AdManager : Singleton<AdManager>, IUnityAdsListener
         AdManager.callback = callback;
         AdManager.currentAdType = adType;
         Advertisement.Show(rewardedVideoAd);
-
+        previousAudioListenerPauseState = AudioListener.pause;
     }
 
     public void OnUnityAdsReady(string placementId) { }
 
     public void OnUnityAdsDidStart(string placementId)
     {
-        previousAudioListenerPauseState = AudioListener.pause;
         AudioListener.pause = true;
         AnalyticsEvent.AdStart(true, null, rewardedVideoAd, new Dictionary<string, object>
         {
