@@ -30,7 +30,7 @@ public class PlayerPrefsManager : MonoBehaviour
 
     public static int GetSelectedCarId()
     {
-        int val = PlayerPrefs.GetInt("SelectedCarId");
+        int val = PlayerPrefs.GetInt("SelectedCarId", 1);
         if (val == 0) return 1;
         return val;
     }

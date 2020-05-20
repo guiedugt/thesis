@@ -14,5 +14,7 @@ public struct SelectableCar
 [CreateAssetMenu(fileName = "Selectable Cars", menuName = "SelectableCarsData", order = 1)]
 public class SelectableCarsData : ScriptableObject
 {
+    #if UNITY_EDITOR
     public SelectableCar[] data;
+    #endif
 }

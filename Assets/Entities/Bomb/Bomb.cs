@@ -11,18 +11,18 @@ public class Bomb : MonoBehaviour
     [SerializeField] ParticleSystem explosionVFX;
     [SerializeField] AudioClip explosionSFX;
 
-    new Collider collider;
-    new Rigidbody rigidbody;
+    Collider col;
+    Rigidbody rb;
 
     void Start()
     {
-        collider = GetComponent<Collider>();
-        rigidbody = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
-        rigidbody.AddForce(Physics.gravity * rigidbody.mass * gravityRatio);
+        rb.AddForce(Physics.gravity * rb.mass * gravityRatio);
     }
 
     void OnDrawGizmosSelected()
@@ -56,7 +56,7 @@ public class Bomb : MonoBehaviour
         if (explosionVFX)
         {
             ParticleSystem explosionVFXInstance = Instantiate(explosionVFX, transform.position, Quaternion.identity, MemoryManager.Instance.transform);
-            explosionVFXInstance.gameObject.transform.LookAt(GameManager.camera.transform);
+            explosionVFXInstance.gameObject.transform.LookAt(GameManager.mainCamera.transform);
         }
 
         AudioManager.Instance.Play(explosionSFX);

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static new MainCamera camera;
+    public static MainCamera mainCamera;
     public static Car car;
     public static bool isGameRunning = false;
     public static bool isGameOver = false;
-    public UnityEvent OnGameStart;
-    public UnityEvent OnGameOver;
-    public UnityEvent OnGameRestart;
+    public UnityEvent OnGameStart = new UnityEvent();
+    public UnityEvent OnGameOver = new UnityEvent();
+    public UnityEvent OnGameRestart = new UnityEvent();
 
     static float timeSinceSessionStart = 0f;
     float timeSinceGameStart = 0f;
@@ -19,7 +19,7 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        camera = FindObjectOfType<MainCamera>();
+        mainCamera = FindObjectOfType<MainCamera>();
         car = FindObjectOfType<Car>();
     }
 
@@ -58,7 +58,7 @@ public class GameManager : Singleton<GameManager>
         isGameOver = true;
         car.enabled = false;
 
-        camera.Shake();
+        mainCamera.Shake();
         AnalyticsEvent.GameOver("game_over", new Dictionary<string, object>
         {
             { "game_duration_in_seconds", timeSinceGameStart },

@@ -25,12 +25,12 @@ public class InputManager : Singleton<InputManager>
     Vector2 fingerDownPosition;
     Vector2 fingerUpPosition;
     Vector2 swipeDirection;
-    new MainCamera camera;
+    MainCamera mainCamera;
     Car car;
 
     void Start()
     {
-        camera = GameManager.camera;
+        mainCamera = GameManager.mainCamera;
         car = GameManager.car;
         bombOrigin = GameObject.FindGameObjectWithTag("Bomb Origin").transform;
     }
@@ -58,7 +58,7 @@ public class InputManager : Singleton<InputManager>
         bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, Input.mousePosition);
         if (!canThrowBomb || !isInsideBounds) return;
 
-        Vector3 tapPosition = camera.GetTapWorldPoint();
+        Vector3 tapPosition = mainCamera.GetTapWorldPoint();
 
         GameObject bomb = Instantiate(isSuperBombActive ? superBombPrefab : bombPrefab, bombOrigin.position, Quaternion.identity, MemoryManager.Instance.transform);
         Rigidbody bombRigidbody = bomb.GetComponent<Rigidbody>();
