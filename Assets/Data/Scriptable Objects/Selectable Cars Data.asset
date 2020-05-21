@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Selectable Cars
-  m_EditorClassIdentifier: Assembly-CSharp::SelectableCarsData
+  m_Script: {fileID: 11500000, guid: 20c271d8eb8994344ba5d2a607f1d56b, type: 3}
+  m_Name: Selectable Cars Data
+  m_EditorClassIdentifier: 
   data:
   - id: 1
     prefab: {fileID: 3085601315643778323, guid: 35332471825c541b6a596e95fc83d740,
@@ -32,7 +32,7 @@ MonoBehaviour:
       type: 3}
     showcasePrefab: {fileID: 3085601315643778323, guid: 4bebf4f8757734eba872cc7d5d314dff,
       type: 3}
-    cost: 1000
+    cost: 750
     isUnlocked: 0
   - id: 4
     prefab: {fileID: 3085601315643778323, guid: 608829be3a6ef4c5dacc56e069221b09,
@@ -46,12 +46,12 @@ MonoBehaviour:
       type: 3}
     showcasePrefab: {fileID: 3085601315643778323, guid: 597f446bfc5624c60a8fcd2c8d6bcfa5,
       type: 3}
-    cost: 2000
+    cost: 1750
     isUnlocked: 0
   - id: 6
     prefab: {fileID: 3085601315643778323, guid: 2121b8dd5ae6d4c78a24a489a8abfdef,
       type: 3}
     showcasePrefab: {fileID: 3085601315643778323, guid: 930d892e004724f85a9eb70dea55a21e,
       type: 3}
-    cost: 3000
+    cost: 2000
     isUnlocked: 0

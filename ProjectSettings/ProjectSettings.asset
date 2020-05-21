@@ -120,7 +120,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.3
+  bundleVersion: 0.4
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -165,7 +165,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier: {}
   buildNumber: {}
-  AndroidBundleVersionCode: 3
+  AndroidBundleVersionCode: 4
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -280,48 +280,6 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Icons:
     - m_Textures:
-      - {fileID: 2800000, guid: 0c484ef6483ab4c25b96f461d171d755, type: 3}
-      - {fileID: 2800000, guid: 9001aa3f894ff4301add25b3a0df5718, type: 3}
-      m_Width: 432
-      m_Height: 432
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 0d53d62f9571a4c7d8421fad5b27ed51, type: 3}
-      - {fileID: 2800000, guid: b2f68bfe008914581b926eb4fa82fc76, type: 3}
-      m_Width: 324
-      m_Height: 324
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 05608c48924f943839cd7610c78edd02, type: 3}
-      - {fileID: 2800000, guid: 35cc4662893464f4b9f29edeedad3689, type: 3}
-      m_Width: 216
-      m_Height: 216
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: d3ae94fb6858c46efa6bf06449c0aa99, type: 3}
-      - {fileID: 2800000, guid: 3fec185380d644ba4a88999d16dd44f7, type: 3}
-      m_Width: 162
-      m_Height: 162
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: c60f334872a7b4bcb98713685d8dd83a, type: 3}
-      - {fileID: 2800000, guid: 9913f342a2a1648a1b36e082bb6de165, type: 3}
-      m_Width: 108
-      m_Height: 108
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: b37a28ef5b05d42288fa5e71b27b1bbf, type: 3}
-      - {fileID: 2800000, guid: 4d83ffa0295284f2b94134858fee41ae, type: 3}
-      m_Width: 81
-      m_Height: 81
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
       - {fileID: 2800000, guid: 73557c34125304d63935ae0bc3ccb125, type: 3}
       m_Width: 192
       m_Height: 192
@@ -392,6 +350,48 @@ PlayerSettings:
       m_Width: 36
       m_Height: 36
       m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0c484ef6483ab4c25b96f461d171d755, type: 3}
+      - {fileID: 2800000, guid: 9001aa3f894ff4301add25b3a0df5718, type: 3}
+      m_Width: 432
+      m_Height: 432
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0d53d62f9571a4c7d8421fad5b27ed51, type: 3}
+      - {fileID: 2800000, guid: b2f68bfe008914581b926eb4fa82fc76, type: 3}
+      m_Width: 324
+      m_Height: 324
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 05608c48924f943839cd7610c78edd02, type: 3}
+      - {fileID: 2800000, guid: 35cc4662893464f4b9f29edeedad3689, type: 3}
+      m_Width: 216
+      m_Height: 216
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: d3ae94fb6858c46efa6bf06449c0aa99, type: 3}
+      - {fileID: 2800000, guid: 3fec185380d644ba4a88999d16dd44f7, type: 3}
+      m_Width: 162
+      m_Height: 162
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: c60f334872a7b4bcb98713685d8dd83a, type: 3}
+      - {fileID: 2800000, guid: 9913f342a2a1648a1b36e082bb6de165, type: 3}
+      m_Width: 108
+      m_Height: 108
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: b37a28ef5b05d42288fa5e71b27b1bbf, type: 3}
+      - {fileID: 2800000, guid: 4d83ffa0295284f2b94134858fee41ae, type: 3}
+      m_Width: 81
+      m_Height: 81
+      m_Kind: 2
       m_SubKind: 
   m_BuildTargetBatching:
   - m_BuildTarget: Standalone
@@ -680,14 +680,15 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
+    Standalone: 1
   il2cppCompilerConfiguration:
-    Android: 0
+    Android: 1
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   allowUnsafeCode: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
-  gcIncremental: 1
+  gcIncremental: 0
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
     Android: 3
