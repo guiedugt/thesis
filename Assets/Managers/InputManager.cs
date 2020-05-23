@@ -4,6 +4,9 @@ using UnityEngine.Events;
 
 public class InputManager : Singleton<InputManager>
 {
+    [Header("Tap")]
+    [SerializeField] float tapDistanceTolerance = 50f;
+
     [Header("Bomb")]
     [SerializeField] GameObject bombPrefab;
     [SerializeField] float throwPower = 7f;
@@ -21,9 +24,10 @@ public class InputManager : Singleton<InputManager>
 
     float timeSinceLastBombThrow = 0f;
     bool canThrowBomb = true;
+    bool isSwiping = false;
     public bool isSuperBombActive = false;
     Vector2 fingerDownPosition;
-    Vector2 fingerUpPosition;
+    Vector2 fingerUpPorision;
     Vector2 swipeDirection;
     MainCamera mainCamera;
     Car car;
@@ -38,6 +42,7 @@ public class InputManager : Singleton<InputManager>
     void Update()
     {
         HandleTouch();
+        HandleKeyboard();
         HandleBombDelay();
         HandleBombThrow();
     }
@@ -53,7 +58,11 @@ public class InputManager : Singleton<InputManager>
 
     void HandleBombThrow()
     {
-        if (!GameManager.isGameRunning || GameManager.isGameOver || !Input.GetMouseButtonDown(0)) { return; }
+        if (!GameManager.isGameRunning || GameManager.isGameOver || Input.touches.Length <= 0) return;
+
+        Touch touch = Input.GetTouch(0);
+        bool isTap = touch.phase == TouchPhase.Ended && Vector2.Distance(fingerDownPosition, fingerUpPorision) <= tapDistanceTolerance;
+        if (!isTap) return;
 
         bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, Input.mousePosition);
         if (!canThrowBomb || !isInsideBounds) return;
@@ -74,26 +83,32 @@ public class InputManager : Singleton<InputManager>
         OnBombThrow.Invoke(tapPosition);
     }
 
+    void HandleKeyboard()
+    {
+        if (!GameManager.isGameRunning) return;
+ 
+        if (Input.GetKeyDown(KeyCode.A)) car.Move(Vector3.left);
+        if (Input.GetKeyDown(KeyCode.D)) car.Move(Vector3.right);
+    }
+
     void HandleTouch()
     {
-        if (!GameManager.isGameRunning) { return; }
- 
-        if (Input.GetKeyDown(KeyCode.A)) { car.Move(Vector3.left); }
-        if (Input.GetKeyDown(KeyCode.D)) { car.Move(Vector3.right); }
-
-        if (Input.touches.Length <= 0) { return; }
+        if (!GameManager.isGameRunning || Input.touches.Length <= 0) return;
 
         Touch touch = Input.GetTouch(0);
-        if (touch.phase == TouchPhase.Began)
-        {
-            fingerDownPosition = new Vector2(touch.position.x, touch.position.y);
+        if (touch.phase == TouchPhase.Began) fingerDownPosition = touch.position;
+        if (touch.phase == TouchPhase.Ended) {
+            isSwiping = false;
+            fingerUpPorision = touch.position;
         }
 
-        if (touch.phase == TouchPhase.Ended)
+        if (touch.phase == TouchPhase.Moved)
         {
-            fingerUpPosition = new Vector2(touch.position.x, touch.position.y);
-            swipeDirection = (fingerUpPosition - fingerDownPosition).normalized;
+            bool isUnderTapTolerance = Vector2.Distance(fingerDownPosition, touch.position) <= tapDistanceTolerance;
+            if (isSwiping || isUnderTapTolerance) return;
 
+            isSwiping = true;
+            swipeDirection = (touch.position - fingerDownPosition).normalized;
             bool swipedSideways = Mathf.Abs(swipeDirection.y) < 0.5f && swipeDirection.x != 0;
             if (!swipedSideways) return;
 

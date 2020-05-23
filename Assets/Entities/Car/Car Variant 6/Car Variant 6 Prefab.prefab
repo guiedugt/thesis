@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2782ff5f9caf0944b7c2735e8133e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swipeSpeed: 0.2
+  swipeSpeed: 0.1
   swipeDisplacement: 2.1
   CollisionUpForce: 200
   CollisionTorqueForce: 300

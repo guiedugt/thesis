@@ -12,8 +12,8 @@ enum Position
 [RequireComponent(typeof(Reloadable))]
 public class Car : MonoBehaviour
 {
-    [SerializeField] float swipeSpeed = 0.2f;
-    [SerializeField] float swipeDisplacement = 3f;
+    [SerializeField] float swipeSpeed = 0.1f;
+    [SerializeField] float swipeDisplacement = 2.1f;
     [SerializeField] float CollisionUpForce = 200f;
     [SerializeField] float CollisionTorqueForce = 300f;
     [SerializeField] AudioClip crashSFX;
