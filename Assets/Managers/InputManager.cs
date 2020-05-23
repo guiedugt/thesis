@@ -19,7 +19,7 @@ public class InputManager : Singleton<InputManager>
 
     [Header("Super Bomb")]
     [SerializeField] GameObject superBombPrefab;
-    public float superBombDuration = 10f;
+    public float superBombDuration = 15f;
     [HideInInspector] public float superBombRemainingTime = 10f;
 
     float timeSinceLastBombThrow = 0f;
