@@ -76,6 +76,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 888373591369773055, guid: ef015ea2bd6640242bbf49d6b7cd1148,
     type: 3}
+  advancedObstaclePrefabs:
+  - {fileID: 888373591369773055, guid: 75fd8593c87df49e899767c2bc9c588a, type: 3}
+  - {fileID: 888373591369773055, guid: 23f82be520a56423dbb2ec68c2179a8d, type: 3}
+  - {fileID: 888373591369773055, guid: fcbd99c53c2304d2abdd9e6f055671f8, type: 3}
+  - {fileID: 888373591369773055, guid: 9bafabfdfc389417e8aab4adc90f8d2a, type: 3}
+  - {fileID: 888373591369773055, guid: 4daad399b50624ba2a060abfb86c2f55, type: 3}
+  - {fileID: 888373591369773055, guid: f069fb89287684de8ae02c2b62d1abca, type: 3}
   defaultObstaclesLocations:
   - {fileID: 1491496999}
-  - {fileID: 0}

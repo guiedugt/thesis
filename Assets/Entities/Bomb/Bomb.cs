@@ -41,6 +41,7 @@ public class Bomb : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, bricksLayerMask);
         foreach (Collider collider in colliders)
         {
+            if (collider.CompareTag("Gold") && !InputManager.Instance.isSuperBombActive) continue;
             Rigidbody rigidbody = collider.gameObject.GetComponent<Rigidbody>();
 
             collider.isTrigger = true;
