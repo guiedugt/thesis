@@ -13,7 +13,7 @@ public class InputManager : Singleton<InputManager>
     [SerializeField] RectTransform bombThrowTouchArea;
     public Transform bombOrigin;
     public float bombDelay = 1f;
-    public class BombThrowEvent : UnityEvent<Vector3> {}
+    public class BombThrowEvent : UnityEvent<Vector3> { }
     public BombThrowEvent OnBombThrow = new BombThrowEvent();
     public UnityEvent OnBombRecharge;
 
@@ -28,8 +28,10 @@ public class InputManager : Singleton<InputManager>
     public bool isSuperBombActive = false;
     Vector2 fingerDownPosition;
     Vector2 fingerUpPorision;
-    Vector2 swipeDirection;
+    Vector2 swipe;
     MainCamera mainCamera;
+    Vector3 carPositionOnFingerDown;
+    Vector3 moveDirection;
     Car car;
 
     void Start()
@@ -50,7 +52,8 @@ public class InputManager : Singleton<InputManager>
     void HandleBombDelay()
     {
         timeSinceLastBombThrow += Time.deltaTime;
-        if (timeSinceLastBombThrow >= bombDelay && !canThrowBomb) {
+        if (timeSinceLastBombThrow >= bombDelay && !canThrowBomb)
+        {
             canThrowBomb = true;
             if (OnBombRecharge != null) OnBombRecharge.Invoke();
         }
@@ -61,7 +64,7 @@ public class InputManager : Singleton<InputManager>
         if (!GameManager.isGameRunning || GameManager.isGameOver || Input.touches.Length <= 0) return;
 
         Touch touch = Input.GetTouch(0);
-        bool isTap = touch.phase == TouchPhase.Ended && Vector2.Distance(fingerDownPosition, fingerUpPorision) <= tapDistanceTolerance;
+        bool isTap = touch.phase == TouchPhase.Ended && swipe.magnitude <= tapDistanceTolerance;
         if (!isTap) return;
 
         bool isInsideBounds = RectTransformUtility.RectangleContainsScreenPoint(bombThrowTouchArea, Input.mousePosition);
@@ -86,7 +89,7 @@ public class InputManager : Singleton<InputManager>
     void HandleKeyboard()
     {
         if (!GameManager.isGameRunning) return;
- 
+
         if (Input.GetKeyDown(KeyCode.A)) car.Move(Vector3.left);
         if (Input.GetKeyDown(KeyCode.D)) car.Move(Vector3.right);
     }
@@ -94,28 +97,48 @@ public class InputManager : Singleton<InputManager>
     void HandleTouch()
     {
         if (!GameManager.isGameRunning || Input.touches.Length <= 0) return;
-
         Touch touch = Input.GetTouch(0);
-        if (touch.phase == TouchPhase.Began) fingerDownPosition = touch.position;
-        if (touch.phase == TouchPhase.Ended) {
+
+        if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Stationary)
+        {
             isSwiping = false;
-            fingerUpPorision = touch.position;
+            moveDirection = Vector3.zero;
+            fingerDownPosition = touch.position;
+            carPositionOnFingerDown = car.transform.position;
         }
+
+        swipe = touch.position - fingerDownPosition;
 
         if (touch.phase == TouchPhase.Moved)
         {
-            bool isUnderTapTolerance = Vector2.Distance(fingerDownPosition, touch.position) <= tapDistanceTolerance;
-            if (isSwiping || isUnderTapTolerance) return;
+            bool isUnderTapTolerance = swipe.magnitude <= tapDistanceTolerance;
+            if (!isUnderTapTolerance) isSwiping = true;
+            if (!isSwiping) return;
 
-            isSwiping = true;
-            swipeDirection = (touch.position - fingerDownPosition).normalized;
-            bool swipedSideways = Mathf.Abs(swipeDirection.y) < 0.5f && swipeDirection.x != 0;
-            if (!swipedSideways) return;
+            float xSwipeDir = swipe.normalized.x;
+            // swiped left
+            if (xSwipeDir <= -0.5f && moveDirection != Vector3.left)
+            {
+                moveDirection = Vector3.left;
+                car.Move(moveDirection);
+                return;
+            }
 
-            bool swipedLeft = swipeDirection.x < 0f;
-            bool swipedRight = swipeDirection.x > 0f;
-            Vector3 positionOffsetDirection = swipedLeft ? Vector3.left : swipedRight ? Vector3.right : Vector3.zero;
-            car.Move(positionOffsetDirection);
+            // moved right
+            if (xSwipeDir >= 0.5f && moveDirection != Vector3.right)
+            {
+                moveDirection = Vector3.right;
+                car.Move(moveDirection);
+                return;
+            }
+
+            // returned to center
+            if (xSwipeDir > -0.5f && xSwipeDir < 0.5f && moveDirection != Vector3.zero)
+            {
+                car.Move(moveDirection * -1);
+                moveDirection = Vector3.zero;
+                return;
+            }
         }
     }
 
@@ -128,7 +151,8 @@ public class InputManager : Singleton<InputManager>
     IEnumerator TickSuperBombCoroutine()
     {
         superBombRemainingTime = superBombDuration;
-        while(superBombRemainingTime >= 0f) {
+        while (superBombRemainingTime >= 0f)
+        {
             superBombRemainingTime -= Time.deltaTime;
             yield return null;
         }
