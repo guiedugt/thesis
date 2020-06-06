@@ -42,7 +42,6 @@ public class ScoreManager : Singleton<ScoreManager>
   public Dictionary<ScoreType, ScoreItem> scoresByType;
   [SerializeField] Slider scoreSlider;
   [SerializeField] float scorePerSecond = 0.75f;
-  [SerializeField] float multiplier = 10f;
 
   float currentLevelMaxScore = 0f;
 
@@ -93,10 +92,11 @@ public class ScoreManager : Singleton<ScoreManager>
     }
   }
 
-  float GetLevelMaxScore(int? level)
+  float GetLevelMaxScore(int? levelArg)
   {
-    if (level <= 0) { return 0; }
-    return GetLevelMaxScore(level - 1) + (level ?? LevelManager.level) * multiplier;
+    int level = levelArg ?? LevelManager.level;
+    if (level <= 0) return 0;
+    return GetLevelMaxScore(level - 1) + GetScoreProgressionCurveY(level);
   }
 
   void InitializeScoreByType()
@@ -106,5 +106,16 @@ public class ScoreManager : Singleton<ScoreManager>
       { ScoreType.Level, new ScoreItem(0, 0f) },
       { ScoreType.Time, new ScoreItem(0, 0f) }
     };
+  }
+
+  // Curve Preview https://www.desmos.com/calculator/kokoyb75ge
+  float GetScoreProgressionCurveY(float x, float min = 10f, float max = 50f, float intensity = 3f, float offset = 100f)
+  {
+    float rangeFactor = max - min;
+    float numerator = rangeFactor * x;
+    float growthFactor = intensity * x / rangeFactor;
+    float denominator = x + Mathf.Pow(rangeFactor + offset, 1 - growthFactor);
+
+    return min + (numerator / denominator);
   }
 }
