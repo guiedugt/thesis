@@ -4991,7 +4991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionForce: 300
-  explosionRadius: 3
+  explosionRadius: 2.5
+  bombVerticalRange: 10
   scorePerBrick: 0.5
   gravityRatio: -0.5
   explosionVFX: {fileID: 198321801994178000, guid: 12e75a2360babc440ae4197d32c892ff,

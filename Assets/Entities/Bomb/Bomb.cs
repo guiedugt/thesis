@@ -5,7 +5,8 @@
 public class Bomb : MonoBehaviour
 {
     [SerializeField] float explosionForce = 2000f;
-    [SerializeField] float explosionRadius = 3f;
+    [SerializeField] float explosionRadius = 2.5f;
+    [SerializeField] float bombVerticalRange = 10f;
     [SerializeField] float scorePerBrick = 0.2f;
     [SerializeField] [Range(-10f, 10f)] float gravityRatio = 0.5f;
     [SerializeField] ParticleSystem explosionVFX;
@@ -41,7 +42,9 @@ public class Bomb : MonoBehaviour
     void Explode()
     {
         int bricksLayerMask = LayerMask.GetMask("Bricks");
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, bricksLayerMask);
+        Vector3 p0 = transform.position + Vector3.up * bombVerticalRange;
+        Vector3 p1 = transform.position + Vector3.down * bombVerticalRange;
+        Collider[] colliders = Physics.OverlapCapsule(p0, p1, explosionRadius, bricksLayerMask);
 
         Obstacle obstacle = colliders.Length > 0 ? colliders[0].GetComponentInParent<Obstacle>() : null;
 
