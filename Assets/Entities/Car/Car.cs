@@ -78,6 +78,10 @@ public class Car : MonoBehaviour
                 swipeSpeed
             );
             transform.rotation = startRotation;
+
+            float scaleOffset = Mathf.Abs(velocity.x / 150f);
+            transform.localScale = new Vector3(1f + scaleOffset, 1f - scaleOffset, 1f + scaleOffset);
+
             yield return null;
         }
 
