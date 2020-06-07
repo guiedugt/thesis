@@ -57,20 +57,20 @@ public class MainCamera : MonoBehaviour
         }
     }
 
-    public void Shake()
+    public void Shake(float? magnitude = null)
     {
-        StartCoroutine(ShakeCoroutine());
+        StartCoroutine(ShakeCoroutine(magnitude ?? shakeMagnitude));
     }
 
-    IEnumerator ShakeCoroutine()
+    IEnumerator ShakeCoroutine(float magnitude)
     {
         Vector3 initPos = transform.position;
         float t = 0f;
 
         while (t < shakeDuration)
         {
-            float x = initPos.x + Random.Range(-1f, 1f) * shakeMagnitude;
-            float y = initPos.y + Random.Range(-1f, 1f) * shakeMagnitude;
+            float x = initPos.x + Random.Range(-magnitude, magnitude);
+            float y = initPos.y + Random.Range(-magnitude, magnitude);
 
             transform.position = new Vector3(x, y, initPos.z);
 

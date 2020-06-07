@@ -10,6 +10,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] [Range(-10f, 10f)] float gravityRatio = 0.5f;
     [SerializeField] ParticleSystem explosionVFX;
     [SerializeField] AudioClip explosionSFX;
+    [SerializeField] float screenShakeMagnitude = 0.1f;
 
     Collider col;
     Rigidbody rb;
@@ -60,6 +61,7 @@ public class Bomb : MonoBehaviour
             explosionVFXInstance.gameObject.transform.LookAt(GameManager.mainCamera.transform);
         }
 
+        GameManager.mainCamera.Shake(screenShakeMagnitude);
         AudioManager.Instance.Play(explosionSFX);
         Destroy(gameObject);
     }

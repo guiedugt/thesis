@@ -4997,3 +4997,4 @@ MonoBehaviour:
   explosionVFX: {fileID: 198321801994178000, guid: 12e75a2360babc440ae4197d32c892ff,
     type: 3}
   explosionSFX: {fileID: 8300000, guid: 84c9245fedf9b4f259bad2ad07f1b024, type: 3}
+  screenShakeMagnitude: 0.05
