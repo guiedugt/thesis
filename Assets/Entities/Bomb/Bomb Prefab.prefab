@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94f01770741054da7680397a3b29ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 1500
+  explosionForce: 300
   explosionRadius: 3
   scorePerBrick: 0.5
   gravityRatio: -0.5

@@ -93,7 +93,7 @@ public class Car : MonoBehaviour
 
     void PlayRandomDriftSound()
     {
-        AudioManager.Instance.Play(driftSFXs[Random.Range(0,driftSFXs.Length)], 0.4f);
+        AudioManager.Instance.Play(driftSFXs[Random.Range(0,driftSFXs.Length)], 0.15f);
     }
 
     void OnCollisionEnter(Collision collision)

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Reloadable))]
 public class Obstacle : MonoBehaviour
@@ -7,6 +8,7 @@ public class Obstacle : MonoBehaviour
     public float zigZagSpeed = 1.5f;
     public float zigZagDistance = 3f;
     [SerializeField] GameObject scatters;
+    [SerializeField] float scattersFadeDelay = 3f;
 
     RaycastHit hit;
     LayerMask ground;
@@ -68,8 +70,28 @@ public class Obstacle : MonoBehaviour
         );
     }
 
-    public void AddToScatters(GameObject scatter)
+    public void AddToScatters(GameObject scatteredBrick)
     {
-        scatter.transform.SetParent(scatters.transform);
+        scatteredBrick.transform.SetParent(scatters.transform);
+        foreach (Transform child in scatteredBrick.transform)
+            StartCoroutine(FadeScatterCoroutine(child.gameObject));
     }
+
+    IEnumerator FadeScatterCoroutine(GameObject scatter)
+    {
+        Material mat = scatter.GetComponent<MeshRenderer>()?.material;
+        if (mat == null) yield break;
+
+        float a = 1f;
+        while (mat.color.a > 0f)
+        {
+            Color color = mat.color;
+            color.a = a;
+            mat.color = color;
+            a -= Time.deltaTime / scattersFadeDelay;
+            yield return null;
+        }
+
+        Destroy(scatter);
+    }   
 }

@@ -42,28 +42,30 @@ public class Bomb : MonoBehaviour
     {
         int bricksLayerMask = LayerMask.GetMask("Bricks");
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, bricksLayerMask);
-        if (colliders.Length <= 0) return;
 
-        Obstacle obstacle = colliders[0].GetComponentInParent<Obstacle>();
-        if (!obstacle) return;
+        Obstacle obstacle = colliders.Length > 0 ? colliders[0].GetComponentInParent<Obstacle>() : null;
 
-        foreach (Collider collider in colliders)
+        if (obstacle != null)
         {
-            bool isGold = collider.CompareTag("Gold");
-            if (isGold && !InputManager.Instance.isSuperBombActive) continue;
+            foreach (Collider collider in colliders)
+            {
+                bool isGold = collider.CompareTag("Gold");
+                if (isGold && !InputManager.Instance.isSuperBombActive) continue;
 
-            GameObject shatteredPrefab = isGold ? shatteredGoldBrickPrefab : shatteredBrickPrefab;
-            GameObject scatter = Instantiate(shatteredPrefab, collider.transform.position, collider.transform.rotation);
-            obstacle.AddToScatters(scatter);
 
-            Destroy(collider.gameObject);
+                GameObject shatteredPrefab = isGold ? shatteredGoldBrickPrefab : shatteredBrickPrefab;
+                GameObject scatteredBrick = Instantiate(shatteredPrefab, collider.transform.position, collider.transform.rotation);
+                obstacle.AddToScatters(scatteredBrick);
 
-            foreach (Rigidbody rb in scatter.GetComponentsInChildren<Rigidbody>())
-                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                Destroy(collider.gameObject);
+
+                foreach (Rigidbody rb in scatteredBrick.GetComponentsInChildren<Rigidbody>())
+                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            }
+
+            ScoreItem scoreItem = new ScoreItem(colliders.Length, scorePerBrick * colliders.Length);
+            ScoreManager.Instance.AddScore(ScoreType.Brick, scoreItem);
         }
-
-        ScoreItem scoreItem = new ScoreItem(colliders.Length, scorePerBrick * colliders.Length);
-        ScoreManager.Instance.AddScore(ScoreType.Brick, scoreItem);
 
         if (explosionVFX)
         {
