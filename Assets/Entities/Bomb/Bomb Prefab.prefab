@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d94f01770741054da7680397a3b29ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionForce: 150
+  explosionForce: 1500
   explosionRadius: 3
   scorePerBrick: 0.5
   gravityRatio: -0.5
@@ -4998,3 +4998,7 @@ MonoBehaviour:
     type: 3}
   explosionSFX: {fileID: 8300000, guid: 84c9245fedf9b4f259bad2ad07f1b024, type: 3}
   screenShakeMagnitude: 0.05
+  shatteredBrickPrefab: {fileID: 2741818127735326246, guid: 394b74010620742d4b093c57de5c5d2c,
+    type: 3}
+  shatteredGoldBrickPrefab: {fileID: 2741818127735326246, guid: 0ca07a89ed74b4769b04f87a5e3b8dc3,
+    type: 3}

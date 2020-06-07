@@ -11,6 +11,8 @@ public class Bomb : MonoBehaviour
     [SerializeField] ParticleSystem explosionVFX;
     [SerializeField] AudioClip explosionSFX;
     [SerializeField] float screenShakeMagnitude = 0.1f;
+    [SerializeField] GameObject shatteredBrickPrefab;
+    [SerializeField] GameObject shatteredGoldBrickPrefab;
 
     Collider col;
     Rigidbody rb;
@@ -40,16 +42,24 @@ public class Bomb : MonoBehaviour
     {
         int bricksLayerMask = LayerMask.GetMask("Bricks");
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius, bricksLayerMask);
+        if (colliders.Length <= 0) return;
+
+        Obstacle obstacle = colliders[0].GetComponentInParent<Obstacle>();
+        if (!obstacle) return;
+
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Gold") && !InputManager.Instance.isSuperBombActive) continue;
-            Rigidbody rigidbody = collider.gameObject.GetComponent<Rigidbody>();
+            bool isGold = collider.CompareTag("Gold");
+            if (isGold && !InputManager.Instance.isSuperBombActive) continue;
 
-            collider.isTrigger = true;
-            collider.gameObject.transform.parent = MemoryManager.Instance.transform;
+            GameObject shatteredPrefab = isGold ? shatteredGoldBrickPrefab : shatteredBrickPrefab;
+            GameObject scatter = Instantiate(shatteredPrefab, collider.transform.position, collider.transform.rotation);
+            obstacle.AddToScatters(scatter);
 
-            rigidbody.isKinematic = false;
-            rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            Destroy(collider.gameObject);
+
+            foreach (Rigidbody rb in scatter.GetComponentsInChildren<Rigidbody>())
+                rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
         }
 
         ScoreItem scoreItem = new ScoreItem(colliders.Length, scorePerBrick * colliders.Length);

@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
     public float speed = 10f;
     public float zigZagSpeed = 1.5f;
     public float zigZagDistance = 3f;
+    [SerializeField] GameObject scatters;
 
     RaycastHit hit;
     LayerMask ground;
@@ -53,10 +54,22 @@ public class Obstacle : MonoBehaviour
     void ZigZag()
     {
         float offset = Mathf.Sin(Mathf.PI * Time.time * zigZagSpeed) * zigZagDistance;
+        Vector3 oldPosition = transform.position;
         transform.position = new Vector3(
             initialPosition.x + offset,
             transform.position.y,
             transform.position.z
         );
+
+        scatters.transform.position = new Vector3(
+            initialPosition.x,
+            transform.position.y,
+            transform.position.z
+        );
+    }
+
+    public void AddToScatters(GameObject scatter)
+    {
+        scatter.transform.SetParent(scatters.transform);
     }
 }

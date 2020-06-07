@@ -4998,3 +4998,7 @@ MonoBehaviour:
     type: 3}
   explosionSFX: {fileID: 8300000, guid: 84c9245fedf9b4f259bad2ad07f1b024, type: 3}
   screenShakeMagnitude: 0.15
+  shatteredBrickPrefab: {fileID: 2741818127735326246, guid: 394b74010620742d4b093c57de5c5d2c,
+    type: 3}
+  shatteredGoldBrickPrefab: {fileID: 2741818127735326246, guid: 0ca07a89ed74b4769b04f87a5e3b8dc3,
+    type: 3}
