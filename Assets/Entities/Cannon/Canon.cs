@@ -25,6 +25,7 @@ public class Canon : MonoBehaviour
         anim.SetTrigger("Shoot");
         AudioClip sfx = InputManager.Instance.isSuperBombActive ? superBombFireSFX : bombFireSFX;
         AudioManager.Instance.Play(sfx);
+        GameManager.mainCamera.Push();
     }
 
     void HandleBombRecharge()

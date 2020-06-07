@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class MainCamera : MonoBehaviour
 {
     [SerializeField] float shakeDuration = 0.5f;
     [SerializeField] float shakeMagnitude = 0.5f;
+    [SerializeField] float pushDuration = 0.5f;
+    [SerializeField] float pushMagnitude = 5f;
     [SerializeField] float tapDistance = 15f;
     [SerializeField] float swipeSpeed = 0.4f;
 
+    new Camera camera;
     Vector3 initialPosition;
     Vector3 previousPosition;
     Quaternion initialRotation;
@@ -17,6 +21,7 @@ public class MainCamera : MonoBehaviour
 
     void Start()
     {
+        camera = GetComponent<Camera>();
         initialPosition = transform.position;
         initialRotation = transform.rotation;
         previousPosition = initialPosition;
@@ -79,5 +84,24 @@ public class MainCamera : MonoBehaviour
         }
 
         transform.position = initPos;
+    }
+
+    public void Push(float? magnitude = null)
+    {
+        StartCoroutine(PushCoroutine(magnitude ?? pushMagnitude));
+    }
+
+    IEnumerator PushCoroutine(float magnitude)
+    {
+        float velocity = 0f;
+        float startingFOV = camera.fieldOfView;
+        camera.fieldOfView += magnitude;
+        while (camera.fieldOfView > startingFOV)
+        {
+            camera.fieldOfView = Mathf.SmoothDamp(camera.fieldOfView, startingFOV, ref velocity, pushDuration);
+            yield return null;
+        }
+
+        camera.fieldOfView = startingFOV;
     }
 }
