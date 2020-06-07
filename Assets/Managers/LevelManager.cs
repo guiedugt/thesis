@@ -16,12 +16,12 @@ public class LevelManager : Singleton<LevelManager>
     public float delay = 3f;
 
     [Header("Obstacle Properties")]
-    public float minSpeed = 5f;
-    public float maxSpeed = 8f;
-    public float minZigZagSpeed = 0f;
-    public float maxZigZagSpeed = 1.5f;
-    public float minZigZagDistance = 0f;
-    public float maxZigZagDistance = 6f;
+    public float minSpeed;
+    public float maxSpeed;
+    public float minZigZagSpeed;
+    public float maxZigZagSpeed;
+    public float minZigZagDistance;
+    public float maxZigZagDistance;
 
 
     void Awake()
@@ -40,15 +40,27 @@ public class LevelManager : Singleton<LevelManager>
 
     void LoadLevel(int nextLevel)
     {
-        float multiplier = (float) nextLevel;
-        this.minSpeed = multiplier / 4 + minSpeed;
-        this.maxSpeed = multiplier / 4 + minSpeed;
-        this.minZigZagSpeed = multiplier / 5;
-        this.maxZigZagSpeed = multiplier / 4;
-        this.minZigZagDistance = multiplier / 6;
-        this.maxZigZagDistance = multiplier / 5;
+        float multiplier = GetDifficultyProgressionCurveY(nextLevel);
+
+        minSpeed = GetDifficultyProgressionCurveY(nextLevel, 10f, 15f);
+        maxSpeed = GetDifficultyProgressionCurveY(nextLevel, 12f, 18f);
+        minZigZagSpeed = GetDifficultyProgressionCurveY(nextLevel, 0f, 0.5f, 0.5f);
+        maxZigZagSpeed = GetDifficultyProgressionCurveY(nextLevel, 0f, 2f, 0.5f);
+        minZigZagDistance = GetDifficultyProgressionCurveY(nextLevel, 0f, 1f, 0.5f);
+        maxZigZagDistance = GetDifficultyProgressionCurveY(nextLevel, 0f, 2f, 0.5f);
 
         levelText.text = "Level " + nextLevel;
         level = nextLevel;
     }
+
+  // Curve Preview https://www.desmos.com/calculator/kokoyb75ge
+  float GetDifficultyProgressionCurveY(float x, float min = 0.5f, float max = 8f, float intensity = 1f, float offset = 100f)
+  {
+    float rangeFactor = max - min;
+    float numerator = rangeFactor * x;
+    float growthFactor = intensity * x / rangeFactor;
+    float denominator = x + Mathf.Pow(rangeFactor + offset, 1 - growthFactor);
+
+    return min + (numerator / denominator);
+  }
 }
