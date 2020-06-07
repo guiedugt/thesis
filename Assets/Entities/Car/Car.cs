@@ -18,6 +18,7 @@ public class Car : MonoBehaviour
     [SerializeField] float CollisionTorqueForce = 300f;
     [SerializeField] AudioClip crashSFX;
     [SerializeField] AudioClip[] driftSFXs;
+    [SerializeField] ParticleSystem crashVFX;
 
     Position position = Position.Center;
     Vector3 velocity;
@@ -103,6 +104,11 @@ public class Car : MonoBehaviour
             rb.AddForce(Vector3.up * CollisionUpForce);
             rb.AddTorque(Vector3.down * CollisionTorqueForce);
             AudioManager.Instance.Play(crashSFX);
+            if (crashVFX)
+            {
+                ParticleSystem explosionVFXInstance = Instantiate(crashVFX, transform.position, Quaternion.identity, MemoryManager.Instance.transform);
+                explosionVFXInstance.gameObject.transform.LookAt(GameManager.mainCamera.transform);
+            }
             GameManager.Instance.GameOver();
         }
     }

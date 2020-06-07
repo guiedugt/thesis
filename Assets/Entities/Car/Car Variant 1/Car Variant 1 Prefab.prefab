@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 11dcf8981eb54417dad0404e2e4d3104, type: 3}
   - {fileID: 8300000, guid: b574f029647ac4fb08b464ae71ba1dcb, type: 3}
   - {fileID: 8300000, guid: 582d672a804354056b3660175da027b7, type: 3}
+  crashVFX: {fileID: 198321801994178000, guid: 34e58cd1bc5ad4a5384a5e14ae8307b8, type: 3}
 --- !u!114 &2970265854692611370
 MonoBehaviour:
   m_ObjectHideFlags: 0
