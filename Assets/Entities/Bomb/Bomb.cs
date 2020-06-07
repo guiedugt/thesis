@@ -14,6 +14,7 @@ public class Bomb : MonoBehaviour
     [SerializeField] float screenShakeMagnitude = 0.1f;
     [SerializeField] GameObject shatteredBrickPrefab;
     [SerializeField] GameObject shatteredGoldBrickPrefab;
+    [SerializeField] GameObject trail;
 
     Collider col;
     Rigidbody rb;
@@ -78,6 +79,7 @@ public class Bomb : MonoBehaviour
 
         GameManager.mainCamera.Shake(screenShakeMagnitude);
         AudioManager.Instance.Play(explosionSFX);
+        trail.transform.SetParent(MemoryManager.Instance.transform);
         Destroy(gameObject);
     }
 }
