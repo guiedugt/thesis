@@ -109,7 +109,7 @@ public class ScoreManager : Singleton<ScoreManager>
   }
 
   // Curve Preview https://www.desmos.com/calculator/kokoyb75ge
-  float GetScoreProgressionCurveY(float x, float min = 10f, float max = 50f, float intensity = 3f, float offset = 100f)
+  public static float GetScoreProgressionCurveY(float x, float min = 10f, float max = 50f, float intensity = 3f, float offset = 100f)
   {
     float rangeFactor = max - min;
     float numerator = rangeFactor * x;

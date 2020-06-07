@@ -8,7 +8,7 @@ public class LevelManager : Singleton<LevelManager>
 
     [Header("Level Properties")]
     [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] float levelUpMultiplier = 3f;
+    [SerializeField] float levelUpMultiplier = 1f;
     public UnityEvent OnLevelUp;
 
     [Header("Spawner Properties")]
@@ -33,7 +33,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         int nextLevel = LevelManager.level + 1;
         LoadLevel(nextLevel);
-        ScoreItem scoreItem = new ScoreItem(1f, nextLevel * levelUpMultiplier);
+        ScoreItem scoreItem = new ScoreItem(1f, ScoreManager.GetScoreProgressionCurveY(nextLevel, 0f, 5f));
         ScoreManager.Instance.AddScore(ScoreType.Level, scoreItem);
         OnLevelUp.Invoke();
     }
