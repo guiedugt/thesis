@@ -17,6 +17,7 @@ public class Car : MonoBehaviour
     [SerializeField] float CollisionUpForce = 200f;
     [SerializeField] float CollisionTorqueForce = 300f;
     [SerializeField] AudioClip crashSFX;
+    [SerializeField] AudioClip[] driftSFXs;
 
     Position position = Position.Center;
     Vector3 velocity;
@@ -69,6 +70,7 @@ public class Car : MonoBehaviour
         if (position == Position.Left) { targetPosition += Vector3.left * swipeDisplacement; }
         if (position == Position.Right) { targetPosition += Vector3.right * swipeDisplacement; }
 
+        PlayRandomDriftSound();
         while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
         {
             transform.position = Vector3.SmoothDamp(
@@ -86,6 +88,11 @@ public class Car : MonoBehaviour
         }
 
         transform.position = targetPosition;
+    }
+
+    void PlayRandomDriftSound()
+    {
+        AudioManager.Instance.Play(driftSFXs[Random.Range(0,driftSFXs.Length)], 0.4f);
     }
 
     void OnCollisionEnter(Collision collision)

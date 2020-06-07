@@ -343,6 +343,13 @@ MonoBehaviour:
   CollisionUpForce: 200
   CollisionTorqueForce: 300
   crashSFX: {fileID: 8300000, guid: 33d4a90cf072b4c13a08f5be694b64bd, type: 3}
+  driftSFXs:
+  - {fileID: 8300000, guid: 34e8fabff171c42b187b536a40fab1c2, type: 3}
+  - {fileID: 8300000, guid: ee05869277dd94ed2aa5e3780ac90ae4, type: 3}
+  - {fileID: 8300000, guid: 6e4239545b33c4f08b91fcbccd9df57e, type: 3}
+  - {fileID: 8300000, guid: 11dcf8981eb54417dad0404e2e4d3104, type: 3}
+  - {fileID: 8300000, guid: b574f029647ac4fb08b464ae71ba1dcb, type: 3}
+  - {fileID: 8300000, guid: 582d672a804354056b3660175da027b7, type: 3}
 --- !u!114 &2970265854692611370
 MonoBehaviour:
   m_ObjectHideFlags: 0
