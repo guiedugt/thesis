@@ -4,6 +4,8 @@ using UnityEditor;
 
 public class DebugWindow : EditorWindow
 {
+    float slowMoSpeed = 0.25f;
+
     [MenuItem("Window/Debug Helpers")]
     public static void ShowWindow()
     {
@@ -16,7 +18,8 @@ public class DebugWindow : EditorWindow
         if (GUILayout.Button("Add 500 coins")) AddCoins(500);
         if (GUILayout.Button("Unlock All Cars")) ChangeAllCarsLockedState(isUnlocked: true);
         if (GUILayout.Button("Lock All Cars")) ChangeAllCarsLockedState(isUnlocked: false);
-        if (GUILayout.Button("(Un)FreezeTime")) UnFreezeTime();
+        if (GUILayout.Button("Toggle FreezeTime")) ToggleFreezeTime();
+        if (GUILayout.Button("Toggle SlowMo")) ToggleSlowMo();
         if (GUILayout.Button("Spawn Coins")) SpawnCoins(5);
     }
 
@@ -40,10 +43,16 @@ public class DebugWindow : EditorWindow
         PlayerPrefsManager.SetSelectableCars(selectableCars);
     }
 
-    void UnFreezeTime()
+    void ToggleFreezeTime()
     {
         if (Time.timeScale <= Mathf.Epsilon) Time.timeScale = 1f;
         else Time.timeScale = 0f;
+    }
+
+    void ToggleSlowMo()
+    {
+        if (Time.timeScale >= 1f) Time.timeScale = slowMoSpeed;
+        else Time.timeScale = 1f;
     }
 
     void SpawnCoins(int amount)
