@@ -3,6 +3,14 @@
 [RequireComponent(typeof(Collider))]
 public class MemoryManager : Singleton<MemoryManager>
 {
+    Collider col;
+
+    void Start()
+    {
+        col = GetComponent<Collider>();
+        InvokeRepeating("Clear", 5f, 5f);
+    }
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player")) { return; }
@@ -20,7 +28,7 @@ public class MemoryManager : Singleton<MemoryManager>
     {
         foreach (Transform child in transform)
         {
-            Destroy(child.gameObject);
+            if (!col.bounds.Contains(child.position)) Destroy(child.gameObject);
         }
     }
 }
